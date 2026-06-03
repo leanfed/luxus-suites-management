@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reserva solicitada | Luxus Suites</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="brand">
+        <span class="brand-icon">L</span>
+        <div>
+            <h1>Luxus Suites</h1>
+            <p>Luxury Hotel Experience</p>
+        </div>
+    </div>
+
+    <nav class="main-nav">
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/admin}" class="admin-link">Admin</a>
+    </nav>
+
+    <button type="button" class="theme-toggle" data-theme-toggle>
+        Modo claro
+    </button>
+</header>
+
+<main class="section confirmation-section">
+    <div class="reservation-card confirmation-card">
+        <div>
+            <span class="eyebrow">Solicitud recibida</span>
+            <h2>Gracias por elegir Luxus Suites.</h2>
+            <p>
+                Recibimos tu solicitud de reserva. Nuestro equipo verificará
+                disponibilidad y se comunicará para confirmar la estadía.
+            </p>
+        </div>
+
+        <div class="confirmation-summary">
+            <h3>Detalle de la solicitud</h3>
+
+            <div class="summary-row">
+                <span>Huésped</span>
+                <strong th:text="${nombre}">Nombre</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Email</span>
+                <strong th:text="${email}">Email</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Check-in</span>
+                <strong th:text="${checkin}">Check-in</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Check-out</span>
+                <strong th:text="${checkout}">Check-out</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Suite seleccionada</span>
+                <strong th:text="${suite}">Suite</strong>
+            </div>
+
+            <a th:href="@{/}" class="btn btn-primary">Volver al inicio</a>
+        </div>
+    </div>
+</main>
+
+<script th:src="@{/js/theme.js}"></script>
+
+</body>
+</html>

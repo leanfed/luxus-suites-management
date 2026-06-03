@@ -204,39 +204,59 @@
                 </p>
             </div>
 
-            <form class="reservation-form">
+            <form class="reservation-form" th:action="@{/reservas/solicitar}" method="post">
                 <div class="form-row">
                     <label for="nombre">Nombre completo</label>
-                    <input type="text" id="nombre" placeholder="Ej: Valentina Ríos">
+                    <input
+                            type="text"
+                            id="nombre"
+                            name="nombre"
+                            placeholder="Ej: Valentina Ríos"
+                            required>
                 </div>
 
                 <div class="form-row">
                     <label for="email">Correo electrónico</label>
-                    <input type="email" id="email" placeholder="Ej: nombre@email.com">
+                    <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Ej: nombre@email.com"
+                            required>
                 </div>
 
                 <div class="form-grid">
                     <div class="form-row">
                         <label for="checkin">Check-in</label>
-                        <input type="date" id="checkin">
+                        <input
+                                type="date"
+                                id="checkin"
+                                name="checkin"
+                                required>
                     </div>
 
                     <div class="form-row">
                         <label for="checkout">Check-out</label>
-                        <input type="date" id="checkout">
+                        <input
+                                type="date"
+                                id="checkout"
+                                name="checkout"
+                                required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <label for="suite">Suite</label>
-                    <select id="suite">
-                        <option>Deluxe Suite</option>
-                        <option>Ocean View Suite</option>
-                        <option>Presidential Suite</option>
+                    <select id="suite" name="suite" required>
+                        <option value="Deluxe Suite">Deluxe Suite</option>
+                        <option value="Ocean View Suite">Ocean View Suite</option>
+                        <option value="Presidential Suite">Presidential Suite</option>
                     </select>
                 </div>
 
-                <button type="button" class="btn btn-primary">Solicitar reserva</button>
+                <button type="submit" class="btn btn-primary">
+                    Solicitar reserva
+                </button>
             </form>
         </div>
     </section>
