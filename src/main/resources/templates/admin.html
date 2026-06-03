@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Luxus Suites Management | Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="brand">
+        <span class="brand-icon">L</span>
+        <div>
+            <h1>Luxus Suites</h1>
+            <p>Management System</p>
+        </div>
+    </div>
+
+    <nav class="nav">
+        <a th:href="@{/}">Sitio público</a>
+        <a href="#">Dashboard</a>
+        <a href="#">Reservas</a>
+        <a href="#">Huéspedes</a>
+        <a href="#">Habitaciones</a>
+    </nav>
+
+    <button type="button" class="theme-toggle" data-theme-toggle>
+        Modo claro
+    </button>
+</header>
+
+<main class="layout">
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="eyebrow">Panel administrativo</span>
+
+            <h2>Gestión integral para operaciones hoteleras premium.</h2>
+
+            <p>
+                Panel interno para administrar reservas, huéspedes, habitaciones,
+                disponibilidad y métricas operativas de Luxus Suites.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#" class="btn btn-primary">Nueva reserva</a>
+                <a href="#" class="btn btn-secondary">Ver reservas</a>
+            </div>
+        </div>
+
+        <div class="hero-card">
+            <p class="card-label">Ocupación actual</p>
+            <h3>82%</h3>
+            <span>Suites activas y reservas confirmadas</span>
+        </div>
+    </section>
+
+    <section class="stats-grid">
+        <article class="stat-card">
+            <span>Reservas activas</span>
+            <strong>24</strong>
+            <p>Próximas estadías confirmadas</p>
+        </article>
+
+        <article class="stat-card">
+            <span>Huéspedes registrados</span>
+            <strong>138</strong>
+            <p>Clientes cargados en el sistema</p>
+        </article>
+
+        <article class="stat-card">
+            <span>Suites disponibles</span>
+            <strong>12</strong>
+            <p>Habitaciones listas para reservar</p>
+        </article>
+
+        <article class="stat-card">
+            <span>Ingresos estimados</span>
+            <strong>$ 4.8M</strong>
+            <p>Proyección mensual operativa</p>
+        </article>
+    </section>
+
+    <section class="panel">
+        <div class="panel-header">
+            <div>
+                <span class="eyebrow">Actividad reciente</span>
+                <h2>Próximas llegadas</h2>
+            </div>
+
+            <a href="#" class="panel-link">Ver todas</a>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                <tr>
+                    <th>Huésped</th>
+                    <th>Suite</th>
+                    <th>Check-in</th>
+                    <th>Estado</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>Valentina Ríos</td>
+                    <td>Presidential Suite</td>
+                    <td>12/06/2026</td>
+                    <td><span class="status confirmed">Confirmada</span></td>
+                </tr>
+
+                <tr>
+                    <td>Martín Alvarez</td>
+                    <td>Deluxe Ocean View</td>
+                    <td>14/06/2026</td>
+                    <td><span class="status pending">Pendiente</span></td>
+                </tr>
+
+                <tr>
+                    <td>Camila Torres</td>
+                    <td>Executive Suite</td>
+                    <td>15/06/2026</td>
+                    <td><span class="status confirmed">Confirmada</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</main>
+
+<script th:src="@{/js/theme.js}"></script>
+
+</body>
+</html>

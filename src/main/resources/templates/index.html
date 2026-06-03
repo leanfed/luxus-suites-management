@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Luxus Suites | Hotel de lujo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="brand">
+        <span class="brand-icon">L</span>
+        <div>
+            <h1>Luxus Suites</h1>
+            <p>Luxury Hotel Experience</p>
+        </div>
+    </div>
+
+    <nav class="main-nav">
+        <a href="#suites">Suites</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#reservar">Reservar</a>
+        <a th:href="@{/admin}" class="admin-link">Admin</a>
+    </nav>
+
+    <button type="button" class="theme-toggle" data-theme-toggle>
+        Modo claro
+    </button>
+</header>
+
+<main>
+
+    <section class="public-hero">
+        <div class="hero-overlay"></div>
+
+        <div class="public-hero-content">
+            <span class="eyebrow">Hotel boutique cinco estrellas</span>
+
+            <h2>Una experiencia de lujo diseñada para cada estadía.</h2>
+
+            <p>
+                Luxus Suites combina elegancia contemporánea, atención personalizada
+                y suites exclusivas para ofrecer una experiencia hotelera premium
+                desde la reserva hasta el check-out.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#reservar" class="btn btn-primary">Reservar estadía</a>
+                <a href="#suites" class="btn btn-secondary">Explorar suites</a>
+            </div>
+        </div>
+
+        <div class="booking-preview">
+            <span>Disponibilidad destacada</span>
+            <h3>Presidential Suite</h3>
+            <p>Vista panorámica, spa privado y servicio de concierge 24 hs.</p>
+            <strong>Desde $ 390.000 / noche</strong>
+        </div>
+    </section>
+
+    <section class="section intro-section" id="experiencia">
+        <div class="section-heading">
+            <span class="eyebrow">Experiencia Luxus</span>
+            <h2>Hospitalidad premium con estilo contemporáneo.</h2>
+            <p>
+                Cada detalle fue pensado para huéspedes que buscan confort,
+                privacidad y una atención de primer nivel.
+            </p>
+        </div>
+
+        <div class="experience-grid">
+            <article class="experience-card">
+                <span>01</span>
+                <h3>Concierge personalizado</h3>
+                <p>
+                    Asistencia exclusiva para reservas, traslados, gastronomía,
+                    eventos y experiencias dentro de la ciudad.
+                </p>
+            </article>
+
+            <article class="experience-card">
+                <span>02</span>
+                <h3>Spa & wellness</h3>
+                <p>
+                    Espacios de relajación, tratamientos premium y servicios
+                    diseñados para el descanso integral.
+                </p>
+            </article>
+
+            <article class="experience-card">
+                <span>03</span>
+                <h3>Gastronomía de autor</h3>
+                <p>
+                    Propuesta culinaria elegante con menú internacional,
+                    desayunos premium y servicio a la habitación.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <section class="section suites-section" id="suites">
+        <div class="section-heading">
+            <span class="eyebrow">Suites destacadas</span>
+            <h2>Habitaciones pensadas para una estadía superior.</h2>
+        </div>
+
+        <div class="suites-grid">
+            <article class="suite-card">
+                <div class="suite-image suite-deluxe"></div>
+                <div class="suite-content">
+                    <span>Deluxe Suite</span>
+                    <h3>Elegancia y confort ejecutivo</h3>
+                    <p>
+                        Ideal para estadías de negocios o escapadas urbanas,
+                        con ambiente amplio, escritorio privado y amenities premium.
+                    </p>
+                    <div class="suite-footer">
+                        <strong>$ 180.000 / noche</strong>
+                        <a href="#reservar">Reservar</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="suite-card featured">
+                <div class="suite-image suite-presidential"></div>
+                <div class="suite-content">
+                    <span>Presidential Suite</span>
+                    <h3>Máxima privacidad y lujo</h3>
+                    <p>
+                        Suite exclusiva con vista panorámica, living privado,
+                        bañera de hidromasaje y atención personalizada.
+                    </p>
+                    <div class="suite-footer">
+                        <strong>$ 390.000 / noche</strong>
+                        <a href="#reservar">Reservar</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="suite-card">
+                <div class="suite-image suite-ocean"></div>
+                <div class="suite-content">
+                    <span>Ocean View Suite</span>
+                    <h3>Vista premium y descanso absoluto</h3>
+                    <p>
+                        Espacio luminoso con balcón privado, cama king size,
+                        minibar premium y ambientación sofisticada.
+                    </p>
+                    <div class="suite-footer">
+                        <strong>$ 260.000 / noche</strong>
+                        <a href="#reservar">Reservar</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="section services-section" id="servicios">
+        <div class="services-content">
+            <span class="eyebrow">Servicios exclusivos</span>
+            <h2>Todo lo necesario para una estadía impecable.</h2>
+
+            <div class="services-list">
+                <div>
+                    <strong>Check-in privado</strong>
+                    <p>Recepción personalizada y asistencia prioritaria.</p>
+                </div>
+
+                <div>
+                    <strong>Room service 24 hs</strong>
+                    <p>Atención gastronómica disponible durante toda la estadía.</p>
+                </div>
+
+                <div>
+                    <strong>Traslados premium</strong>
+                    <p>Coordinación de movilidad ejecutiva y recepción en aeropuerto.</p>
+                </div>
+
+                <div>
+                    <strong>Eventos privados</strong>
+                    <p>Espacios exclusivos para reuniones, celebraciones y encuentros.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="services-panel">
+            <span>Calificación promedio</span>
+            <h3>4.9</h3>
+            <p>Basada en experiencias de huéspedes premium.</p>
+        </div>
+    </section>
+
+    <section class="section reservation-section" id="reservar">
+        <div class="reservation-card">
+            <div>
+                <span class="eyebrow">Reserva online</span>
+                <h2>Planificá tu próxima estadía en Luxus Suites.</h2>
+                <p>
+                    Completá una solicitud de reserva y nuestro equipo confirmará
+                    disponibilidad, tarifa final y servicios adicionales.
+                </p>
+            </div>
+
+            <form class="reservation-form">
+                <div class="form-row">
+                    <label for="nombre">Nombre completo</label>
+                    <input type="text" id="nombre" placeholder="Ej: Valentina Ríos">
+                </div>
+
+                <div class="form-row">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" placeholder="Ej: nombre@email.com">
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-row">
+                        <label for="checkin">Check-in</label>
+                        <input type="date" id="checkin">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="checkout">Check-out</label>
+                        <input type="date" id="checkout">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label for="suite">Suite</label>
+                    <select id="suite">
+                        <option>Deluxe Suite</option>
+                        <option>Ocean View Suite</option>
+                        <option>Presidential Suite</option>
+                    </select>
+                </div>
+
+                <button type="button" class="btn btn-primary">Solicitar reserva</button>
+            </form>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <div>
+        <strong>Luxus Suites</strong>
+        <p>Hotel Management & Luxury Experience</p>
+    </div>
+
+    <p>Proyecto inspirado en Hotel Alura ONE, modernizado con Java Spring Boot.</p>
+</footer>
+
+<script th:src="@{/js/theme.js}"></script>
+
+</body>
+</html>
