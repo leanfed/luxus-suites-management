@@ -47,4 +47,12 @@ public class ReservaSolicitud {
     public String getEstado() {
         return estado;
     }
+
+    public void confirmar() {
+        this.estado = "Confirmada";
+    }
+
+    public void cancelar() {
+        this.estado = "Cancelada";
+    }
 }

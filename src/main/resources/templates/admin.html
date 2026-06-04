@@ -104,6 +104,7 @@
                     <th>Check-in</th>
                     <th>Check-out</th>
                     <th>Estado</th>
+                    <th>Acciones</th>
                 </tr>
                 </thead>
 
@@ -115,7 +116,31 @@
                     <td th:text="${solicitud.suite}">Suite</td>
                     <td th:text="${solicitud.checkin}">Check-in</td>
                     <td th:text="${solicitud.checkout}">Check-out</td>
-                    <td><span class="status pending" th:text="${solicitud.estado}">Pendiente</span></td>
+
+                    <td>
+                        <span
+                                class="status"
+                                th:classappend="${solicitud.estado == 'Confirmada'} ? ' confirmed' : (${solicitud.estado == 'Cancelada'} ? ' cancelled' : ' pending')"
+                                th:text="${solicitud.estado}">
+                            Pendiente
+                        </span>
+                    </td>
+
+                    <td>
+                        <div class="admin-actions">
+                            <form th:action="@{/admin/reservas/{id}/confirmar(id=${solicitud.id})}" method="post">
+                                <button type="submit" class="table-action confirm">
+                                    Confirmar
+                                </button>
+                            </form>
+
+                            <form th:action="@{/admin/reservas/{id}/cancelar(id=${solicitud.id})}" method="post">
+                                <button type="submit" class="table-action cancel">
+                                    Cancelar
+                                </button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
                 </tbody>
             </table>

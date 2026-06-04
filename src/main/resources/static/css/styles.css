@@ -1133,3 +1133,50 @@ body.light-theme .confirmation-note {
         text-align: left;
     }
 }
+
+/* =========================
+   ADMIN - ACCIONES DE TABLA
+========================= */
+
+.admin-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.admin-actions form {
+    margin: 0;
+}
+
+.table-action {
+    border: 0;
+    border-radius: 999px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 900;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.table-action:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+
+.table-action.confirm {
+    background: var(--success);
+    color: #082711;
+}
+
+.table-action.cancel {
+    background: var(--danger);
+    color: #351010;
+}
+
+body.light-theme .table-action.confirm {
+    color: #082711;
+}
+
+body.light-theme .table-action.cancel {
+    color: #351010;
+}

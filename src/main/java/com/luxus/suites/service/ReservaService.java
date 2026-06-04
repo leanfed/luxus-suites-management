@@ -42,4 +42,18 @@ public class ReservaService {
     public int contarSolicitudes() {
         return solicitudes.size();
     }
+
+    public void confirmarSolicitud(Long id) {
+        solicitudes.stream()
+                .filter(solicitud -> solicitud.getId().equals(id))
+                .findFirst()
+                .ifPresent(ReservaSolicitud::confirmar);
+    }
+
+    public void cancelarSolicitud(Long id) {
+        solicitudes.stream()
+                .filter(solicitud -> solicitud.getId().equals(id))
+                .findFirst()
+                .ifPresent(ReservaSolicitud::cancelar);
+    }
 }
