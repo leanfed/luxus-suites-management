@@ -1,5 +1,6 @@
 package com.luxus.suites.controller;
 
+import com.luxus.suites.model.ReservaSolicitud;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,11 +29,15 @@ public class HomeController {
             @RequestParam String suite,
             Model model
     ) {
-        model.addAttribute("nombre", nombre);
-        model.addAttribute("email", email);
-        model.addAttribute("checkin", checkin);
-        model.addAttribute("checkout", checkout);
-        model.addAttribute("suite", suite);
+        ReservaSolicitud reserva = new ReservaSolicitud(
+                nombre,
+                email,
+                checkin,
+                checkout,
+                suite
+        );
+
+        model.addAttribute("reserva", reserva);
 
         return "reserva-confirmacion";
     }

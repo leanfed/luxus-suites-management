@@ -32,11 +32,17 @@
     <div class="reservation-card confirmation-card">
         <div>
             <span class="eyebrow">Solicitud recibida</span>
+
             <h2>Gracias por elegir Luxus Suites.</h2>
+
             <p>
                 Recibimos tu solicitud de reserva. Nuestro equipo verificará
                 disponibilidad y se comunicará para confirmar la estadía.
             </p>
+
+            <a th:href="@{/}" class="btn btn-secondary">
+                Volver al inicio
+            </a>
         </div>
 
         <div class="confirmation-summary">
@@ -44,30 +50,33 @@
 
             <div class="summary-row">
                 <span>Huésped</span>
-                <strong th:text="${nombre}">Nombre</strong>
+                <strong th:text="${reserva.nombre}">Nombre</strong>
             </div>
 
             <div class="summary-row">
                 <span>Email</span>
-                <strong th:text="${email}">Email</strong>
+                <strong th:text="${reserva.email}">Email</strong>
             </div>
 
             <div class="summary-row">
                 <span>Check-in</span>
-                <strong th:text="${checkin}">Check-in</strong>
+                <strong th:text="${reserva.checkin}">Check-in</strong>
             </div>
 
             <div class="summary-row">
                 <span>Check-out</span>
-                <strong th:text="${checkout}">Check-out</strong>
+                <strong th:text="${reserva.checkout}">Check-out</strong>
             </div>
 
             <div class="summary-row">
                 <span>Suite seleccionada</span>
-                <strong th:text="${suite}">Suite</strong>
+                <strong th:text="${reserva.suite}">Suite</strong>
             </div>
 
-            <a th:href="@{/}" class="btn btn-primary">Volver al inicio</a>
+            <div class="confirmation-note">
+                <span>Estado</span>
+                <strong>Solicitud pendiente de confirmación</strong>
+            </div>
         </div>
     </div>
 </main>

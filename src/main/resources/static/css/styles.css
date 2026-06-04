@@ -1036,3 +1036,100 @@ body.light-theme .btn-secondary {
     background: rgba(255, 255, 255, 0.74);
     color: var(--text);
 }
+
+/* =========================
+   CONFIRMACIÓN DE RESERVA
+========================= */
+
+.confirmation-section {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    align-items: center;
+}
+
+.confirmation-card {
+    width: 100%;
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: stretch;
+}
+
+.confirmation-summary {
+    padding: 28px;
+    border-radius: 26px;
+    background: rgba(3, 7, 18, 0.32);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.confirmation-summary h3 {
+    margin: 0 0 22px;
+    font-size: 26px;
+    color: var(--text);
+}
+
+.summary-row,
+.confirmation-note {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.summary-row span,
+.confirmation-note span {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.summary-row strong,
+.confirmation-note strong {
+    color: var(--text);
+    font-size: 15px;
+    text-align: right;
+}
+
+.confirmation-note {
+    margin-top: 18px;
+    padding: 16px 18px;
+    border-bottom: 0;
+    border-radius: 18px;
+    background: rgba(215, 180, 106, 0.13);
+    border: 1px solid rgba(241, 213, 138, 0.22);
+}
+
+.confirmation-note strong {
+    color: var(--gold-soft);
+}
+
+body.light-theme .confirmation-summary {
+    background: rgba(255, 255, 255, 0.62);
+    border-color: rgba(68, 52, 27, 0.13);
+}
+
+body.light-theme .summary-row,
+body.light-theme .confirmation-note {
+    border-color: rgba(68, 52, 27, 0.12);
+}
+
+body.light-theme .confirmation-note {
+    background: rgba(184, 137, 47, 0.12);
+}
+
+@media (max-width: 900px) {
+    .confirmation-card {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-row,
+    .confirmation-note {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .summary-row strong,
+    .confirmation-note strong {
+        text-align: left;
+    }
+}
