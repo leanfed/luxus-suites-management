@@ -39,15 +39,13 @@ public class HomeController {
             @RequestParam String suite,
             Model model
     ) {
-        ReservaSolicitud reserva = new ReservaSolicitud(
+        ReservaSolicitud reserva = reservaService.guardarSolicitud(
                 nombre,
                 email,
                 checkin,
                 checkout,
                 suite
         );
-
-        reservaService.guardarSolicitud(reserva);
 
         model.addAttribute("reserva", reserva);
 

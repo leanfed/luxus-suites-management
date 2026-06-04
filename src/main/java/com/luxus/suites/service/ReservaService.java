@@ -11,9 +11,28 @@ import java.util.List;
 public class ReservaService {
 
     private final List<ReservaSolicitud> solicitudes = new ArrayList<>();
+    private Long proximoId = 1L;
 
-    public void guardarSolicitud(ReservaSolicitud reserva) {
+    public ReservaSolicitud guardarSolicitud(
+            String nombre,
+            String email,
+            String checkin,
+            String checkout,
+            String suite
+    ) {
+        ReservaSolicitud reserva = new ReservaSolicitud(
+                proximoId,
+                nombre,
+                email,
+                checkin,
+                checkout,
+                suite
+        );
+
         solicitudes.add(reserva);
+        proximoId++;
+
+        return reserva;
     }
 
     public List<ReservaSolicitud> listarSolicitudes() {

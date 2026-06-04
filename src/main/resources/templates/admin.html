@@ -97,6 +97,7 @@
             <table>
                 <thead>
                 <tr>
+                    <th>N°</th>
                     <th>Huésped</th>
                     <th>Email</th>
                     <th>Suite</th>
@@ -108,12 +109,13 @@
 
                 <tbody>
                 <tr th:each="solicitud : ${solicitudes}">
+                    <td th:text="'#' + ${solicitud.id}">#1</td>
                     <td th:text="${solicitud.nombre}">Nombre</td>
                     <td th:text="${solicitud.email}">Email</td>
                     <td th:text="${solicitud.suite}">Suite</td>
                     <td th:text="${solicitud.checkin}">Check-in</td>
                     <td th:text="${solicitud.checkout}">Check-out</td>
-                    <td><span class="status pending">Pendiente</span></td>
+                    <td><span class="status pending" th:text="${solicitud.estado}">Pendiente</span></td>
                 </tr>
                 </tbody>
             </table>

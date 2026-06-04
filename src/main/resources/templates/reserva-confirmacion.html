@@ -49,6 +49,11 @@
             <h3>Detalle de la solicitud</h3>
 
             <div class="summary-row">
+                <span>Número de solicitud</span>
+                <strong th:text="'#' + ${reserva.id}">#1</strong>
+            </div>
+
+            <div class="summary-row">
                 <span>Huésped</span>
                 <strong th:text="${reserva.nombre}">Nombre</strong>
             </div>
@@ -75,7 +80,7 @@
 
             <div class="confirmation-note">
                 <span>Estado</span>
-                <strong>Solicitud pendiente de confirmación</strong>
+                <strong th:text="${reserva.estado}">Pendiente</strong>
             </div>
         </div>
     </div>
