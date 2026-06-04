@@ -27,6 +27,9 @@ public class HomeController {
     public String admin(Model model) {
         model.addAttribute("solicitudes", reservaService.listarSolicitudes());
         model.addAttribute("totalSolicitudes", reservaService.contarSolicitudes());
+        model.addAttribute("totalPendientes", reservaService.contarPendientes());
+        model.addAttribute("totalConfirmadas", reservaService.contarConfirmadas());
+        model.addAttribute("totalCanceladas", reservaService.contarCanceladas());
 
         return "admin";
     }

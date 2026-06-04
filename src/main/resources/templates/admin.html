@@ -21,7 +21,7 @@
     <nav class="nav">
         <a th:href="@{/}">Sitio público</a>
         <a href="#">Dashboard</a>
-        <a href="#">Reservas</a>
+        <a href="#solicitudes">Reservas</a>
         <a href="#">Huéspedes</a>
         <a href="#">Habitaciones</a>
     </nav>
@@ -59,27 +59,27 @@
 
     <section class="stats-grid">
         <article class="stat-card">
-            <span>Solicitudes de reserva</span>
+            <span>Total de solicitudes</span>
             <strong th:text="${totalSolicitudes}">0</strong>
             <p>Pedidos recibidos desde la web pública</p>
         </article>
 
         <article class="stat-card">
-            <span>Huéspedes potenciales</span>
-            <strong th:text="${totalSolicitudes}">0</strong>
-            <p>Clientes interesados en una estadía</p>
+            <span>Pendientes</span>
+            <strong th:text="${totalPendientes}">0</strong>
+            <p>Solicitudes esperando revisión</p>
         </article>
 
         <article class="stat-card">
-            <span>Suites disponibles</span>
-            <strong>12</strong>
-            <p>Habitaciones listas para reservar</p>
+            <span>Confirmadas</span>
+            <strong th:text="${totalConfirmadas}">0</strong>
+            <p>Reservas aprobadas por administración</p>
         </article>
 
         <article class="stat-card">
-            <span>Estado del sistema</span>
-            <strong>Activo</strong>
-            <p>Formulario público conectado con Spring</p>
+            <span>Canceladas</span>
+            <strong th:text="${totalCanceladas}">0</strong>
+            <p>Solicitudes rechazadas o anuladas</p>
         </article>
     </section>
 

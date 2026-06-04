@@ -43,6 +43,24 @@ public class ReservaService {
         return solicitudes.size();
     }
 
+    public long contarPendientes() {
+        return solicitudes.stream()
+                .filter(solicitud -> solicitud.getEstado().equals("Pendiente"))
+                .count();
+    }
+
+    public long contarConfirmadas() {
+        return solicitudes.stream()
+                .filter(solicitud -> solicitud.getEstado().equals("Confirmada"))
+                .count();
+    }
+
+    public long contarCanceladas() {
+        return solicitudes.stream()
+                .filter(solicitud -> solicitud.getEstado().equals("Cancelada"))
+                .count();
+    }
+
     public void confirmarSolicitud(Long id) {
         solicitudes.stream()
                 .filter(solicitud -> solicitud.getId().equals(id))
