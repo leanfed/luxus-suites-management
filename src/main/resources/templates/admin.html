@@ -45,29 +45,29 @@
             </p>
 
             <div class="hero-actions">
-                <a href="#" class="btn btn-primary">Nueva reserva</a>
-                <a href="#" class="btn btn-secondary">Ver reservas</a>
+                <a th:href="@{/}" class="btn btn-primary">Nueva solicitud</a>
+                <a href="#solicitudes" class="btn btn-secondary">Ver solicitudes</a>
             </div>
         </div>
 
         <div class="hero-card">
-            <p class="card-label">Ocupación actual</p>
-            <h3>82%</h3>
-            <span>Suites activas y reservas confirmadas</span>
+            <p class="card-label">Solicitudes recibidas</p>
+            <h3 th:text="${totalSolicitudes}">0</h3>
+            <span>Reservas solicitadas desde el sitio público</span>
         </div>
     </section>
 
     <section class="stats-grid">
         <article class="stat-card">
-            <span>Reservas activas</span>
-            <strong>24</strong>
-            <p>Próximas estadías confirmadas</p>
+            <span>Solicitudes de reserva</span>
+            <strong th:text="${totalSolicitudes}">0</strong>
+            <p>Pedidos recibidos desde la web pública</p>
         </article>
 
         <article class="stat-card">
-            <span>Huéspedes registrados</span>
-            <strong>138</strong>
-            <p>Clientes cargados en el sistema</p>
+            <span>Huéspedes potenciales</span>
+            <strong th:text="${totalSolicitudes}">0</strong>
+            <p>Clientes interesados en una estadía</p>
         </article>
 
         <article class="stat-card">
@@ -77,56 +77,55 @@
         </article>
 
         <article class="stat-card">
-            <span>Ingresos estimados</span>
-            <strong>$ 4.8M</strong>
-            <p>Proyección mensual operativa</p>
+            <span>Estado del sistema</span>
+            <strong>Activo</strong>
+            <p>Formulario público conectado con Spring</p>
         </article>
     </section>
 
-    <section class="panel">
+    <section class="panel" id="solicitudes">
         <div class="panel-header">
             <div>
-                <span class="eyebrow">Actividad reciente</span>
-                <h2>Próximas llegadas</h2>
+                <span class="eyebrow">Reservas online</span>
+                <h2>Solicitudes recibidas</h2>
             </div>
 
-            <a href="#" class="panel-link">Ver todas</a>
+            <a th:href="@{/}" class="panel-link">Cargar nueva</a>
         </div>
 
-        <div class="table-wrapper">
+        <div class="table-wrapper" th:if="${totalSolicitudes > 0}">
             <table>
                 <thead>
                 <tr>
                     <th>Huésped</th>
+                    <th>Email</th>
                     <th>Suite</th>
                     <th>Check-in</th>
+                    <th>Check-out</th>
                     <th>Estado</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                <tr>
-                    <td>Valentina Ríos</td>
-                    <td>Presidential Suite</td>
-                    <td>12/06/2026</td>
-                    <td><span class="status confirmed">Confirmada</span></td>
-                </tr>
-
-                <tr>
-                    <td>Martín Alvarez</td>
-                    <td>Deluxe Ocean View</td>
-                    <td>14/06/2026</td>
+                <tr th:each="solicitud : ${solicitudes}">
+                    <td th:text="${solicitud.nombre}">Nombre</td>
+                    <td th:text="${solicitud.email}">Email</td>
+                    <td th:text="${solicitud.suite}">Suite</td>
+                    <td th:text="${solicitud.checkin}">Check-in</td>
+                    <td th:text="${solicitud.checkout}">Check-out</td>
                     <td><span class="status pending">Pendiente</span></td>
-                </tr>
-
-                <tr>
-                    <td>Camila Torres</td>
-                    <td>Executive Suite</td>
-                    <td>15/06/2026</td>
-                    <td><span class="status confirmed">Confirmada</span></td>
                 </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div class="empty-admin-state" th:if="${totalSolicitudes == 0}">
+            <h3>No hay solicitudes cargadas todavía.</h3>
+            <p>
+                Cuando un huésped complete el formulario público de reserva,
+                la solicitud aparecerá en este panel administrativo.
+            </p>
+            <a th:href="@{/}" class="btn btn-primary">Ir al sitio público</a>
         </div>
     </section>
 
