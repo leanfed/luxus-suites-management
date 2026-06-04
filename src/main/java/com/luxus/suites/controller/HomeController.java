@@ -2,6 +2,7 @@ package com.luxus.suites.controller;
 
 import com.luxus.suites.model.ReservaSolicitud;
 import com.luxus.suites.service.ReservaService;
+import com.luxus.suites.service.SuiteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,13 +14,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
 
     private final ReservaService reservaService;
+    private final SuiteService suiteService;
 
-    public HomeController(ReservaService reservaService) {
+    public HomeController(ReservaService reservaService, SuiteService suiteService) {
         this.reservaService = reservaService;
+        this.suiteService = suiteService;
     }
 
     @GetMapping("/")
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("suites", suiteService.listarSuites());
         return "index";
     }
 

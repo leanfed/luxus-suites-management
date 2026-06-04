@@ -108,49 +108,33 @@
         </div>
 
         <div class="suites-grid">
-            <article class="suite-card">
-                <div class="suite-image suite-deluxe"></div>
-                <div class="suite-content">
-                    <span>Deluxe Suite</span>
-                    <h3>Elegancia y confort ejecutivo</h3>
-                    <p>
-                        Ideal para estadías de negocios o escapadas urbanas,
-                        con ambiente amplio, escritorio privado y amenities premium.
-                    </p>
-                    <div class="suite-footer">
-                        <strong>$ 180.000 / noche</strong>
-                        <a href="#reservar">Reservar</a>
-                    </div>
-                </div>
-            </article>
+            <article
+                    class="suite-card"
+                    th:each="suite : ${suites}"
+                    th:classappend="${suite.categoria == 'Presidential'} ? ' featured' : ''">
 
-            <article class="suite-card featured">
-                <div class="suite-image suite-presidential"></div>
-                <div class="suite-content">
-                    <span>Presidential Suite</span>
-                    <h3>Máxima privacidad y lujo</h3>
-                    <p>
-                        Suite exclusiva con vista panorámica, living privado,
-                        bañera de hidromasaje y atención personalizada.
-                    </p>
-                    <div class="suite-footer">
-                        <strong>$ 390.000 / noche</strong>
-                        <a href="#reservar">Reservar</a>
-                    </div>
+                <div
+                        class="suite-image"
+                        th:classappend="${suite.categoria == 'Deluxe'} ? ' suite-deluxe' : (${suite.categoria == 'Presidential'} ? ' suite-presidential' : ' suite-ocean')">
                 </div>
-            </article>
 
-            <article class="suite-card">
-                <div class="suite-image suite-ocean"></div>
                 <div class="suite-content">
-                    <span>Ocean View Suite</span>
-                    <h3>Vista premium y descanso absoluto</h3>
-                    <p>
-                        Espacio luminoso con balcón privado, cama king size,
-                        minibar premium y ambientación sofisticada.
+                    <span th:text="${suite.categoria}">Categoría</span>
+                    <h3 th:text="${suite.nombre}">Nombre de suite</h3>
+
+                    <p th:text="${suite.descripcion}">
+                        Descripción de la suite.
                     </p>
+
+                    <div class="suite-meta">
+                        <span th:text="'Capacidad: ' + ${suite.capacidad} + ' huéspedes'">Capacidad</span>
+                        <span th:text="${suite.disponible} ? 'Disponible' : 'No disponible'">Disponible</span>
+                    </div>
+
                     <div class="suite-footer">
-                        <strong>$ 260.000 / noche</strong>
+                        <strong th:text="'$ ' + ${#numbers.formatDecimal(suite.precioPorNoche, 0, 'POINT', 0, 'COMMA')} + ' / noche'">
+                            $ 180.000 / noche
+                        </strong>
                         <a href="#reservar">Reservar</a>
                     </div>
                 </div>
@@ -248,9 +232,12 @@
                 <div class="form-row">
                     <label for="suite">Suite</label>
                     <select id="suite" name="suite" required>
-                        <option value="Deluxe Suite">Deluxe Suite</option>
-                        <option value="Ocean View Suite">Ocean View Suite</option>
-                        <option value="Presidential Suite">Presidential Suite</option>
+                        <option
+                                th:each="suite : ${suites}"
+                                th:value="${suite.nombre}"
+                                th:text="${suite.nombre}">
+                            Deluxe Suite
+                        </option>
                     </select>
                 </div>
 
@@ -269,7 +256,7 @@
         <p>Hotel Management & Luxury Experience</p>
     </div>
 
-    <p>Proyecto Hotel Alura | Oracle Next Education, modernizado con Java Spring Boot.</p>
+    <p>Proyecto inspirado en Hotel Alura ONE, modernizado con Java Spring Boot.</p>
 </footer>
 
 <script th:src="@{/js/theme.js}"></script>
