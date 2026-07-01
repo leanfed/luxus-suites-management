@@ -34,6 +34,7 @@ public class HomeController {
         model.addAttribute("totalPendientes", reservaService.contarPendientes());
         model.addAttribute("totalConfirmadas", reservaService.contarConfirmadas());
         model.addAttribute("totalCanceladas", reservaService.contarCanceladas());
+        model.addAttribute("totalSuites", suiteService.listarSuites().size());
 
         return "admin";
     }

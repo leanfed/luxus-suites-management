@@ -53,7 +53,9 @@
         <div class="hero-card">
             <p class="card-label">Solicitudes recibidas</p>
             <h3 th:text="${totalSolicitudes}">0</h3>
-            <span>Reservas solicitadas desde el sitio público</span>
+            <span th:text="${totalSuites} + ' suites configuradas desde Java'">
+                Suites configuradas desde Java
+            </span>
         </div>
     </section>
 
