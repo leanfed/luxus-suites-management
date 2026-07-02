@@ -119,11 +119,26 @@
                 <tbody>
                 <tr th:each="solicitud : ${solicitudes}">
                     <td th:text="'#' + ${solicitud.id}">#1</td>
-                    <td th:text="${solicitud.nombre}">Nombre</td>
-                    <td th:text="${solicitud.email}">Email</td>
-                    <td th:text="${solicitud.suite}">Suite</td>
-                    <td th:text="${solicitud.checkin}">Check-in</td>
-                    <td th:text="${solicitud.checkout}">Check-out</td>
+
+                    <td th:text="${solicitud.nombre}">
+                        Nombre
+                    </td>
+
+                    <td th:text="${solicitud.email}">
+                        Email
+                    </td>
+
+                    <td th:text="${solicitud.suite}">
+                        Suite
+                    </td>
+
+                    <td th:text="${solicitud.checkin}">
+                        Check-in
+                    </td>
+
+                    <td th:text="${solicitud.checkout}">
+                        Check-out
+                    </td>
 
                     <td th:text="${solicitud.noches} + ' noche(s)'">
                         3 noche(s)
@@ -143,6 +158,13 @@
                     </td>
 
                     <td>
+                        <div class="admin-actions">
+                            <a th:href="@{/admin/reservas/{id}/editar(id=${solicitud.id})}"
+                               class="table-action edit">
+                                Editar
+                            </a>
+                        </div>
+
                         <div class="admin-actions" th:if="${solicitud.estado == 'Pendiente'}">
                             <form th:action="@{/admin/reservas/{id}/confirmar(id=${solicitud.id})}" method="post">
                                 <button type="submit" class="table-action confirm">

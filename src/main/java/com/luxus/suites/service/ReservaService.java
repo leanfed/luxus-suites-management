@@ -60,6 +60,49 @@ public class ReservaService {
         return Collections.unmodifiableList(solicitudes);
     }
 
+    public ReservaSolicitud buscarPorId(Long id) {
+        return solicitudes.stream()
+                .filter(solicitud -> solicitud.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public void actualizarSolicitud(
+            Long id,
+            String nombre,
+            String email,
+            String checkin,
+            String checkout,
+            String suite
+    ) {
+        ReservaSolicitud solicitud = buscarPorId(id);
+
+        if (solicitud == null) {
+            return;
+        }
+
+        Suite suiteSeleccionada = suiteService.buscarPorNombre(suite);
+
+        Double precioPorNoche = suiteSeleccionada != null
+                ? suiteSeleccionada.getPrecioPorNoche()
+                : 0.0;
+
+        Long noches = calcularNoches(checkin, checkout);
+
+        Double importeEstimado = precioPorNoche * noches;
+
+        solicitud.actualizarDatos(
+                nombre,
+                email,
+                checkin,
+                checkout,
+                suite,
+                precioPorNoche,
+                noches,
+                importeEstimado
+        );
+    }
+
     public int contarSolicitudes() {
         return solicitudes.size();
     }

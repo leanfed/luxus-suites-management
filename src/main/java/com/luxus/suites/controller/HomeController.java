@@ -63,6 +63,41 @@ public class HomeController {
         return "reserva-confirmacion";
     }
 
+    @GetMapping("/admin/reservas/{id}/editar")
+    public String mostrarFormularioEdicion(@PathVariable Long id, Model model) {
+        ReservaSolicitud solicitud = reservaService.buscarPorId(id);
+
+        if (solicitud == null) {
+            return "redirect:/admin";
+        }
+
+        model.addAttribute("solicitud", solicitud);
+        model.addAttribute("suites", suiteService.listarSuites());
+
+        return "reserva-editar";
+    }
+
+    @PostMapping("/admin/reservas/{id}/editar")
+    public String actualizarReserva(
+            @PathVariable Long id,
+            @RequestParam String nombre,
+            @RequestParam String email,
+            @RequestParam String checkin,
+            @RequestParam String checkout,
+            @RequestParam String suite
+    ) {
+        reservaService.actualizarSolicitud(
+                id,
+                nombre,
+                email,
+                checkin,
+                checkout,
+                suite
+        );
+
+        return "redirect:/admin";
+    }
+
     @PostMapping("/admin/reservas/{id}/confirmar")
     public String confirmarReserva(@PathVariable Long id) {
         reservaService.confirmarSolicitud(id);

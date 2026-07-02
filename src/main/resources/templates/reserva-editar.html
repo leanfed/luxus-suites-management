@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar reserva | Luxus Suites Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="brand">
+        <span class="brand-icon">L</span>
+        <div>
+            <h1>Luxus Suites</h1>
+            <p>Management System</p>
+        </div>
+    </div>
+
+    <nav class="nav">
+        <a th:href="@{/}">Sitio público</a>
+        <a th:href="@{/admin}">Panel admin</a>
+    </nav>
+
+    <button type="button" class="theme-toggle" data-theme-toggle>
+        Modo claro
+    </button>
+</header>
+
+<main class="layout">
+
+    <section class="panel">
+        <div class="panel-header">
+            <div>
+                <span class="eyebrow">Edición administrativa</span>
+                <h2 th:text="'Editar solicitud #' + ${solicitud.id}">
+                    Editar solicitud
+                </h2>
+            </div>
+
+            <a th:href="@{/admin}" class="panel-link">Volver al panel</a>
+        </div>
+
+        <form class="reservation-form"
+              th:action="@{/admin/reservas/{id}/editar(id=${solicitud.id})}"
+              method="post">
+
+            <div class="form-grid">
+                <label>
+                    Nombre del huésped
+                    <input type="text"
+                           name="nombre"
+                           th:value="${solicitud.nombre}"
+                           required>
+                </label>
+
+                <label>
+                    Email
+                    <input type="email"
+                           name="email"
+                           th:value="${solicitud.email}"
+                           required>
+                </label>
+
+                <label>
+                    Check-in
+                    <input type="date"
+                           name="checkin"
+                           th:value="${solicitud.checkin}"
+                           required>
+                </label>
+
+                <label>
+                    Check-out
+                    <input type="date"
+                           name="checkout"
+                           th:value="${solicitud.checkout}"
+                           required>
+                </label>
+
+                <label>
+                    Suite
+                    <select name="suite" required>
+                        <option th:each="suiteDisponible : ${suites}"
+                                th:value="${suiteDisponible.nombre}"
+                                th:text="${suiteDisponible.nombre}"
+                                th:selected="${suiteDisponible.nombre == solicitud.suite}">
+                            Deluxe Suite
+                        </option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="hero-actions">
+                <button type="submit" class="btn btn-primary">
+                    Guardar cambios
+                </button>
+
+                <a th:href="@{/admin}" class="btn btn-secondary">
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </section>
+
+</main>
+
+<script th:src="@{/js/theme.js}"></script>
+
+</body>
+</html>

@@ -1189,3 +1189,42 @@ body.light-theme .table-action.cancel {
 body.light-theme .table-action.reopen {
     color: #111827;
 }
+
+.table-action.edit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.10);
+    color: var(--text-main);
+    border: 1px solid var(--border);
+}
+
+.table-action.edit:hover {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+body.light-theme .table-action.edit {
+    color: #111827;
+    background: rgba(17, 24, 39, 0.06);
+    border: 1px solid rgba(17, 24, 39, 0.14);
+}
+
+body.light-theme .table-action.edit:hover {
+    background: rgba(17, 24, 39, 0.12);
+}
+
+.admin-actions {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+}
+
+.admin-actions:last-child {
+    margin-bottom: 0;
+}
+
+.table-action {
+    min-width: 82px;
+}

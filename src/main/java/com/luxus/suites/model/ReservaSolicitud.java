@@ -87,4 +87,24 @@ public class ReservaSolicitud {
     public void reabrir() {
         this.estado = "Pendiente";
     }
+
+    public void actualizarDatos(
+            String nombre,
+            String email,
+            String checkin,
+            String checkout,
+            String suite,
+            Double precioPorNoche,
+            Long noches,
+            Double importeEstimado
+    ) {
+        this.nombre = nombre;
+        this.email = email;
+        this.checkin = checkin;
+        this.checkout = checkout;
+        this.suite = suite;
+        this.precioPorNoche = precioPorNoche;
+        this.noches = noches;
+        this.importeEstimado = importeEstimado;
+    }
 }
