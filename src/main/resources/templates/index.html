@@ -232,6 +232,15 @@
                 </label>
 
                 <label>
+                    Teléfono de contacto
+                    <input type="tel"
+                           name="telefono"
+                           th:value="${telefonoIngresado}"
+                           placeholder="Ej: 11 5555-5555"
+                           required>
+                </label>
+
+                <label>
                     Check-in
                     <input type="date"
                            name="checkin"
@@ -259,6 +268,14 @@
                             Deluxe Suite
                         </option>
                     </select>
+                </label>
+
+                <label class="form-field-wide">
+                    Observaciones
+                    <textarea name="observaciones"
+                              th:text="${observacionesIngresadas}"
+                              placeholder="Ej: horario estimado de llegada, cama matrimonial, cochera, pedido especial..."
+                              rows="4"></textarea>
                 </label>
             </div>
 

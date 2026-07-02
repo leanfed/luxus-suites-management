@@ -24,9 +24,11 @@ public class ReservaService {
     public ReservaSolicitud guardarSolicitud(
             String nombre,
             String email,
+            String telefono,
             String checkin,
             String checkout,
-            String suite
+            String suite,
+            String observaciones
     ) {
         Suite suiteSeleccionada = suiteService.buscarPorNombre(suite);
 
@@ -42,9 +44,11 @@ public class ReservaService {
                 proximoId,
                 nombre,
                 email,
+                telefono,
                 checkin,
                 checkout,
                 suite,
+                observaciones,
                 precioPorNoche,
                 noches,
                 importeEstimado
@@ -71,9 +75,11 @@ public class ReservaService {
             Long id,
             String nombre,
             String email,
+            String telefono,
             String checkin,
             String checkout,
-            String suite
+            String suite,
+            String observaciones
     ) {
         ReservaSolicitud solicitud = buscarPorId(id);
 
@@ -94,9 +100,11 @@ public class ReservaService {
         solicitud.actualizarDatos(
                 nombre,
                 email,
+                telefono,
                 checkin,
                 checkout,
                 suite,
+                observaciones,
                 precioPorNoche,
                 noches,
                 importeEstimado

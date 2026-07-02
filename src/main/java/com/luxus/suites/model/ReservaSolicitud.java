@@ -5,9 +5,11 @@ public class ReservaSolicitud {
     private Long id;
     private String nombre;
     private String email;
+    private String telefono;
     private String checkin;
     private String checkout;
     private String suite;
+    private String observaciones;
     private Double precioPorNoche;
     private Long noches;
     private Double importeEstimado;
@@ -17,9 +19,11 @@ public class ReservaSolicitud {
             Long id,
             String nombre,
             String email,
+            String telefono,
             String checkin,
             String checkout,
             String suite,
+            String observaciones,
             Double precioPorNoche,
             Long noches,
             Double importeEstimado
@@ -27,9 +31,11 @@ public class ReservaSolicitud {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
+        this.telefono = telefono;
         this.checkin = checkin;
         this.checkout = checkout;
         this.suite = suite;
+        this.observaciones = observaciones;
         this.precioPorNoche = precioPorNoche;
         this.noches = noches;
         this.importeEstimado = importeEstimado;
@@ -48,6 +54,10 @@ public class ReservaSolicitud {
         return email;
     }
 
+    public String getTelefono() {
+        return telefono;
+    }
+
     public String getCheckin() {
         return checkin;
     }
@@ -58,6 +68,10 @@ public class ReservaSolicitud {
 
     public String getSuite() {
         return suite;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
     }
 
     public Double getPrecioPorNoche() {
@@ -91,18 +105,22 @@ public class ReservaSolicitud {
     public void actualizarDatos(
             String nombre,
             String email,
+            String telefono,
             String checkin,
             String checkout,
             String suite,
+            String observaciones,
             Double precioPorNoche,
             Long noches,
             Double importeEstimado
     ) {
         this.nombre = nombre;
         this.email = email;
+        this.telefono = telefono;
         this.checkin = checkin;
         this.checkout = checkout;
         this.suite = suite;
+        this.observaciones = observaciones;
         this.precioPorNoche = precioPorNoche;
         this.noches = noches;
         this.importeEstimado = importeEstimado;

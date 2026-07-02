@@ -99,97 +99,111 @@
             <a th:href="@{/}" class="panel-link">Cargar nueva</a>
         </div>
 
-        <div class="table-wrapper" th:if="${totalSolicitudes > 0}">
-            <table>
-                <thead>
-                <tr>
-                    <th>N°</th>
-                    <th>Huésped</th>
-                    <th>Email</th>
-                    <th>Suite</th>
-                    <th>Check-in</th>
-                    <th>Check-out</th>
-                    <th>Noches</th>
-                    <th>Total estimado</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
-                </tr>
-                </thead>
+        <div class="reservation-admin-list" th:if="${totalSolicitudes > 0}">
+            <article class="reservation-admin-card" th:each="solicitud : ${solicitudes}">
 
-                <tbody>
-                <tr th:each="solicitud : ${solicitudes}">
-                    <td th:text="'#' + ${solicitud.id}">#1</td>
-
-                    <td th:text="${solicitud.nombre}">
-                        Nombre
-                    </td>
-
-                    <td th:text="${solicitud.email}">
-                        Email
-                    </td>
-
-                    <td th:text="${solicitud.suite}">
-                        Suite
-                    </td>
-
-                    <td th:text="${solicitud.checkin}">
-                        Check-in
-                    </td>
-
-                    <td th:text="${solicitud.checkout}">
-                        Check-out
-                    </td>
-
-                    <td th:text="${solicitud.noches} + ' noche(s)'">
-                        3 noche(s)
-                    </td>
-
-                    <td th:text="'$ ' + ${#numbers.formatDecimal(solicitud.importeEstimado, 0, 'POINT', 0, 'COMMA')}">
-                        $ 1.170.000
-                    </td>
-
-                    <td>
-                        <span
-                                class="status"
-                                th:classappend="${solicitud.estado == 'Confirmada'} ? ' confirmed' : (${solicitud.estado == 'Cancelada'} ? ' cancelled' : ' pending')"
-                                th:text="${solicitud.estado}">
-                            Pendiente
+                <div class="reservation-admin-main">
+                    <div>
+                        <span class="reservation-number" th:text="'Solicitud #' + ${solicitud.id}">
+                            Solicitud #1
                         </span>
-                    </td>
 
-                    <td>
-                        <div class="admin-actions">
-                            <a th:href="@{/admin/reservas/{id}/editar(id=${solicitud.id})}"
-                               class="table-action edit">
-                                Editar
-                            </a>
-                        </div>
+                        <h3 th:text="${solicitud.nombre}">
+                            Nombre del huésped
+                        </h3>
 
-                        <div class="admin-actions" th:if="${solicitud.estado == 'Pendiente'}">
-                            <form th:action="@{/admin/reservas/{id}/confirmar(id=${solicitud.id})}" method="post">
-                                <button type="submit" class="table-action confirm">
-                                    Confirmar
-                                </button>
-                            </form>
+                        <p class="reservation-contact">
+                            <span th:text="${solicitud.email}">email@email.com</span>
+                            <small th:text="${solicitud.telefono}">11 5555-5555</small>
+                        </p>
+                    </div>
 
-                            <form th:action="@{/admin/reservas/{id}/cancelar(id=${solicitud.id})}" method="post">
-                                <button type="submit" class="table-action cancel">
-                                    Cancelar
-                                </button>
-                            </form>
-                        </div>
+                    <span
+                            class="status"
+                            th:classappend="${solicitud.estado == 'Confirmada'} ? ' confirmed' : (${solicitud.estado == 'Cancelada'} ? ' cancelled' : ' pending')"
+                            th:text="${solicitud.estado}">
+                        Pendiente
+                    </span>
+                </div>
 
-                        <div class="admin-actions" th:if="${solicitud.estado != 'Pendiente'}">
-                            <form th:action="@{/admin/reservas/{id}/reabrir(id=${solicitud.id})}" method="post">
-                                <button type="submit" class="table-action reopen">
-                                    Reabrir
-                                </button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                <div class="reservation-admin-details">
+                    <div>
+                        <span>Suite</span>
+                        <strong th:text="${solicitud.suite}">Deluxe Suite</strong>
+                    </div>
+
+                    <div>
+                        <span>Check-in</span>
+                        <strong th:text="${solicitud.checkin}">2026-07-06</strong>
+                    </div>
+
+                    <div>
+                        <span>Check-out</span>
+                        <strong th:text="${solicitud.checkout}">2026-07-10</strong>
+                    </div>
+
+                    <div>
+                        <span>Noches</span>
+                        <strong th:text="${solicitud.noches} + ' noche(s)'">4 noche(s)</strong>
+                    </div>
+
+                    <div>
+                        <span>Total estimado</span>
+                        <strong th:text="'$ ' + ${#numbers.formatDecimal(solicitud.importeEstimado, 0, 'POINT', 0, 'COMMA')}">
+                            $ 720.000
+                        </strong>
+                    </div>
+                </div>
+
+                <div class="reservation-admin-footer">
+                    <div class="reservation-observation-box">
+                        <span>Observación</span>
+
+                        <button type="button"
+                                class="table-action observation"
+                                th:if="${!#strings.isEmpty(solicitud.observaciones)}"
+                                th:attr="data-observacion=${solicitud.observaciones}">
+                            Ver observación
+                        </button>
+
+                        <small th:if="${#strings.isEmpty(solicitud.observaciones)}">
+                            Sin observación
+                        </small>
+                    </div>
+
+                    <div class="reservation-admin-actions">
+                        <a th:href="@{/admin/reservas/{id}/editar(id=${solicitud.id})}"
+                           class="table-action edit">
+                            Editar
+                        </a>
+
+                        <form th:if="${solicitud.estado == 'Pendiente'}"
+                              th:action="@{/admin/reservas/{id}/confirmar(id=${solicitud.id})}"
+                              method="post">
+                            <button type="submit" class="table-action confirm">
+                                Confirmar
+                            </button>
+                        </form>
+
+                        <form th:if="${solicitud.estado == 'Pendiente'}"
+                              th:action="@{/admin/reservas/{id}/cancelar(id=${solicitud.id})}"
+                              method="post">
+                            <button type="submit" class="table-action cancel">
+                                Cancelar
+                            </button>
+                        </form>
+
+                        <form th:if="${solicitud.estado != 'Pendiente'}"
+                              th:action="@{/admin/reservas/{id}/reabrir(id=${solicitud.id})}"
+                              method="post">
+                            <button type="submit" class="table-action reopen">
+                                Reabrir
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </article>
         </div>
 
         <div class="empty-admin-state" th:if="${totalSolicitudes == 0}">
@@ -203,6 +217,26 @@
     </section>
 
 </main>
+
+<div class="observation-modal" id="observationModal" aria-hidden="true">
+    <div class="observation-modal-backdrop" data-close-observation></div>
+
+    <div class="observation-modal-content">
+        <button type="button"
+                class="observation-modal-close"
+                data-close-observation>
+            ×
+        </button>
+
+        <span class="eyebrow">Observación del huésped</span>
+
+        <h2>Detalle de la solicitud</h2>
+
+        <p id="observationModalText">
+            Observación cargada por el cliente.
+        </p>
+    </div>
+</div>
 
 <script th:src="@{/js/theme.js}"></script>
 

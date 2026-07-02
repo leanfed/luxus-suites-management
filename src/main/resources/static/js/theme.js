@@ -39,4 +39,38 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }, 150);
     }
+
+    const observationButtons = document.querySelectorAll(".table-action.observation");
+    const observationModal = document.getElementById("observationModal");
+    const observationModalText = document.getElementById("observationModalText");
+    const closeObservationButtons = document.querySelectorAll("[data-close-observation]");
+
+    observationButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const observationText = button.getAttribute("data-observacion");
+
+            if (observationModal && observationModalText) {
+                observationModalText.textContent = observationText;
+                observationModal.classList.add("is-open");
+                observationModal.setAttribute("aria-hidden", "false");
+            }
+        });
+    });
+
+    closeObservationButtons.forEach((button) => {
+        button.addEventListener("click", closeObservationModal);
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closeObservationModal();
+        }
+    });
+
+    function closeObservationModal() {
+        if (observationModal) {
+            observationModal.classList.remove("is-open");
+            observationModal.setAttribute("aria-hidden", "true");
+        }
+    }
 });

@@ -71,6 +71,14 @@
                 </label>
 
                 <label>
+                    Teléfono de contacto
+                    <input type="tel"
+                           name="telefono"
+                           th:value="${solicitud.telefono}"
+                           required>
+                </label>
+
+                <label>
                     Check-in
                     <input type="date"
                            name="checkin"
@@ -96,6 +104,14 @@
                             Deluxe Suite
                         </option>
                     </select>
+                </label>
+
+                <label class="form-field-wide">
+                    Observaciones
+                    <textarea name="observaciones"
+                              th:text="${solicitud.observaciones}"
+                              placeholder="Ej: horario estimado de llegada, cama matrimonial, cochera, pedido especial..."
+                              rows="4"></textarea>
                 </label>
             </div>
 

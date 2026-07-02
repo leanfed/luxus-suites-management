@@ -45,18 +45,22 @@ public class HomeController {
     public String solicitarReserva(
             @RequestParam String nombre,
             @RequestParam String email,
+            @RequestParam String telefono,
             @RequestParam String checkin,
             @RequestParam String checkout,
             @RequestParam String suite,
+            @RequestParam String observaciones,
             Model model
     ) {
         try {
             ReservaSolicitud reserva = reservaService.guardarSolicitud(
                     nombre,
                     email,
+                    telefono,
                     checkin,
                     checkout,
-                    suite
+                    suite,
+                    observaciones
             );
 
             model.addAttribute("reserva", reserva);
@@ -69,9 +73,11 @@ public class HomeController {
 
             model.addAttribute("nombreIngresado", nombre);
             model.addAttribute("emailIngresado", email);
+            model.addAttribute("telefonoIngresado", telefono);
             model.addAttribute("checkinIngresado", checkin);
             model.addAttribute("checkoutIngresado", checkout);
             model.addAttribute("suiteIngresada", suite);
+            model.addAttribute("observacionesIngresadas", observaciones);
 
             return "index";
         }
@@ -96,9 +102,11 @@ public class HomeController {
             @PathVariable Long id,
             @RequestParam String nombre,
             @RequestParam String email,
+            @RequestParam String telefono,
             @RequestParam String checkin,
             @RequestParam String checkout,
             @RequestParam String suite,
+            @RequestParam String observaciones,
             Model model
     ) {
         try {
@@ -106,9 +114,11 @@ public class HomeController {
                     id,
                     nombre,
                     email,
+                    telefono,
                     checkin,
                     checkout,
-                    suite
+                    suite,
+                    observaciones
             );
 
             return "redirect:/admin";
