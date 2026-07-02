@@ -165,15 +165,22 @@ public class ReservaService {
     }
 
     private Long calcularNoches(String checkin, String checkout) {
+        LocalDate fechaCheckin;
+        LocalDate fechaCheckout;
+
         try {
-            LocalDate fechaCheckin = LocalDate.parse(checkin);
-            LocalDate fechaCheckout = LocalDate.parse(checkout);
-
-            long noches = ChronoUnit.DAYS.between(fechaCheckin, fechaCheckout);
-
-            return noches > 0 ? noches : 1L;
+            fechaCheckin = LocalDate.parse(checkin);
+            fechaCheckout = LocalDate.parse(checkout);
         } catch (Exception e) {
-            return 1L;
+            throw new IllegalArgumentException("Las fechas ingresadas no tienen un formato válido.");
         }
+
+        long noches = ChronoUnit.DAYS.between(fechaCheckin, fechaCheckout);
+
+        if (noches <= 0) {
+            throw new IllegalArgumentException("El check-out debe ser posterior al check-in.");
+        }
+
+        return noches;
     }
 }

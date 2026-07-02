@@ -46,6 +46,13 @@
               th:action="@{/admin/reservas/{id}/editar(id=${solicitud.id})}"
               method="post">
 
+            <div class="form-error" th:if="${errorEdicion != null}">
+                <strong>No se pudo actualizar la reserva.</strong>
+                <span th:text="${errorEdicion}">
+                    El check-out debe ser posterior al check-in.
+                </span>
+            </div>
+
             <div class="form-grid">
                 <label>
                     Nombre del huésped

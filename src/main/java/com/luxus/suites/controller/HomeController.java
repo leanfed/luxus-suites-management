@@ -50,17 +50,31 @@ public class HomeController {
             @RequestParam String suite,
             Model model
     ) {
-        ReservaSolicitud reserva = reservaService.guardarSolicitud(
-                nombre,
-                email,
-                checkin,
-                checkout,
-                suite
-        );
+        try {
+            ReservaSolicitud reserva = reservaService.guardarSolicitud(
+                    nombre,
+                    email,
+                    checkin,
+                    checkout,
+                    suite
+            );
 
-        model.addAttribute("reserva", reserva);
+            model.addAttribute("reserva", reserva);
 
-        return "reserva-confirmacion";
+            return "reserva-confirmacion";
+
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("suites", suiteService.listarSuites());
+            model.addAttribute("errorReserva", e.getMessage());
+
+            model.addAttribute("nombreIngresado", nombre);
+            model.addAttribute("emailIngresado", email);
+            model.addAttribute("checkinIngresado", checkin);
+            model.addAttribute("checkoutIngresado", checkout);
+            model.addAttribute("suiteIngresada", suite);
+
+            return "index";
+        }
     }
 
     @GetMapping("/admin/reservas/{id}/editar")
@@ -84,18 +98,34 @@ public class HomeController {
             @RequestParam String email,
             @RequestParam String checkin,
             @RequestParam String checkout,
-            @RequestParam String suite
+            @RequestParam String suite,
+            Model model
     ) {
-        reservaService.actualizarSolicitud(
-                id,
-                nombre,
-                email,
-                checkin,
-                checkout,
-                suite
-        );
+        try {
+            reservaService.actualizarSolicitud(
+                    id,
+                    nombre,
+                    email,
+                    checkin,
+                    checkout,
+                    suite
+            );
 
-        return "redirect:/admin";
+            return "redirect:/admin";
+
+        } catch (IllegalArgumentException e) {
+            ReservaSolicitud solicitud = reservaService.buscarPorId(id);
+
+            if (solicitud == null) {
+                return "redirect:/admin";
+            }
+
+            model.addAttribute("solicitud", solicitud);
+            model.addAttribute("suites", suiteService.listarSuites());
+            model.addAttribute("errorEdicion", e.getMessage());
+
+            return "reserva-editar";
+        }
     }
 
     @PostMapping("/admin/reservas/{id}/confirmar")

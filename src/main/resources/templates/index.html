@@ -2,14 +2,14 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Luxus Suites | Hotel de lujo</title>
+    <title>Luxus Suites | Luxury Hotel Experience</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 
-<header class="site-header">
+<header class="topbar">
     <div class="brand">
         <span class="brand-icon">L</span>
         <div>
@@ -18,12 +18,12 @@
         </div>
     </div>
 
-    <nav class="main-nav">
+    <nav class="nav">
         <a href="#suites">Suites</a>
         <a href="#experiencia">Experiencia</a>
         <a href="#servicios">Servicios</a>
-        <a href="#reservar">Reservar</a>
-        <a th:href="@{/admin}" class="admin-link">Admin</a>
+        <a href="#reservas">Reservar</a>
+        <a th:href="@{/admin}">Admin</a>
     </nav>
 
     <button type="button" class="theme-toggle" data-theme-toggle>
@@ -31,233 +31,250 @@
     </button>
 </header>
 
-<main>
+<main class="layout">
 
-    <section class="public-hero">
-        <div class="hero-overlay"></div>
+    <section class="hero">
+        <div class="hero-content">
+            <span class="eyebrow">Hotel premium urbano</span>
 
-        <div class="public-hero-content">
-            <span class="eyebrow">Hotel boutique cinco estrellas</span>
-
-            <h2>Una experiencia de lujo diseñada para cada estadía.</h2>
+            <h2>Una experiencia de lujo diseñada para huéspedes exigentes.</h2>
 
             <p>
-                Luxus Suites combina elegancia contemporánea, atención personalizada
-                y suites exclusivas para ofrecer una experiencia hotelera premium
-                desde la reserva hasta el check-out.
+                Luxus Suites combina suites exclusivas, atención personalizada,
+                gastronomía de alto nivel y una plataforma digital para gestionar
+                solicitudes de reserva de forma simple, moderna y profesional.
             </p>
 
             <div class="hero-actions">
-                <a href="#reservar" class="btn btn-primary">Reservar estadía</a>
-                <a href="#suites" class="btn btn-secondary">Explorar suites</a>
+                <a href="#reservas" class="btn btn-primary">Solicitar reserva</a>
+                <a href="#suites" class="btn btn-secondary">Ver suites</a>
             </div>
         </div>
 
-        <div class="booking-preview">
-            <span>Disponibilidad destacada</span>
-            <h3>Presidential Suite</h3>
-            <p>Vista panorámica, spa privado y servicio de concierge 24 hs.</p>
-            <strong>Desde $ 390.000 / noche</strong>
+        <div class="hero-card">
+            <p class="card-label">Experiencia destacada</p>
+            <h3>Luxury Stay</h3>
+            <span>Suites premium, servicio personalizado y gestión online.</span>
         </div>
     </section>
 
-    <section class="section intro-section" id="experiencia">
-        <div class="section-heading">
-            <span class="eyebrow">Experiencia Luxus</span>
-            <h2>Hospitalidad premium con estilo contemporáneo.</h2>
-            <p>
-                Cada detalle fue pensado para huéspedes que buscan confort,
-                privacidad y una atención de primer nivel.
-            </p>
-        </div>
+    <section class="stats-grid">
+        <article class="stat-card">
+            <span>Check-in</span>
+            <strong>24 hs</strong>
+            <p>Recepción disponible durante todo el día.</p>
+        </article>
 
-        <div class="experience-grid">
-            <article class="experience-card">
-                <span>01</span>
-                <h3>Concierge personalizado</h3>
-                <p>
-                    Asistencia exclusiva para reservas, traslados, gastronomía,
-                    eventos y experiencias dentro de la ciudad.
-                </p>
-            </article>
+        <article class="stat-card">
+            <span>Categoría</span>
+            <strong>5★</strong>
+            <p>Servicio orientado a una experiencia hotelera superior.</p>
+        </article>
 
-            <article class="experience-card">
-                <span>02</span>
-                <h3>Spa & wellness</h3>
-                <p>
-                    Espacios de relajación, tratamientos premium y servicios
-                    diseñados para el descanso integral.
-                </p>
-            </article>
+        <article class="stat-card">
+            <span>Reservas</span>
+            <strong>Online</strong>
+            <p>Solicitudes conectadas al panel administrativo.</p>
+        </article>
 
-            <article class="experience-card">
-                <span>03</span>
-                <h3>Gastronomía de autor</h3>
-                <p>
-                    Propuesta culinaria elegante con menú internacional,
-                    desayunos premium y servicio a la habitación.
-                </p>
-            </article>
-        </div>
+        <article class="stat-card">
+            <span>Suites</span>
+            <strong th:text="${suites.size()}">3</strong>
+            <p>Opciones cargadas desde el servicio Java.</p>
+        </article>
     </section>
 
-    <section class="section suites-section" id="suites">
-        <div class="section-heading">
-            <span class="eyebrow">Suites destacadas</span>
-            <h2>Habitaciones pensadas para una estadía superior.</h2>
+    <section class="panel" id="suites">
+        <div class="panel-header">
+            <div>
+                <span class="eyebrow">Alojamiento premium</span>
+                <h2>Nuestras suites</h2>
+            </div>
+
+            <a href="#reservas" class="panel-link">Reservar ahora</a>
         </div>
 
-        <div class="suites-grid">
-            <article
-                    class="suite-card"
-                    th:each="suite : ${suites}"
-                    th:classappend="${suite.categoria == 'Presidential'} ? ' featured' : ''">
+        <div class="stats-grid">
+            <article class="stat-card" th:each="suite : ${suites}">
+                <span th:text="${suite.categoria}">Deluxe</span>
 
-                <div
-                        class="suite-image"
-                        th:classappend="${suite.categoria == 'Deluxe'} ? ' suite-deluxe' : (${suite.categoria == 'Presidential'} ? ' suite-presidential' : ' suite-ocean')">
-                </div>
+                <strong th:text="${suite.nombre}">
+                    Deluxe Suite
+                </strong>
 
-                <div class="suite-content">
-                    <span th:text="${suite.categoria}">Categoría</span>
-                    <h3 th:text="${suite.nombre}">Nombre de suite</h3>
+                <p th:text="${suite.descripcion}">
+                    Suite elegante para estadías ejecutivas o escapadas urbanas.
+                </p>
 
-                    <p th:text="${suite.descripcion}">
-                        Descripción de la suite.
-                    </p>
+                <p>
+                    <strong th:text="'$ ' + ${#numbers.formatDecimal(suite.precioPorNoche, 0, 'POINT', 0, 'COMMA')}">
+                        $ 180.000
+                    </strong>
+                    <span>por noche</span>
+                </p>
 
-                    <div class="suite-meta">
-                        <span th:text="'Capacidad: ' + ${suite.capacidad} + ' huéspedes'">Capacidad</span>
-                        <span th:text="${suite.disponible} ? 'Disponible' : 'No disponible'">Disponible</span>
-                    </div>
-
-                    <div class="suite-footer">
-                        <strong th:text="'$ ' + ${#numbers.formatDecimal(suite.precioPorNoche, 0, 'POINT', 0, 'COMMA')} + ' / noche'">
-                            $ 180.000 / noche
-                        </strong>
-                        <a href="#reservar">Reservar</a>
-                    </div>
-                </div>
+                <p th:text="'Capacidad: ' + ${suite.capacidad} + ' huésped(es)'">
+                    Capacidad: 2 huésped(es)
+                </p>
             </article>
         </div>
     </section>
 
-    <section class="section services-section" id="servicios">
-        <div class="services-content">
-            <span class="eyebrow">Servicios exclusivos</span>
-            <h2>Todo lo necesario para una estadía impecable.</h2>
-
-            <div class="services-list">
-                <div>
-                    <strong>Check-in privado</strong>
-                    <p>Recepción personalizada y asistencia prioritaria.</p>
-                </div>
-
-                <div>
-                    <strong>Room service 24 hs</strong>
-                    <p>Atención gastronómica disponible durante toda la estadía.</p>
-                </div>
-
-                <div>
-                    <strong>Traslados premium</strong>
-                    <p>Coordinación de movilidad ejecutiva y recepción en aeropuerto.</p>
-                </div>
-
-                <div>
-                    <strong>Eventos privados</strong>
-                    <p>Espacios exclusivos para reuniones, celebraciones y encuentros.</p>
-                </div>
+    <section class="panel" id="experiencia">
+        <div class="panel-header">
+            <div>
+                <span class="eyebrow">Experiencia Luxus</span>
+                <h2>Confort, diseño y atención personalizada</h2>
             </div>
         </div>
 
-        <div class="services-panel">
-            <span>Calificación promedio</span>
-            <h3>4.9</h3>
-            <p>Basada en experiencias de huéspedes premium.</p>
+        <div class="stats-grid">
+            <article class="stat-card">
+                <span>Diseño</span>
+                <strong>Premium</strong>
+                <p>
+                    Ambientes elegantes, iluminación cálida, mobiliario moderno
+                    y detalles pensados para una estadía superior.
+                </p>
+            </article>
+
+            <article class="stat-card">
+                <span>Atención</span>
+                <strong>Personalizada</strong>
+                <p>
+                    Servicio orientado a resolver necesidades del huésped antes,
+                    durante y después de la estadía.
+                </p>
+            </article>
+
+            <article class="stat-card">
+                <span>Gestión</span>
+                <strong>Digital</strong>
+                <p>
+                    Las solicitudes de reserva se registran automáticamente
+                    para ser revisadas desde el panel administrativo.
+                </p>
+            </article>
         </div>
     </section>
 
-    <section class="section reservation-section" id="reservar">
-        <div class="reservation-card">
+    <section class="panel" id="servicios">
+        <div class="panel-header">
+            <div>
+                <span class="eyebrow">Servicios del hotel</span>
+                <h2>Todo lo necesario para una estadía exclusiva</h2>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <article class="stat-card">
+                <span>Gastronomía</span>
+                <strong>Restaurante</strong>
+                <p>Propuesta gourmet, desayuno premium y servicio a la habitación.</p>
+            </article>
+
+            <article class="stat-card">
+                <span>Relax</span>
+                <strong>Spa</strong>
+                <p>Espacios de bienestar, tratamientos y ambientación tranquila.</p>
+            </article>
+
+            <article class="stat-card">
+                <span>Trabajo</span>
+                <strong>Business</strong>
+                <p>Suites preparadas para viajes corporativos y reuniones privadas.</p>
+            </article>
+
+            <article class="stat-card">
+                <span>Conectividad</span>
+                <strong>Wi-Fi</strong>
+                <p>Internet de alta velocidad disponible en todas las áreas.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="panel" id="reservas">
+        <div class="panel-header">
             <div>
                 <span class="eyebrow">Reserva online</span>
-                <h2>Planificá tu próxima estadía en Luxus Suites.</h2>
-                <p>
-                    Completá una solicitud de reserva y nuestro equipo confirmará
-                    disponibilidad, tarifa final y servicios adicionales.
-                </p>
+                <h2>Solicitá tu estadía</h2>
             </div>
 
-            <form class="reservation-form" th:action="@{/reservas/solicitar}" method="post">
-                <div class="form-row">
-                    <label for="nombre">Nombre completo</label>
-                    <input
-                            type="text"
-                            id="nombre"
-                            name="nombre"
-                            placeholder="Ej: Valentina Ríos"
-                            required>
-                </div>
+            <a th:href="@{/admin}" class="panel-link">Panel admin</a>
+        </div>
 
-                <div class="form-row">
-                    <label for="email">Correo electrónico</label>
-                    <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Ej: nombre@email.com"
-                            required>
-                </div>
+        <form class="reservation-form" th:action="@{/reservas/solicitar}" method="post">
 
-                <div class="form-grid">
-                    <div class="form-row">
-                        <label for="checkin">Check-in</label>
-                        <input
-                                type="date"
-                                id="checkin"
-                                name="checkin"
-                                required>
-                    </div>
+            <div class="form-error" th:if="${errorReserva != null}">
+                <strong>No se pudo cargar la reserva.</strong>
+                <span th:text="${errorReserva}">
+                    El check-out debe ser posterior al check-in.
+                </span>
+            </div>
 
-                    <div class="form-row">
-                        <label for="checkout">Check-out</label>
-                        <input
-                                type="date"
-                                id="checkout"
-                                name="checkout"
-                                required>
-                    </div>
-                </div>
+            <div class="form-grid">
+                <label>
+                    Nombre del huésped
+                    <input type="text"
+                           name="nombre"
+                           th:value="${nombreIngresado}"
+                           placeholder="Ej: Federico Sosa"
+                           required>
+                </label>
 
-                <div class="form-row">
-                    <label for="suite">Suite</label>
-                    <select id="suite" name="suite" required>
-                        <option
-                                th:each="suite : ${suites}"
-                                th:value="${suite.nombre}"
-                                th:text="${suite.nombre}">
+                <label>
+                    Email
+                    <input type="email"
+                           name="email"
+                           th:value="${emailIngresado}"
+                           placeholder="Ej: huesped@email.com"
+                           required>
+                </label>
+
+                <label>
+                    Check-in
+                    <input type="date"
+                           name="checkin"
+                           th:value="${checkinIngresado}"
+                           required>
+                </label>
+
+                <label>
+                    Check-out
+                    <input type="date"
+                           name="checkout"
+                           th:value="${checkoutIngresado}"
+                           required>
+                </label>
+
+                <label>
+                    Suite
+                    <select name="suite" required>
+                        <option value="">Seleccionar suite</option>
+
+                        <option th:each="suiteDisponible : ${suites}"
+                                th:value="${suiteDisponible.nombre}"
+                                th:text="${suiteDisponible.nombre}"
+                                th:selected="${suiteIngresada != null and suiteDisponible.nombre == suiteIngresada}">
                             Deluxe Suite
                         </option>
                     </select>
-                </div>
+                </label>
+            </div>
 
+            <div class="hero-actions">
                 <button type="submit" class="btn btn-primary">
-                    Solicitar reserva
+                    Enviar solicitud
                 </button>
-            </form>
-        </div>
+
+                <a th:href="@{/admin}" class="btn btn-secondary">
+                    Ir al panel admin
+                </a>
+            </div>
+        </form>
     </section>
 
 </main>
-
-<footer class="footer">
-    <div>
-        <strong>Luxus Suites</strong>
-        <p>Hotel Management & Luxury Experience</p>
-    </div>
-
-    <p>Proyecto inspirado en Hotel Alura ONE, modernizado con Java Spring Boot.</p>
-</footer>
 
 <script th:src="@{/js/theme.js}"></script>
 

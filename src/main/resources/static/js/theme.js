@@ -28,4 +28,15 @@ document.addEventListener("DOMContentLoaded", () => {
             button.textContent = isLight ? "Modo oscuro" : "Modo claro";
         });
     }
+
+    const formError = document.querySelector(".form-error");
+
+    if (formError) {
+        setTimeout(() => {
+            formError.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }, 150);
+    }
 });

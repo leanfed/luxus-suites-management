@@ -1228,3 +1228,105 @@ body.light-theme .table-action.edit:hover {
 .table-action {
     min-width: 82px;
 }
+
+.reservation-form input,
+.reservation-form select {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-main);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reservation-form input::placeholder {
+    color: var(--text-muted);
+}
+
+.reservation-form input:focus,
+.reservation-form select:focus {
+    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.16);
+}
+
+.reservation-form label {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.reservation-form select option {
+    background: #111827;
+    color: #f9fafb;
+}
+
+.reservation-form input[type="date"] {
+    color-scheme: dark;
+}
+
+body.light-theme .reservation-form input,
+body.light-theme .reservation-form select {
+    background: rgba(17, 24, 39, 0.04);
+    color: #111827;
+    border: 1px solid rgba(17, 24, 39, 0.16);
+}
+
+body.light-theme .reservation-form input:focus,
+body.light-theme .reservation-form select:focus {
+    background: rgba(17, 24, 39, 0.07);
+    border-color: var(--gold);
+}
+
+body.light-theme .reservation-form input::placeholder {
+    color: #6b7280;
+}
+
+body.light-theme .reservation-form select option {
+    background: #ffffff;
+    color: #111827;
+}
+
+body.light-theme .reservation-form input[type="date"] {
+    color-scheme: light;
+}
+
+.reservation-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-error {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+    border-radius: 16px;
+    border: 1px solid rgba(248, 113, 113, 0.35);
+    background: rgba(127, 29, 29, 0.18);
+    color: #fecaca;
+}
+
+.form-error strong {
+    color: #fee2e2;
+}
+
+.form-error span {
+    color: #fecaca;
+    font-size: 0.95rem;
+}
+
+body.light-theme .form-error {
+    background: rgba(254, 226, 226, 0.85);
+    border: 1px solid rgba(220, 38, 38, 0.25);
+    color: #7f1d1d;
+}
+
+body.light-theme .form-error strong,
+body.light-theme .form-error span {
+    color: #7f1d1d;
+}
