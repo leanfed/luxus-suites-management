@@ -1,8 +1,11 @@
 package com.luxus.suites.service;
 
 import com.luxus.suites.model.ReservaSolicitud;
+import com.luxus.suites.model.Suite;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,7 +14,12 @@ import java.util.List;
 public class ReservaService {
 
     private final List<ReservaSolicitud> solicitudes = new ArrayList<>();
+    private final SuiteService suiteService;
     private Long proximoId = 1L;
+
+    public ReservaService(SuiteService suiteService) {
+        this.suiteService = suiteService;
+    }
 
     public ReservaSolicitud guardarSolicitud(
             String nombre,
@@ -20,13 +28,26 @@ public class ReservaService {
             String checkout,
             String suite
     ) {
+        Suite suiteSeleccionada = suiteService.buscarPorNombre(suite);
+
+        Double precioPorNoche = suiteSeleccionada != null
+                ? suiteSeleccionada.getPrecioPorNoche()
+                : 0.0;
+
+        Long noches = calcularNoches(checkin, checkout);
+
+        Double importeEstimado = precioPorNoche * noches;
+
         ReservaSolicitud reserva = new ReservaSolicitud(
                 proximoId,
                 nombre,
                 email,
                 checkin,
                 checkout,
-                suite
+                suite,
+                precioPorNoche,
+                noches,
+                importeEstimado
         );
 
         solicitudes.add(reserva);
@@ -73,5 +94,18 @@ public class ReservaService {
                 .filter(solicitud -> solicitud.getId().equals(id))
                 .findFirst()
                 .ifPresent(ReservaSolicitud::cancelar);
+    }
+
+    private Long calcularNoches(String checkin, String checkout) {
+        try {
+            LocalDate fechaCheckin = LocalDate.parse(checkin);
+            LocalDate fechaCheckout = LocalDate.parse(checkout);
+
+            long noches = ChronoUnit.DAYS.between(fechaCheckin, fechaCheckout);
+
+            return noches > 0 ? noches : 1L;
+        } catch (Exception e) {
+            return 1L;
+        }
     }
 }

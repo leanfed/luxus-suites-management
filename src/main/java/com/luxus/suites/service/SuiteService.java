@@ -41,4 +41,11 @@ public class SuiteService {
     public List<Suite> listarSuites() {
         return suites;
     }
+
+    public Suite buscarPorNombre(String nombre) {
+        return suites.stream()
+                .filter(suite -> suite.getNombre().equals(nombre))
+                .findFirst()
+                .orElse(null);
+    }
 }

@@ -105,6 +105,8 @@
                     <th>Suite</th>
                     <th>Check-in</th>
                     <th>Check-out</th>
+                    <th>Noches</th>
+                    <th>Total estimado</th>
                     <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
@@ -118,6 +120,14 @@
                     <td th:text="${solicitud.suite}">Suite</td>
                     <td th:text="${solicitud.checkin}">Check-in</td>
                     <td th:text="${solicitud.checkout}">Check-out</td>
+
+                    <td th:text="${solicitud.noches} + ' noche(s)'">
+                        3 noche(s)
+                    </td>
+
+                    <td th:text="'$ ' + ${#numbers.formatDecimal(solicitud.importeEstimado, 0, 'POINT', 0, 'COMMA')}">
+                        $ 1.170.000
+                    </td>
 
                     <td>
                         <span

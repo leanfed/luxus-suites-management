@@ -64,6 +64,11 @@
             </div>
 
             <div class="summary-row">
+                <span>Suite seleccionada</span>
+                <strong th:text="${reserva.suite}">Suite</strong>
+            </div>
+
+            <div class="summary-row">
                 <span>Check-in</span>
                 <strong th:text="${reserva.checkin}">Check-in</strong>
             </div>
@@ -74,8 +79,22 @@
             </div>
 
             <div class="summary-row">
-                <span>Suite seleccionada</span>
-                <strong th:text="${reserva.suite}">Suite</strong>
+                <span>Noches</span>
+                <strong th:text="${reserva.noches} + ' noche(s)'">3 noche(s)</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Precio por noche</span>
+                <strong th:text="'$ ' + ${#numbers.formatDecimal(reserva.precioPorNoche, 0, 'POINT', 0, 'COMMA')}">
+                    $ 390.000
+                </strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Importe estimado</span>
+                <strong th:text="'$ ' + ${#numbers.formatDecimal(reserva.importeEstimado, 0, 'POINT', 0, 'COMMA')}">
+                    $ 1.170.000
+                </strong>
             </div>
 
             <div class="confirmation-note">
