@@ -83,4 +83,8 @@ public class ReservaSolicitud {
     public void cancelar() {
         this.estado = "Cancelada";
     }
+
+    public void reabrir() {
+        this.estado = "Pendiente";
+    }
 }

@@ -143,7 +143,7 @@
                     </td>
 
                     <td>
-                        <div class="admin-actions">
+                        <div class="admin-actions" th:if="${solicitud.estado == 'Pendiente'}">
                             <form th:action="@{/admin/reservas/{id}/confirmar(id=${solicitud.id})}" method="post">
                                 <button type="submit" class="table-action confirm">
                                     Confirmar
@@ -153,6 +153,14 @@
                             <form th:action="@{/admin/reservas/{id}/cancelar(id=${solicitud.id})}" method="post">
                                 <button type="submit" class="table-action cancel">
                                     Cancelar
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="admin-actions" th:if="${solicitud.estado != 'Pendiente'}">
+                            <form th:action="@{/admin/reservas/{id}/reabrir(id=${solicitud.id})}" method="post">
+                                <button type="submit" class="table-action reopen">
+                                    Reabrir
                                 </button>
                             </form>
                         </div>

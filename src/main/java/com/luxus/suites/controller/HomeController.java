@@ -74,4 +74,10 @@ public class HomeController {
         reservaService.cancelarSolicitud(id);
         return "redirect:/admin";
     }
+
+    @PostMapping("/admin/reservas/{id}/reabrir")
+    public String reabrirReserva(@PathVariable Long id) {
+        reservaService.reabrirSolicitud(id);
+        return "redirect:/admin";
+    }
 }

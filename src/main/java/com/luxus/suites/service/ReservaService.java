@@ -84,6 +84,7 @@ public class ReservaService {
 
     public Double calcularIngresosEstimados() {
         return solicitudes.stream()
+                .filter(solicitud -> !solicitud.getEstado().equals("Cancelada"))
                 .mapToDouble(solicitud -> solicitud.getImporteEstimado() != null
                         ? solicitud.getImporteEstimado()
                         : 0.0)
@@ -111,6 +112,13 @@ public class ReservaService {
                 .filter(solicitud -> solicitud.getId().equals(id))
                 .findFirst()
                 .ifPresent(ReservaSolicitud::cancelar);
+    }
+
+    public void reabrirSolicitud(Long id) {
+        solicitudes.stream()
+                .filter(solicitud -> solicitud.getId().equals(id))
+                .findFirst()
+                .ifPresent(ReservaSolicitud::reabrir);
     }
 
     private Long calcularNoches(String checkin, String checkout) {

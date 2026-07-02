@@ -1180,3 +1180,12 @@ body.light-theme .table-action.confirm {
 body.light-theme .table-action.cancel {
     color: #351010;
 }
+
+.table-action.reopen {
+    background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+    color: #111827;
+}
+
+body.light-theme .table-action.reopen {
+    color: #111827;
+}
