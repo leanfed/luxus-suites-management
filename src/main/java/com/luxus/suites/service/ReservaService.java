@@ -82,6 +82,23 @@ public class ReservaService {
                 .count();
     }
 
+    public Double calcularIngresosEstimados() {
+        return solicitudes.stream()
+                .mapToDouble(solicitud -> solicitud.getImporteEstimado() != null
+                        ? solicitud.getImporteEstimado()
+                        : 0.0)
+                .sum();
+    }
+
+    public Double calcularIngresosConfirmados() {
+        return solicitudes.stream()
+                .filter(solicitud -> solicitud.getEstado().equals("Confirmada"))
+                .mapToDouble(solicitud -> solicitud.getImporteEstimado() != null
+                        ? solicitud.getImporteEstimado()
+                        : 0.0)
+                .sum();
+    }
+
     public void confirmarSolicitud(Long id) {
         solicitudes.stream()
                 .filter(solicitud -> solicitud.getId().equals(id))
