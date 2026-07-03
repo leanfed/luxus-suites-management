@@ -2,22 +2,24 @@ package com.luxus.suites.service;
 
 import com.luxus.suites.model.ReservaSolicitud;
 import com.luxus.suites.model.Suite;
+import com.luxus.suites.repository.ReservaSolicitudRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
 public class ReservaService {
 
-    private final List<ReservaSolicitud> solicitudes = new ArrayList<>();
+    private final ReservaSolicitudRepository reservaSolicitudRepository;
     private final SuiteService suiteService;
-    private Long proximoId = 1L;
 
-    public ReservaService(SuiteService suiteService) {
+    public ReservaService(
+            ReservaSolicitudRepository reservaSolicitudRepository,
+            SuiteService suiteService
+    ) {
+        this.reservaSolicitudRepository = reservaSolicitudRepository;
         this.suiteService = suiteService;
     }
 
@@ -41,7 +43,7 @@ public class ReservaService {
         Double importeEstimado = precioPorNoche * noches;
 
         ReservaSolicitud reserva = new ReservaSolicitud(
-                proximoId,
+                null,
                 nombre,
                 email,
                 telefono,
@@ -54,21 +56,15 @@ public class ReservaService {
                 importeEstimado
         );
 
-        solicitudes.add(reserva);
-        proximoId++;
-
-        return reserva;
+        return reservaSolicitudRepository.save(reserva);
     }
 
     public List<ReservaSolicitud> listarSolicitudes() {
-        return Collections.unmodifiableList(solicitudes);
+        return reservaSolicitudRepository.findAll();
     }
 
     public ReservaSolicitud buscarPorId(Long id) {
-        return solicitudes.stream()
-                .filter(solicitud -> solicitud.getId().equals(id))
-                .findFirst()
-                .orElse(null);
+        return reservaSolicitudRepository.findById(id).orElse(null);
     }
 
     public void actualizarSolicitud(
@@ -109,32 +105,34 @@ public class ReservaService {
                 noches,
                 importeEstimado
         );
+
+        reservaSolicitudRepository.save(solicitud);
     }
 
     public int contarSolicitudes() {
-        return solicitudes.size();
+        return (int) reservaSolicitudRepository.count();
     }
 
     public long contarPendientes() {
-        return solicitudes.stream()
+        return listarSolicitudes().stream()
                 .filter(solicitud -> solicitud.getEstado().equals("Pendiente"))
                 .count();
     }
 
     public long contarConfirmadas() {
-        return solicitudes.stream()
+        return listarSolicitudes().stream()
                 .filter(solicitud -> solicitud.getEstado().equals("Confirmada"))
                 .count();
     }
 
     public long contarCanceladas() {
-        return solicitudes.stream()
+        return listarSolicitudes().stream()
                 .filter(solicitud -> solicitud.getEstado().equals("Cancelada"))
                 .count();
     }
 
     public Double calcularIngresosEstimados() {
-        return solicitudes.stream()
+        return listarSolicitudes().stream()
                 .filter(solicitud -> !solicitud.getEstado().equals("Cancelada"))
                 .mapToDouble(solicitud -> solicitud.getImporteEstimado() != null
                         ? solicitud.getImporteEstimado()
@@ -143,7 +141,7 @@ public class ReservaService {
     }
 
     public Double calcularIngresosConfirmados() {
-        return solicitudes.stream()
+        return listarSolicitudes().stream()
                 .filter(solicitud -> solicitud.getEstado().equals("Confirmada"))
                 .mapToDouble(solicitud -> solicitud.getImporteEstimado() != null
                         ? solicitud.getImporteEstimado()
@@ -152,24 +150,36 @@ public class ReservaService {
     }
 
     public void confirmarSolicitud(Long id) {
-        solicitudes.stream()
-                .filter(solicitud -> solicitud.getId().equals(id))
-                .findFirst()
-                .ifPresent(ReservaSolicitud::confirmar);
+        ReservaSolicitud solicitud = buscarPorId(id);
+
+        if (solicitud == null) {
+            return;
+        }
+
+        solicitud.confirmar();
+        reservaSolicitudRepository.save(solicitud);
     }
 
     public void cancelarSolicitud(Long id) {
-        solicitudes.stream()
-                .filter(solicitud -> solicitud.getId().equals(id))
-                .findFirst()
-                .ifPresent(ReservaSolicitud::cancelar);
+        ReservaSolicitud solicitud = buscarPorId(id);
+
+        if (solicitud == null) {
+            return;
+        }
+
+        solicitud.cancelar();
+        reservaSolicitudRepository.save(solicitud);
     }
 
     public void reabrirSolicitud(Long id) {
-        solicitudes.stream()
-                .filter(solicitud -> solicitud.getId().equals(id))
-                .findFirst()
-                .ifPresent(ReservaSolicitud::reabrir);
+        ReservaSolicitud solicitud = buscarPorId(id);
+
+        if (solicitud == null) {
+            return;
+        }
+
+        solicitud.reabrir();
+        reservaSolicitudRepository.save(solicitud);
     }
 
     private Long calcularNoches(String checkin, String checkout) {
