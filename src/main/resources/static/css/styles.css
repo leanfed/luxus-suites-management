@@ -1182,3 +1182,93 @@ body.light-theme .admin-link {
 .confirmation-card {
     max-width: 960px;
 }
+
+/* =========================
+   ADMIN - SUITES
+========================= */
+
+.suite-admin-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.suite-admin-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 22px;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.045);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+}
+
+.suite-admin-card h3 {
+    margin: 0 0 10px;
+    color: var(--text-main);
+    font-size: 1.25rem;
+}
+
+.suite-admin-card p {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.suite-admin-info {
+    display: grid;
+    gap: 10px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.suite-admin-info div {
+    padding: 13px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.suite-admin-info span {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--gold);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+.suite-admin-info strong {
+    color: var(--text-main);
+    font-size: 0.95rem;
+}
+
+body.light-theme .suite-admin-card {
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(17, 24, 39, 0.10);
+    box-shadow: 0 18px 45px rgba(17, 24, 39, 0.08);
+}
+
+body.light-theme .suite-admin-card h3,
+body.light-theme .suite-admin-info strong {
+    color: #111827;
+}
+
+body.light-theme .suite-admin-card p {
+    color: #4b5563;
+}
+
+body.light-theme .suite-admin-info div {
+    background: rgba(17, 24, 39, 0.035);
+    border: 1px solid rgba(17, 24, 39, 0.08);
+}
+
+@media (max-width: 980px) {
+    .suite-admin-grid {
+        grid-template-columns: 1fr;
+    }
+}

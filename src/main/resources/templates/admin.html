@@ -21,9 +21,9 @@
     <nav class="nav">
         <a th:href="@{/}">Sitio público</a>
         <a href="#">Dashboard</a>
+        <a href="#suites-admin">Suites</a>
         <a href="#solicitudes">Reservas</a>
         <a href="#">Huéspedes</a>
-        <a href="#">Habitaciones</a>
     </nav>
 
     <button type="button" class="theme-toggle" data-theme-toggle>
@@ -52,11 +52,13 @@
 
         <div class="hero-card">
             <p class="card-label">Ingresos estimados</p>
+
             <h3 th:text="'$ ' + ${#numbers.formatDecimal(ingresosEstimados, 0, 'POINT', 0, 'COMMA')}">
                 $ 0
             </h3>
-            <span th:text="${totalSuites} + ' suites configuradas desde Java'">
-                Suites configuradas desde Java
+
+            <span th:text="${totalSuites} + ' suites configuradas desde base de datos'">
+                Suites configuradas desde base de datos
             </span>
         </div>
     </section>
@@ -89,6 +91,60 @@
         </article>
     </section>
 
+    <section class="panel" id="suites-admin">
+        <div class="panel-header">
+            <div>
+                <span class="eyebrow">Configuración del hotel</span>
+                <h2>Suites disponibles</h2>
+            </div>
+
+            <span class="panel-link" th:text="${totalSuites} + ' suites cargadas'">
+                3 suites cargadas
+            </span>
+        </div>
+
+        <div class="suite-admin-grid">
+            <article class="suite-admin-card" th:each="suite : ${suites}">
+                <div>
+                    <span class="reservation-number" th:text="${suite.categoria}">
+                        Deluxe
+                    </span>
+
+                    <h3 th:text="${suite.nombre}">
+                        Deluxe Suite
+                    </h3>
+
+                    <p th:text="${suite.descripcion}">
+                        Descripción de la suite.
+                    </p>
+                </div>
+
+                <div class="suite-admin-info">
+                    <div>
+                        <span>Precio por noche</span>
+                        <strong th:text="'$ ' + ${#numbers.formatDecimal(suite.precioPorNoche, 0, 'POINT', 0, 'COMMA')}">
+                            $ 180.000
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Capacidad</span>
+                        <strong th:text="${suite.capacidad} + ' huésped(es)'">
+                            2 huésped(es)
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Estado</span>
+                        <strong th:text="${suite.disponible} ? 'Disponible' : 'No disponible'">
+                            Disponible
+                        </strong>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
     <section class="panel" id="solicitudes">
         <div class="panel-header">
             <div>
@@ -113,8 +169,13 @@
                         </h3>
 
                         <p class="reservation-contact">
-                            <span th:text="${solicitud.email}">email@email.com</span>
-                            <small th:text="${solicitud.telefono}">11 5555-5555</small>
+                            <span th:text="${solicitud.email}">
+                                email@email.com
+                            </span>
+
+                            <small th:text="${solicitud.telefono}">
+                                11 5555-5555
+                            </small>
                         </p>
                     </div>
 
@@ -129,22 +190,30 @@
                 <div class="reservation-admin-details">
                     <div>
                         <span>Suite</span>
-                        <strong th:text="${solicitud.suite}">Deluxe Suite</strong>
+                        <strong th:text="${solicitud.suite}">
+                            Deluxe Suite
+                        </strong>
                     </div>
 
                     <div>
                         <span>Check-in</span>
-                        <strong th:text="${solicitud.checkin}">2026-07-06</strong>
+                        <strong th:text="${solicitud.checkin}">
+                            2026-07-06
+                        </strong>
                     </div>
 
                     <div>
                         <span>Check-out</span>
-                        <strong th:text="${solicitud.checkout}">2026-07-10</strong>
+                        <strong th:text="${solicitud.checkout}">
+                            2026-07-10
+                        </strong>
                     </div>
 
                     <div>
                         <span>Noches</span>
-                        <strong th:text="${solicitud.noches} + ' noche(s)'">4 noche(s)</strong>
+                        <strong th:text="${solicitud.noches} + ' noche(s)'">
+                            4 noche(s)
+                        </strong>
                     </div>
 
                     <div>

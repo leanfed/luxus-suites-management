@@ -34,7 +34,10 @@ public class HomeController {
         model.addAttribute("totalPendientes", reservaService.contarPendientes());
         model.addAttribute("totalConfirmadas", reservaService.contarConfirmadas());
         model.addAttribute("totalCanceladas", reservaService.contarCanceladas());
+
+        model.addAttribute("suites", suiteService.listarSuites());
         model.addAttribute("totalSuites", suiteService.listarSuites().size());
+
         model.addAttribute("ingresosEstimados", reservaService.calcularIngresosEstimados());
         model.addAttribute("ingresosConfirmados", reservaService.calcularIngresosConfirmados());
 
