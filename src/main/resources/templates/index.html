@@ -80,7 +80,7 @@
         <article class="stat-card">
             <span>Suites</span>
             <strong th:text="${suites.size()}">3</strong>
-            <p>Opciones cargadas desde el servicio Java.</p>
+            <p>Opciones cargadas desde la base de datos.</p>
         </article>
     </section>
 
@@ -115,6 +115,16 @@
 
                 <p th:text="'Capacidad: ' + ${suite.capacidad} + ' huésped(es)'">
                     Capacidad: 2 huésped(es)
+                </p>
+
+                <p>
+                    <span th:if="${suite.disponible}">
+                        Disponible para reserva
+                    </span>
+
+                    <span th:if="${!suite.disponible}">
+                        Actualmente no disponible
+                    </span>
                 </p>
             </article>
         </div>
@@ -259,9 +269,9 @@
                 <label>
                     Suite
                     <select name="suite" required>
-                        <option value="">Seleccionar suite</option>
+                        <option value="">Seleccionar suite disponible</option>
 
-                        <option th:each="suiteDisponible : ${suites}"
+                        <option th:each="suiteDisponible : ${suitesDisponibles}"
                                 th:value="${suiteDisponible.nombre}"
                                 th:text="${suiteDisponible.nombre}"
                                 th:selected="${suiteIngresada != null and suiteDisponible.nombre == suiteIngresada}">

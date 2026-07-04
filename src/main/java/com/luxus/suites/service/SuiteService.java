@@ -59,6 +59,10 @@ public class SuiteService {
         return suiteRepository.findAll();
     }
 
+    public List<Suite> listarSuitesDisponibles() {
+        return suiteRepository.findByDisponibleTrue();
+    }
+
     public Suite buscarPorId(Long id) {
         return suiteRepository.findById(id).orElse(null);
     }

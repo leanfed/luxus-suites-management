@@ -25,6 +25,7 @@ public class HomeController {
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("suites", suiteService.listarSuites());
+        model.addAttribute("suitesDisponibles", suiteService.listarSuitesDisponibles());
         return "index";
     }
 
@@ -73,6 +74,7 @@ public class HomeController {
 
         } catch (IllegalArgumentException e) {
             model.addAttribute("suites", suiteService.listarSuites());
+            model.addAttribute("suitesDisponibles", suiteService.listarSuitesDisponibles());
             model.addAttribute("errorReserva", e.getMessage());
 
             model.addAttribute("nombreIngresado", nombre);
