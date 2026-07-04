@@ -1272,3 +1272,40 @@ body.light-theme .suite-admin-info div {
         grid-template-columns: 1fr;
     }
 }
+
+
+.suite-admin-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 2px;
+}
+
+.suite-admin-actions .table-action {
+    min-width: 120px;
+}
+
+.suite-checkbox-field {
+    grid-column: 1 / -1;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 10px !important;
+    padding: 14px 16px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.055);
+    color: var(--text-main);
+}
+
+.suite-checkbox-field input[type="checkbox"] {
+    width: auto;
+    min-width: 18px;
+    height: 18px;
+    accent-color: var(--gold);
+}
+
+body.light-theme .suite-checkbox-field {
+    background: rgba(17, 24, 39, 0.035);
+    color: #111827;
+    border: 1px solid rgba(17, 24, 39, 0.10);
+}

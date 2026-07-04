@@ -1,6 +1,7 @@
 package com.luxus.suites.controller;
 
 import com.luxus.suites.model.ReservaSolicitud;
+import com.luxus.suites.model.Suite;
 import com.luxus.suites.service.ReservaService;
 import com.luxus.suites.service.SuiteService;
 import org.springframework.stereotype.Controller;
@@ -139,6 +140,42 @@ public class HomeController {
 
             return "reserva-editar";
         }
+    }
+
+    @GetMapping("/admin/suites/{id}/editar")
+    public String mostrarFormularioEdicionSuite(@PathVariable Long id, Model model) {
+        Suite suite = suiteService.buscarPorId(id);
+
+        if (suite == null) {
+            return "redirect:/admin";
+        }
+
+        model.addAttribute("suite", suite);
+
+        return "suite-editar";
+    }
+
+    @PostMapping("/admin/suites/{id}/editar")
+    public String actualizarSuite(
+            @PathVariable Long id,
+            @RequestParam String nombre,
+            @RequestParam String descripcion,
+            @RequestParam String categoria,
+            @RequestParam Double precioPorNoche,
+            @RequestParam Integer capacidad,
+            @RequestParam(required = false) Boolean disponible
+    ) {
+        suiteService.actualizarSuite(
+                id,
+                nombre,
+                descripcion,
+                categoria,
+                precioPorNoche,
+                capacidad,
+                disponible != null
+        );
+
+        return "redirect:/admin#suites-admin";
     }
 
     @PostMapping("/admin/reservas/{id}/confirmar")

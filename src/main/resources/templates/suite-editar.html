@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar suite | Luxus Suites Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="brand">
+        <span class="brand-icon">L</span>
+        <div>
+            <h1>Luxus Suites</h1>
+            <p>Management System</p>
+        </div>
+    </div>
+
+    <nav class="nav">
+        <a th:href="@{/}">Sitio público</a>
+        <a th:href="@{/admin}">Panel admin</a>
+    </nav>
+
+    <button type="button" class="theme-toggle" data-theme-toggle>
+        Modo claro
+    </button>
+</header>
+
+<main class="layout">
+
+    <section class="panel">
+        <div class="panel-header">
+            <div>
+                <span class="eyebrow">Configuración del hotel</span>
+                <h2 th:text="'Editar ' + ${suite.nombre}">
+                    Editar suite
+                </h2>
+            </div>
+
+            <a th:href="@{/admin#suites-admin}" class="panel-link">
+                Volver a suites
+            </a>
+        </div>
+
+        <form class="reservation-form"
+              th:action="@{/admin/suites/{id}/editar(id=${suite.id})}"
+              method="post">
+
+            <div class="form-grid">
+                <label>
+                    Nombre de la suite
+                    <input type="text"
+                           name="nombre"
+                           th:value="${suite.nombre}"
+                           required>
+                </label>
+
+                <label>
+                    Categoría
+                    <input type="text"
+                           name="categoria"
+                           th:value="${suite.categoria}"
+                           required>
+                </label>
+
+                <label>
+                    Precio por noche
+                    <input type="number"
+                           name="precioPorNoche"
+                           th:value="${suite.precioPorNoche}"
+                           min="0"
+                           step="1000"
+                           required>
+                </label>
+
+                <label>
+                    Capacidad
+                    <input type="number"
+                           name="capacidad"
+                           th:value="${suite.capacidad}"
+                           min="1"
+                           required>
+                </label>
+
+                <label class="form-field-wide">
+                    Descripción
+                    <textarea name="descripcion"
+                              th:text="${suite.descripcion}"
+                              rows="5"
+                              required></textarea>
+                </label>
+
+                <label class="suite-checkbox-field">
+                    <input type="checkbox"
+                           name="disponible"
+                           th:checked="${suite.disponible}">
+                    Suite disponible para reservas
+                </label>
+            </div>
+
+            <div class="hero-actions">
+                <button type="submit" class="btn btn-primary">
+                    Guardar cambios
+                </button>
+
+                <a th:href="@{/admin#suites-admin}" class="btn btn-secondary">
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </section>
+
+</main>
+
+<script th:src="@{/js/theme.js}"></script>
+
+</body>
+</html>

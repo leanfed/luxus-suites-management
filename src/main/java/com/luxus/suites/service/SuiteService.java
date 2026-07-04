@@ -59,7 +59,38 @@ public class SuiteService {
         return suiteRepository.findAll();
     }
 
+    public Suite buscarPorId(Long id) {
+        return suiteRepository.findById(id).orElse(null);
+    }
+
     public Suite buscarPorNombre(String nombre) {
         return suiteRepository.findByNombre(nombre);
+    }
+
+    public void actualizarSuite(
+            Long id,
+            String nombre,
+            String descripcion,
+            String categoria,
+            Double precioPorNoche,
+            Integer capacidad,
+            Boolean disponible
+    ) {
+        Suite suite = buscarPorId(id);
+
+        if (suite == null) {
+            return;
+        }
+
+        suite.actualizarDatos(
+                nombre,
+                descripcion,
+                categoria,
+                precioPorNoche,
+                capacidad,
+                disponible
+        );
+
+        suiteRepository.save(suite);
     }
 }

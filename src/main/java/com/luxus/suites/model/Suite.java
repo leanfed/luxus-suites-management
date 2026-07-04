@@ -61,4 +61,20 @@ public class Suite {
     public Boolean getDisponible() {
         return disponible;
     }
+
+    public void actualizarDatos(
+            String nombre,
+            String descripcion,
+            String categoria,
+            Double precioPorNoche,
+            Integer capacidad,
+            Boolean disponible
+    ) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.precioPorNoche = precioPorNoche;
+        this.capacidad = capacidad;
+        this.disponible = disponible;
+    }
 }
