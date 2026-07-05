@@ -108,7 +108,7 @@ public class HomeController {
         ReservaSolicitud solicitud = reservaService.buscarPorId(id);
 
         if (solicitud == null) {
-            return "redirect:/admin";
+            return "redirect:/admin#solicitudes";
         }
 
         model.addAttribute("solicitud", solicitud);
@@ -141,13 +141,13 @@ public class HomeController {
                     observaciones
             );
 
-            return "redirect:/admin";
+            return "redirect:/admin#solicitudes";
 
         } catch (IllegalArgumentException e) {
             ReservaSolicitud solicitud = reservaService.buscarPorId(id);
 
             if (solicitud == null) {
-                return "redirect:/admin";
+                return "redirect:/admin#solicitudes";
             }
 
             model.addAttribute("solicitud", solicitud);
@@ -204,7 +204,7 @@ public class HomeController {
         Suite suite = suiteService.buscarPorId(id);
 
         if (suite == null) {
-            return "redirect:/admin";
+            return "redirect:/admin#suites-admin";
         }
 
         model.addAttribute("suite", suite);
@@ -240,7 +240,7 @@ public class HomeController {
             Suite suite = suiteService.buscarPorId(id);
 
             if (suite == null) {
-                return "redirect:/admin";
+                return "redirect:/admin#suites-admin";
             }
 
             model.addAttribute("suite", suite);
@@ -268,20 +268,20 @@ public class HomeController {
     public String confirmarReserva(@PathVariable Long id) {
         reservaService.confirmarSolicitud(id);
 
-        return "redirect:/admin";
+        return "redirect:/admin#solicitudes";
     }
 
     @PostMapping("/admin/reservas/{id}/cancelar")
     public String cancelarReserva(@PathVariable Long id) {
         reservaService.cancelarSolicitud(id);
 
-        return "redirect:/admin";
+        return "redirect:/admin#solicitudes";
     }
 
     @PostMapping("/admin/reservas/{id}/reabrir")
     public String reabrirReserva(@PathVariable Long id) {
         reservaService.reabrirSolicitud(id);
 
-        return "redirect:/admin";
+        return "redirect:/admin#solicitudes";
     }
 }
