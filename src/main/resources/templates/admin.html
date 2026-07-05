@@ -241,6 +241,22 @@
             </div>
         </form>
 
+        <div class="admin-results-summary">
+            <span th:text="'Mostrando ' + ${cantidadResultados} + ' reserva(s)'">
+                Mostrando 0 reserva(s)
+            </span>
+
+            <small th:if="${estadoSeleccionado != 'Todas'}"
+                   th:text="'Filtro: ' + ${estadoSeleccionado}">
+                Filtro: Pendiente
+            </small>
+
+            <small th:if="${busquedaIngresada != null && !busquedaIngresada.isBlank()}"
+                   th:text="'Búsqueda: ' + ${busquedaIngresada}">
+                Búsqueda: cliente
+            </small>
+        </div>
+
         <div class="reservation-admin-list" th:if="${!#lists.isEmpty(solicitudes)}">
             <article class="reservation-admin-card" th:each="solicitud : ${solicitudes}">
 

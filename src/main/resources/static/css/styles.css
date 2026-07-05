@@ -1437,3 +1437,28 @@ body.light-theme .suite-checkbox-field {
         flex: 1;
     }
 }
+
+.admin-results-summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 0 0 22px;
+    padding: 12px 16px;
+    border-radius: 16px;
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.18);
+}
+
+.admin-results-summary span {
+    color: var(--text);
+    font-weight: 800;
+}
+
+.admin-results-summary small {
+    color: var(--muted);
+    font-size: 0.82rem;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+}

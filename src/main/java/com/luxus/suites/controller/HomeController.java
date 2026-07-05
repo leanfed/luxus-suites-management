@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class HomeController {
 
@@ -36,7 +38,11 @@ public class HomeController {
             @RequestParam(required = false, defaultValue = "") String busqueda,
             Model model
     ) {
-        model.addAttribute("solicitudes", reservaService.listarSolicitudesFiltradas(estado, busqueda));
+        List<ReservaSolicitud> solicitudesFiltradas = reservaService.listarSolicitudesFiltradas(estado, busqueda);
+
+        model.addAttribute("solicitudes", solicitudesFiltradas);
+        model.addAttribute("cantidadResultados", solicitudesFiltradas.size());
+
         model.addAttribute("estadoSeleccionado", estado);
         model.addAttribute("busquedaIngresada", busqueda);
 
