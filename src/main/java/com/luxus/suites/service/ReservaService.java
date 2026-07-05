@@ -69,6 +69,16 @@ public class ReservaService {
         return reservaSolicitudRepository.findAllByOrderByIdDesc();
     }
 
+    public List<ReservaSolicitud> listarSolicitudesPorEstado(String estado) {
+        if (estado == null || estado.isBlank() || estado.equalsIgnoreCase("Todas")) {
+            return listarSolicitudes();
+        }
+
+        return listarSolicitudes().stream()
+                .filter(solicitud -> solicitud.getEstado().equalsIgnoreCase(estado))
+                .toList();
+    }
+
     public ReservaSolicitud buscarPorId(Long id) {
         return reservaSolicitudRepository.findById(id).orElse(null);
     }

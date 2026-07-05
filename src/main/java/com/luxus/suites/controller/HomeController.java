@@ -26,12 +26,18 @@ public class HomeController {
     public String index(Model model) {
         model.addAttribute("suites", suiteService.listarSuites());
         model.addAttribute("suitesDisponibles", suiteService.listarSuitesDisponibles());
+
         return "index";
     }
 
     @GetMapping("/admin")
-    public String admin(Model model) {
-        model.addAttribute("solicitudes", reservaService.listarSolicitudes());
+    public String admin(
+            @RequestParam(required = false, defaultValue = "Todas") String estado,
+            Model model
+    ) {
+        model.addAttribute("solicitudes", reservaService.listarSolicitudesPorEstado(estado));
+        model.addAttribute("estadoSeleccionado", estado);
+
         model.addAttribute("totalSolicitudes", reservaService.contarSolicitudes());
         model.addAttribute("totalPendientes", reservaService.contarPendientes());
         model.addAttribute("totalConfirmadas", reservaService.contarConfirmadas());
@@ -209,18 +215,21 @@ public class HomeController {
     @PostMapping("/admin/reservas/{id}/confirmar")
     public String confirmarReserva(@PathVariable Long id) {
         reservaService.confirmarSolicitud(id);
+
         return "redirect:/admin";
     }
 
     @PostMapping("/admin/reservas/{id}/cancelar")
     public String cancelarReserva(@PathVariable Long id) {
         reservaService.cancelarSolicitud(id);
+
         return "redirect:/admin";
     }
 
     @PostMapping("/admin/reservas/{id}/reabrir")
     public String reabrirReserva(@PathVariable Long id) {
         reservaService.reabrirSolicitud(id);
+
         return "redirect:/admin";
     }
 }

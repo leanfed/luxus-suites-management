@@ -165,10 +165,38 @@
                 <h2>Solicitudes recibidas</h2>
             </div>
 
-            <a th:href="@{/}" class="panel-link">Cargar nueva</a>
+            <div class="panel-actions">
+                <a th:href="@{/admin(estado='Todas')} + '#solicitudes'"
+                   class="panel-link"
+                   th:classappend="${estadoSeleccionado == 'Todas'} ? ' active-filter'">
+                    Todas
+                </a>
+
+                <a th:href="@{/admin(estado='Pendiente')} + '#solicitudes'"
+                   class="panel-link"
+                   th:classappend="${estadoSeleccionado == 'Pendiente'} ? ' active-filter'">
+                    Pendientes
+                </a>
+
+                <a th:href="@{/admin(estado='Confirmada')} + '#solicitudes'"
+                   class="panel-link"
+                   th:classappend="${estadoSeleccionado == 'Confirmada'} ? ' active-filter'">
+                    Confirmadas
+                </a>
+
+                <a th:href="@{/admin(estado='Cancelada')} + '#solicitudes'"
+                   class="panel-link"
+                   th:classappend="${estadoSeleccionado == 'Cancelada'} ? ' active-filter'">
+                    Canceladas
+                </a>
+
+                <a th:href="@{/}" class="panel-link">
+                    Cargar nueva
+                </a>
+            </div>
         </div>
 
-        <div class="reservation-admin-list" th:if="${totalSolicitudes > 0}">
+        <div class="reservation-admin-list" th:if="${!#lists.isEmpty(solicitudes)}">
             <article class="reservation-admin-card" th:each="solicitud : ${solicitudes}">
 
                 <div class="reservation-admin-main">
@@ -288,11 +316,11 @@
             </article>
         </div>
 
-        <div class="empty-admin-state" th:if="${totalSolicitudes == 0}">
-            <h3>No hay solicitudes cargadas todavía.</h3>
+        <div class="empty-admin-state" th:if="${#lists.isEmpty(solicitudes)}">
+            <h3>No hay solicitudes para mostrar.</h3>
             <p>
-                Cuando un huésped complete el formulario público de reserva,
-                la solicitud aparecerá en este panel administrativo.
+                No se encontraron reservas para el filtro seleccionado.
+                Podés cambiar el estado del filtro o cargar una nueva solicitud desde el sitio público.
             </p>
             <a th:href="@{/}" class="btn btn-primary">Ir al sitio público</a>
         </div>
