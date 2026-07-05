@@ -48,6 +48,13 @@ public class ReservaService {
 
         Long noches = calcularNoches(checkin, checkout);
 
+        validarQueNoExistaReservaSuperpuesta(
+                null,
+                suite.trim(),
+                checkin.trim(),
+                checkout.trim()
+        );
+
         Double importeEstimado = precioPorNoche * noches;
 
         ReservaSolicitud reserva = new ReservaSolicitud(
@@ -119,8 +126,6 @@ public class ReservaService {
 
         Long noches = calcularNoches(checkin, checkout);
 
-        Double importeEstimado = precioPorNoche * noches;
-
         if ("Confirmada".equalsIgnoreCase(solicitud.getEstado())) {
             validarQueNoExistaReservaSuperpuesta(
                     solicitud.getId(),
@@ -129,6 +134,8 @@ public class ReservaService {
                     checkout.trim()
             );
         }
+
+        Double importeEstimado = precioPorNoche * noches;
 
         solicitud.actualizarDatos(
                 nombre.trim(),
@@ -274,7 +281,7 @@ public class ReservaService {
 
         boolean existeSuperposicion = listarSolicitudes().stream()
                 .filter(solicitud -> solicitud.getId() != null)
-                .filter(solicitud -> !solicitud.getId().equals(idReservaActual))
+                .filter(solicitud -> idReservaActual == null || !solicitud.getId().equals(idReservaActual))
                 .filter(solicitud -> "Confirmada".equalsIgnoreCase(solicitud.getEstado()))
                 .filter(solicitud -> solicitud.getSuite() != null)
                 .filter(solicitud -> solicitud.getSuite().equalsIgnoreCase(suite))
@@ -287,7 +294,7 @@ public class ReservaService {
 
         if (existeSuperposicion) {
             throw new IllegalArgumentException(
-                    "No se puede confirmar la reserva porque ya existe una reserva confirmada para esa suite en fechas superpuestas."
+                    "No se puede registrar la reserva porque ya existe una reserva confirmada para esa suite en fechas superpuestas."
             );
         }
     }
