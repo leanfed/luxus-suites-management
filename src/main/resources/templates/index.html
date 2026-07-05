@@ -2,28 +2,29 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Luxus Suites | Luxury Hotel Experience</title>
+    <title>Luxus Suites | Hotel de Lujo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
-<body>
+<body class="public-site hotel-landing">
 
-<header class="topbar">
+<header class="topbar public-topbar">
     <div class="brand">
         <span class="brand-icon">L</span>
         <div>
             <h1>Luxus Suites</h1>
-            <p>Luxury Hotel Experience</p>
+            <p>Luxury Hotel</p>
         </div>
     </div>
 
-    <nav class="nav">
+    <nav class="nav public-nav">
+        <a href="#hotel">El hotel</a>
         <a href="#suites">Suites</a>
-        <a href="#experiencia">Experiencia</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#reservas">Reservar</a>
-        <a th:href="@{/admin}">Admin</a>
+        <a href="#gastronomia">Gastronomía</a>
+        <a href="#bienestar">Bienestar</a>
+        <a href="#reservas">Reservas</a>
+        <a href="#contacto">Contacto</a>
     </nav>
 
     <button type="button" class="theme-toggle" data-theme-toggle>
@@ -31,189 +32,192 @@
     </button>
 </header>
 
-<main class="layout">
+<main class="hotel-main">
 
-    <section class="hero">
-        <div class="hero-content">
-            <span class="eyebrow">Hotel premium urbano</span>
+    <section class="hotel-hero" id="hotel">
+        <div class="hotel-hero-content">
+            <span class="eyebrow">Hotel de lujo en Buenos Aires</span>
 
-            <h2>Una experiencia de lujo diseñada para huéspedes exigentes.</h2>
+            <h2>Elegancia, privacidad y hospitalidad en el corazón de la ciudad.</h2>
 
             <p>
-                Luxus Suites combina suites exclusivas, atención personalizada,
-                gastronomía de alto nivel y una plataforma digital para gestionar
-                solicitudes de reserva de forma simple, moderna y profesional.
+                Descubrí una experiencia exclusiva donde el diseño contemporáneo,
+                el confort y la atención personalizada se combinan para crear una
+                estadía inolvidable.
             </p>
 
             <div class="hero-actions">
-                <a href="#reservas" class="btn btn-primary">Solicitar reserva</a>
+                <a href="#reservas" class="btn btn-primary">Reservar estadía</a>
                 <a href="#suites" class="btn btn-secondary">Ver suites</a>
             </div>
         </div>
 
-        <div class="hero-card">
-            <p class="card-label">Experiencia destacada</p>
-            <h3>Luxury Stay</h3>
-            <span>Suites premium, servicio personalizado y gestión online.</span>
+        <div class="hotel-hero-panel">
+            <span>Luxury stay</span>
+            <h3>Suites premium para viajes de placer, negocios y escapadas especiales.</h3>
+            <p>
+                Ambientes amplios, detalles sofisticados y servicios pensados para
+                huéspedes que buscan una experiencia superior.
+            </p>
         </div>
     </section>
 
-    <section class="stats-grid">
-        <article class="stat-card">
+    <section class="hotel-strip">
+        <article>
             <span>Check-in</span>
             <strong>24 hs</strong>
-            <p>Recepción disponible durante todo el día.</p>
+            <p>Recepción y asistencia durante toda la estadía.</p>
         </article>
 
-        <article class="stat-card">
+        <article>
             <span>Categoría</span>
             <strong>5★</strong>
-            <p>Servicio orientado a una experiencia hotelera superior.</p>
+            <p>Confort, servicio y atención personalizada.</p>
         </article>
 
-        <article class="stat-card">
-            <span>Reservas</span>
-            <strong>Online</strong>
-            <p>Solicitudes conectadas al panel administrativo.</p>
+        <article>
+            <span>Ubicación</span>
+            <strong>Buenos Aires</strong>
+            <p>Una experiencia urbana, elegante y exclusiva.</p>
         </article>
 
-        <article class="stat-card">
+        <article>
             <span>Suites</span>
             <strong th:text="${suites.size()}">3</strong>
-            <p>Opciones cargadas desde la base de datos.</p>
+            <p>Categorías disponibles para distintas estadías.</p>
         </article>
     </section>
 
-    <section class="panel" id="suites">
-        <div class="panel-header">
-            <div>
-                <span class="eyebrow">Alojamiento premium</span>
-                <h2>Nuestras suites</h2>
-            </div>
-
-            <a href="#reservas" class="panel-link">Reservar ahora</a>
+    <section class="hotel-section" id="suites">
+        <div class="hotel-section-header">
+            <span class="eyebrow">Alojamiento</span>
+            <h2>Suites diseñadas para descansar con estilo.</h2>
+            <p>
+                Cada suite combina amplitud, privacidad y una estética elegante,
+                pensada para estadías urbanas de alto nivel.
+            </p>
         </div>
 
-        <div class="stats-grid">
-            <article class="stat-card" th:each="suite : ${suites}">
-                <span th:text="${suite.categoria}">Deluxe</span>
-
-                <strong th:text="${suite.nombre}">
-                    Deluxe Suite
-                </strong>
+        <div class="hotel-suite-grid">
+            <article class="hotel-suite-card" th:each="suite : ${suites}">
+                <div class="hotel-suite-card-header">
+                    <span th:text="${suite.categoria}">Deluxe</span>
+                    <h3 th:text="${suite.nombre}">Deluxe Suite</h3>
+                </div>
 
                 <p th:text="${suite.descripcion}">
                     Suite elegante para estadías ejecutivas o escapadas urbanas.
                 </p>
 
-                <p>
+                <div class="hotel-suite-details">
+                    <span th:text="'Hasta ' + ${suite.capacidad} + ' huésped(es)'">
+                        Hasta 2 huésped(es)
+                    </span>
+
                     <strong th:text="'$ ' + ${#numbers.formatDecimal(suite.precioPorNoche, 0, 'POINT', 0, 'COMMA')}">
                         $ 180.000
                     </strong>
-                    <span>por noche</span>
-                </p>
+                </div>
 
-                <p th:text="'Capacidad: ' + ${suite.capacidad} + ' huésped(es)'">
-                    Capacidad: 2 huésped(es)
-                </p>
-
-                <p>
-                    <span th:if="${suite.disponible}">
-                        Disponible para reserva
+                <div class="hotel-suite-footer">
+                    <span th:if="${suite.disponible}" class="availability available">
+                        Disponible
                     </span>
 
-                    <span th:if="${!suite.disponible}">
-                        Actualmente no disponible
+                    <span th:if="${!suite.disponible}" class="availability unavailable">
+                        No disponible
                     </span>
-                </p>
+
+                    <a href="#reservas">Consultar</a>
+                </div>
             </article>
         </div>
     </section>
 
-    <section class="panel" id="experiencia">
-        <div class="panel-header">
-            <div>
-                <span class="eyebrow">Experiencia Luxus</span>
-                <h2>Confort, diseño y atención personalizada</h2>
-            </div>
+    <section class="hotel-section hotel-split" id="gastronomia">
+        <div class="hotel-section-header">
+            <span class="eyebrow">Gastronomía</span>
+            <h2>Sabores cuidados para acompañar cada momento.</h2>
+            <p>
+                Desayunos premium, cocina de inspiración internacional y servicio
+                a la habitación para disfrutar una experiencia completa sin salir
+                de la suite.
+            </p>
         </div>
 
-        <div class="stats-grid">
-            <article class="stat-card">
-                <span>Diseño</span>
-                <strong>Premium</strong>
-                <p>
-                    Ambientes elegantes, iluminación cálida, mobiliario moderno
-                    y detalles pensados para una estadía superior.
-                </p>
+        <div class="hotel-feature-list">
+            <article>
+                <span>01</span>
+                <div>
+                    <strong>Desayuno premium</strong>
+                    <p>Selección de panadería, frutas, infusiones y opciones frescas.</p>
+                </div>
             </article>
 
-            <article class="stat-card">
-                <span>Atención</span>
-                <strong>Personalizada</strong>
-                <p>
-                    Servicio orientado a resolver necesidades del huésped antes,
-                    durante y después de la estadía.
-                </p>
+            <article>
+                <span>02</span>
+                <div>
+                    <strong>Restaurante</strong>
+                    <p>Propuesta gastronómica elegante para almuerzos y cenas.</p>
+                </div>
             </article>
 
-            <article class="stat-card">
-                <span>Gestión</span>
-                <strong>Digital</strong>
-                <p>
-                    Las solicitudes de reserva se registran automáticamente
-                    para ser revisadas desde el panel administrativo.
-                </p>
-            </article>
-        </div>
-    </section>
-
-    <section class="panel" id="servicios">
-        <div class="panel-header">
-            <div>
-                <span class="eyebrow">Servicios del hotel</span>
-                <h2>Todo lo necesario para una estadía exclusiva</h2>
-            </div>
-        </div>
-
-        <div class="stats-grid">
-            <article class="stat-card">
-                <span>Gastronomía</span>
-                <strong>Restaurante</strong>
-                <p>Propuesta gourmet, desayuno premium y servicio a la habitación.</p>
-            </article>
-
-            <article class="stat-card">
-                <span>Relax</span>
-                <strong>Spa</strong>
-                <p>Espacios de bienestar, tratamientos y ambientación tranquila.</p>
-            </article>
-
-            <article class="stat-card">
-                <span>Trabajo</span>
-                <strong>Business</strong>
-                <p>Suites preparadas para viajes corporativos y reuniones privadas.</p>
-            </article>
-
-            <article class="stat-card">
-                <span>Conectividad</span>
-                <strong>Wi-Fi</strong>
-                <p>Internet de alta velocidad disponible en todas las áreas.</p>
+            <article>
+                <span>03</span>
+                <div>
+                    <strong>Room service</strong>
+                    <p>Servicio privado para disfrutar en la comodidad de la habitación.</p>
+                </div>
             </article>
         </div>
     </section>
 
-    <section class="panel" id="reservas">
-        <div class="panel-header">
-            <div>
-                <span class="eyebrow">Reserva online</span>
-                <h2>Solicitá tu estadía</h2>
-            </div>
-
-            <a th:href="@{/admin}" class="panel-link">Panel admin</a>
+    <section class="hotel-section" id="bienestar">
+        <div class="hotel-section-header">
+            <span class="eyebrow">Bienestar</span>
+            <h2>Espacios pensados para relajarse y desconectar.</h2>
         </div>
 
-        <form class="reservation-form" th:action="@{/reservas/solicitar}" method="post">
+        <div class="hotel-service-grid">
+            <article>
+                <span>Spa</span>
+                <strong>Relax urbano</strong>
+                <p>Tratamientos, ambientación cálida y espacios de descanso.</p>
+            </article>
+
+            <article>
+                <span>Fitness</span>
+                <strong>Rutina activa</strong>
+                <p>Área de entrenamiento equipada para huéspedes.</p>
+            </article>
+
+            <article>
+                <span>Business</span>
+                <strong>Trabajo privado</strong>
+                <p>Ambientes silenciosos para viajes corporativos y reuniones.</p>
+            </article>
+
+            <article>
+                <span>Concierge</span>
+                <strong>Atención personalizada</strong>
+                <p>Asistencia para traslados, reservas y recomendaciones.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="hotel-section hotel-reservation-section" id="reservas">
+        <div class="hotel-section-header">
+            <span class="eyebrow">Reservas</span>
+            <h2>Solicitá tu estadía.</h2>
+            <p>
+                Completá tus datos y nuestro equipo revisará la disponibilidad
+                para confirmar tu reserva.
+            </p>
+        </div>
+
+        <form class="reservation-form hotel-reservation-form"
+              th:action="@{/reservas/solicitar}"
+              method="post">
 
             <div class="form-error" th:if="${errorReserva != null}">
                 <strong>No se pudo cargar la reserva.</strong>
@@ -294,14 +298,107 @@
                     Enviar solicitud
                 </button>
 
-                <a th:href="@{/admin}" class="btn btn-secondary">
-                    Ir al panel admin
+                <a href="#suites" class="btn btn-secondary">
+                    Revisar suites
                 </a>
             </div>
         </form>
     </section>
 
+    <section class="hotel-section" id="contacto">
+        <div class="hotel-section-header">
+            <span class="eyebrow">Contacto</span>
+            <h2>Estamos para asistirte.</h2>
+            <p>
+                Para consultas especiales, preferencias de estadía o información
+                adicional, nuestro equipo se encuentra disponible para ayudarte.
+            </p>
+        </div>
+
+        <div class="hotel-contact-grid">
+            <article>
+                <span>Dirección</span>
+                <strong>Av. Alvear 1891</strong>
+                <p>Recoleta, Ciudad de Buenos Aires, Argentina.</p>
+            </article>
+
+            <article>
+                <span>Reservas</span>
+                <strong>reservas@luxussuites.com</strong>
+                <p>Consultas de disponibilidad, tarifas y solicitudes especiales.</p>
+            </article>
+
+            <article>
+                <span>Teléfono</span>
+                <strong>+54 11 5555-5555</strong>
+                <p>Atención diaria para huéspedes y consultas generales.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="hotel-section hotel-faq">
+        <div class="hotel-section-header">
+            <span class="eyebrow">Preguntas frecuentes</span>
+            <h2>Información útil antes de reservar.</h2>
+        </div>
+
+        <div class="hotel-faq-list">
+            <article>
+                <strong>¿La solicitud confirma automáticamente la reserva?</strong>
+                <p>No. El equipo revisará la disponibilidad y confirmará la reserva por los medios de contacto informados.</p>
+            </article>
+
+            <article>
+                <strong>¿Puedo indicar preferencias especiales?</strong>
+                <p>Sí. Podés detallar horarios, preferencias de habitación, cama matrimonial, cochera u otros pedidos.</p>
+            </article>
+
+            <article>
+                <strong>¿Qué sucede si la suite no está disponible?</strong>
+                <p>El sistema informará si la suite seleccionada no cuenta con disponibilidad para las fechas elegidas.</p>
+            </article>
+        </div>
+    </section>
+
 </main>
+
+<footer class="hotel-footer">
+    <div class="hotel-footer-main">
+        <div>
+            <strong>Luxus Suites</strong>
+            <p>Hotel de lujo en Buenos Aires. Suites premium, gastronomía, bienestar y atención personalizada.</p>
+        </div>
+
+        <div>
+            <span>Contacto</span>
+            <p>reservas@luxussuites.com</p>
+            <p>+54 11 5555-5555</p>
+        </div>
+
+        <div>
+            <span>Hotel</span>
+            <a href="#suites">Suites</a>
+            <a href="#gastronomia">Gastronomía</a>
+            <a href="#bienestar">Bienestar</a>
+            <a href="#reservas">Reservas</a>
+        </div>
+
+        <div>
+            <span>Seguinos</span>
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">LinkedIn</a>
+        </div>
+    </div>
+
+    <div class="hotel-footer-bottom">
+        <small>© 2026 Luxus Suites. Todos los derechos reservados.</small>
+
+        <a th:href="@{/admin}" class="staff-access-link">
+            Acceso staff
+        </a>
+    </div>
+</footer>
 
 <script th:src="@{/js/theme.js}"></script>
 
