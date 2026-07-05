@@ -66,7 +66,7 @@ public class ReservaService {
     }
 
     public List<ReservaSolicitud> listarSolicitudes() {
-        return reservaSolicitudRepository.findAll();
+        return reservaSolicitudRepository.findAllByOrderByIdDesc();
     }
 
     public ReservaSolicitud buscarPorId(Long id) {
