@@ -121,6 +121,15 @@ public class ReservaService {
 
         Double importeEstimado = precioPorNoche * noches;
 
+        if ("Confirmada".equalsIgnoreCase(solicitud.getEstado())) {
+            validarQueNoExistaReservaSuperpuesta(
+                    solicitud.getId(),
+                    suite.trim(),
+                    checkin.trim(),
+                    checkout.trim()
+            );
+        }
+
         solicitud.actualizarDatos(
                 nombre.trim(),
                 email.trim(),
@@ -183,6 +192,13 @@ public class ReservaService {
         if (solicitud == null) {
             return;
         }
+
+        validarQueNoExistaReservaSuperpuesta(
+                solicitud.getId(),
+                solicitud.getSuite(),
+                solicitud.getCheckin(),
+                solicitud.getCheckout()
+        );
 
         solicitud.confirmar();
         reservaSolicitudRepository.save(solicitud);
@@ -247,6 +263,53 @@ public class ReservaService {
         }
     }
 
+    private void validarQueNoExistaReservaSuperpuesta(
+            Long idReservaActual,
+            String suite,
+            String checkin,
+            String checkout
+    ) {
+        LocalDate nuevoCheckin = parsearFecha(checkin);
+        LocalDate nuevoCheckout = parsearFecha(checkout);
+
+        boolean existeSuperposicion = listarSolicitudes().stream()
+                .filter(solicitud -> solicitud.getId() != null)
+                .filter(solicitud -> !solicitud.getId().equals(idReservaActual))
+                .filter(solicitud -> "Confirmada".equalsIgnoreCase(solicitud.getEstado()))
+                .filter(solicitud -> solicitud.getSuite() != null)
+                .filter(solicitud -> solicitud.getSuite().equalsIgnoreCase(suite))
+                .anyMatch(solicitud -> haySuperposicion(
+                        nuevoCheckin,
+                        nuevoCheckout,
+                        parsearFecha(solicitud.getCheckin()),
+                        parsearFecha(solicitud.getCheckout())
+                ));
+
+        if (existeSuperposicion) {
+            throw new IllegalArgumentException(
+                    "No se puede confirmar la reserva porque ya existe una reserva confirmada para esa suite en fechas superpuestas."
+            );
+        }
+    }
+
+    private boolean haySuperposicion(
+            LocalDate nuevoCheckin,
+            LocalDate nuevoCheckout,
+            LocalDate checkinExistente,
+            LocalDate checkoutExistente
+    ) {
+        return nuevoCheckin.isBefore(checkoutExistente)
+                && nuevoCheckout.isAfter(checkinExistente);
+    }
+
+    private LocalDate parsearFecha(String fecha) {
+        try {
+            return LocalDate.parse(fecha.trim());
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Las fechas ingresadas no tienen un formato válido.");
+        }
+    }
+
     private boolean coincideConBusqueda(ReservaSolicitud solicitud, String busqueda) {
         if (busqueda == null || busqueda.isBlank()) {
             return true;
@@ -267,15 +330,8 @@ public class ReservaService {
     }
 
     private Long calcularNoches(String checkin, String checkout) {
-        LocalDate fechaCheckin;
-        LocalDate fechaCheckout;
-
-        try {
-            fechaCheckin = LocalDate.parse(checkin.trim());
-            fechaCheckout = LocalDate.parse(checkout.trim());
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Las fechas ingresadas no tienen un formato válido.");
-        }
+        LocalDate fechaCheckin = parsearFecha(checkin);
+        LocalDate fechaCheckout = parsearFecha(checkout);
 
         long noches = ChronoUnit.DAYS.between(fechaCheckin, fechaCheckout);
 

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -265,8 +266,15 @@ public class HomeController {
     }
 
     @PostMapping("/admin/reservas/{id}/confirmar")
-    public String confirmarReserva(@PathVariable Long id) {
-        reservaService.confirmarSolicitud(id);
+    public String confirmarReserva(
+            @PathVariable Long id,
+            RedirectAttributes redirectAttributes
+    ) {
+        try {
+            reservaService.confirmarSolicitud(id);
+        } catch (IllegalArgumentException e) {
+            redirectAttributes.addFlashAttribute("errorAdmin", e.getMessage());
+        }
 
         return "redirect:/admin#solicitudes";
     }

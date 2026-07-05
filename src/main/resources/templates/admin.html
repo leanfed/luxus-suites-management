@@ -212,6 +212,13 @@
             </div>
         </div>
 
+        <div class="form-error" th:if="${errorAdmin}">
+            <strong>No se pudo confirmar la reserva.</strong>
+            <span th:text="${errorAdmin}">
+                Ya existe una reserva confirmada para esa suite en fechas superpuestas.
+            </span>
+        </div>
+
         <form class="admin-search-form"
               th:action="@{/admin} + '#solicitudes'"
               method="get">
