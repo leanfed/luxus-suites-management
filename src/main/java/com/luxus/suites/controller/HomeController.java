@@ -242,6 +242,20 @@ public class HomeController {
         }
     }
 
+    @PostMapping("/admin/suites/{id}/activar")
+    public String activarSuite(@PathVariable Long id) {
+        suiteService.marcarSuiteDisponible(id);
+
+        return "redirect:/admin#suites-admin";
+    }
+
+    @PostMapping("/admin/suites/{id}/desactivar")
+    public String desactivarSuite(@PathVariable Long id) {
+        suiteService.marcarSuiteNoDisponible(id);
+
+        return "redirect:/admin#suites-admin";
+    }
+
     @PostMapping("/admin/reservas/{id}/confirmar")
     public String confirmarReserva(@PathVariable Long id) {
         reservaService.confirmarSolicitud(id);

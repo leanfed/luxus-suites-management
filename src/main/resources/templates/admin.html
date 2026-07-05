@@ -153,6 +153,22 @@
                        class="table-action edit">
                         Editar suite
                     </a>
+
+                    <form th:if="${suite.disponible}"
+                          th:action="@{/admin/suites/{id}/desactivar(id=${suite.id})}"
+                          method="post">
+                        <button type="submit" class="table-action cancel">
+                            Desactivar
+                        </button>
+                    </form>
+
+                    <form th:if="${!suite.disponible}"
+                          th:action="@{/admin/suites/{id}/activar(id=${suite.id})}"
+                          method="post">
+                        <button type="submit" class="table-action confirm">
+                            Activar
+                        </button>
+                    </form>
                 </div>
             </article>
         </div>

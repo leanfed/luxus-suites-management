@@ -123,6 +123,44 @@ public class SuiteService {
         suiteRepository.save(suite);
     }
 
+    public void marcarSuiteDisponible(Long id) {
+        Suite suite = buscarPorId(id);
+
+        if (suite == null) {
+            return;
+        }
+
+        suite.actualizarDatos(
+                suite.getNombre(),
+                suite.getDescripcion(),
+                suite.getCategoria(),
+                suite.getPrecioPorNoche(),
+                suite.getCapacidad(),
+                true
+        );
+
+        suiteRepository.save(suite);
+    }
+
+    public void marcarSuiteNoDisponible(Long id) {
+        Suite suite = buscarPorId(id);
+
+        if (suite == null) {
+            return;
+        }
+
+        suite.actualizarDatos(
+                suite.getNombre(),
+                suite.getDescripcion(),
+                suite.getCategoria(),
+                suite.getPrecioPorNoche(),
+                suite.getCapacidad(),
+                false
+        );
+
+        suiteRepository.save(suite);
+    }
+
     private void validarDatosSuite(
             String nombre,
             String descripcion,

@@ -1339,3 +1339,22 @@ body.light-theme .suite-checkbox-field {
         width: 100%;
     }
 }
+
+.suite-admin-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.suite-admin-actions form {
+    margin: 0;
+}
+
+.suite-admin-actions .table-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    white-space: nowrap;
+}
