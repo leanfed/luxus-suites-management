@@ -1309,3 +1309,33 @@ body.light-theme .suite-checkbox-field {
     color: #111827;
     border: 1px solid rgba(17, 24, 39, 0.10);
 }
+
+
+.panel-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.panel-actions .panel-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.panel-link.active-filter {
+    border-color: rgba(212, 175, 55, 0.75);
+    background: rgba(212, 175, 55, 0.14);
+    color: var(--gold);
+}
+
+@media (max-width: 768px) {
+    .panel-actions {
+        justify-content: flex-start;
+        gap: 10px;
+        width: 100%;
+    }
+}
