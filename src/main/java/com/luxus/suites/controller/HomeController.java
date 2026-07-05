@@ -144,6 +144,32 @@ public class HomeController {
         }
     }
 
+    @GetMapping("/admin/suites/nueva")
+    public String mostrarFormularioNuevaSuite() {
+        return "suite-nueva";
+    }
+
+    @PostMapping("/admin/suites/nueva")
+    public String crearSuite(
+            @RequestParam String nombre,
+            @RequestParam String descripcion,
+            @RequestParam String categoria,
+            @RequestParam Double precioPorNoche,
+            @RequestParam Integer capacidad,
+            @RequestParam(required = false) Boolean disponible
+    ) {
+        suiteService.crearSuite(
+                nombre,
+                descripcion,
+                categoria,
+                precioPorNoche,
+                capacidad,
+                disponible != null
+        );
+
+        return "redirect:/admin#suites-admin";
+    }
+
     @GetMapping("/admin/suites/{id}/editar")
     public String mostrarFormularioEdicionSuite(@PathVariable Long id, Model model) {
         Suite suite = suiteService.buscarPorId(id);

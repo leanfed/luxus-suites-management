@@ -98,9 +98,15 @@
                 <h2>Suites disponibles</h2>
             </div>
 
-            <span class="panel-link" th:text="${totalSuites} + ' suites cargadas'">
-                3 suites cargadas
-            </span>
+            <div class="panel-actions">
+                <span class="panel-counter" th:text="${totalSuites} + ' suites cargadas'">
+                    3 suites cargadas
+                </span>
+
+                <a th:href="@{/admin/suites/nueva}" class="panel-link">
+                    Nueva suite
+                </a>
+            </div>
         </div>
 
         <div class="suite-admin-grid">

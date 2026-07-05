@@ -71,6 +71,27 @@ public class SuiteService {
         return suiteRepository.findByNombre(nombre);
     }
 
+    public void crearSuite(
+            String nombre,
+            String descripcion,
+            String categoria,
+            Double precioPorNoche,
+            Integer capacidad,
+            Boolean disponible
+    ) {
+        Suite suite = new Suite(
+                null,
+                nombre,
+                descripcion,
+                categoria,
+                precioPorNoche,
+                capacidad,
+                disponible
+        );
+
+        suiteRepository.save(suite);
+    }
+
     public void actualizarSuite(
             Long id,
             String nombre,
