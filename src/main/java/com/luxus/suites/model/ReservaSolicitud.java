@@ -29,6 +29,7 @@ public class ReservaSolicitud {
     private Double importeEstimado;
     private String estado;
     private LocalDateTime fechaCreacion;
+    private LocalDateTime fechaUltimaActualizacion;
 
     public ReservaSolicitud() {
     }
@@ -59,6 +60,7 @@ public class ReservaSolicitud {
         this.importeEstimado = importeEstimado;
         this.estado = "Pendiente";
         this.fechaCreacion = LocalDateTime.now();
+        this.fechaUltimaActualizacion = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -113,26 +115,50 @@ public class ReservaSolicitud {
         return fechaCreacion;
     }
 
+    public LocalDateTime getFechaUltimaActualizacion() {
+        return fechaUltimaActualizacion;
+    }
+
     public String getFechaCreacionFormateada() {
-        if (fechaCreacion == null) {
-            return "Sin fecha registrada";
+        if (fechaCreacion != null) {
+            return formatearFecha(fechaCreacion);
         }
 
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        if (fechaUltimaActualizacion != null) {
+            return formatearFecha(fechaUltimaActualizacion);
+        }
 
-        return fechaCreacion.format(formato);
+        return "Sin fecha registrada";
+    }
+
+    public String getFechaUltimaActualizacionFormateada() {
+        if (fechaUltimaActualizacion != null) {
+            return formatearFecha(fechaUltimaActualizacion);
+        }
+
+        if (fechaCreacion != null) {
+            return formatearFecha(fechaCreacion);
+        }
+
+        return "Sin fecha registrada";
     }
 
     public void confirmar() {
+        completarFechasFaltantes();
         this.estado = "Confirmada";
+        this.fechaUltimaActualizacion = LocalDateTime.now();
     }
 
     public void cancelar() {
+        completarFechasFaltantes();
         this.estado = "Cancelada";
+        this.fechaUltimaActualizacion = LocalDateTime.now();
     }
 
     public void reabrir() {
+        completarFechasFaltantes();
         this.estado = "Pendiente";
+        this.fechaUltimaActualizacion = LocalDateTime.now();
     }
 
     public void actualizarDatos(
@@ -147,6 +173,8 @@ public class ReservaSolicitud {
             Long noches,
             Double importeEstimado
     ) {
+        completarFechasFaltantes();
+
         this.nombre = nombre;
         this.email = email;
         this.telefono = telefono;
@@ -157,5 +185,26 @@ public class ReservaSolicitud {
         this.precioPorNoche = precioPorNoche;
         this.noches = noches;
         this.importeEstimado = importeEstimado;
+        this.fechaUltimaActualizacion = LocalDateTime.now();
+    }
+
+    private void completarFechasFaltantes() {
+        if (this.fechaCreacion == null && this.fechaUltimaActualizacion != null) {
+            this.fechaCreacion = this.fechaUltimaActualizacion;
+        }
+
+        if (this.fechaCreacion == null) {
+            this.fechaCreacion = LocalDateTime.now();
+        }
+
+        if (this.fechaUltimaActualizacion == null) {
+            this.fechaUltimaActualizacion = this.fechaCreacion;
+        }
+    }
+
+    private String formatearFecha(LocalDateTime fecha) {
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+        return fecha.format(formato);
     }
 }
