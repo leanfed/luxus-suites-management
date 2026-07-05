@@ -45,7 +45,7 @@
             </p>
 
             <div class="hero-actions">
-                <a th:href="@{/}" class="btn btn-primary">Nueva solicitud</a>
+                <a th:href="@{/admin/reservas/nueva}" class="btn btn-primary">Nueva reserva</a>
                 <a href="#solicitudes" class="btn btn-secondary">Ver solicitudes</a>
             </div>
         </div>
@@ -67,7 +67,7 @@
         <article class="stat-card">
             <span>Total solicitudes</span>
             <strong th:text="${totalSolicitudes}">0</strong>
-            <p>Pedidos recibidos desde la web pública</p>
+            <p>Pedidos recibidos desde la web pública o administración</p>
         </article>
 
         <article class="stat-card">
@@ -206,7 +206,7 @@
                     Canceladas
                 </a>
 
-                <a th:href="@{/}" class="panel-link">
+                <a th:href="@{/admin/reservas/nueva}" class="panel-link">
                     Cargar nueva
                 </a>
             </div>
@@ -398,10 +398,10 @@
             <h3>No hay solicitudes para mostrar.</h3>
             <p>
                 No se encontraron reservas para el estado o la búsqueda seleccionada.
-                Podés cambiar el filtro, limpiar la búsqueda o cargar una nueva solicitud desde el sitio público.
+                Podés cambiar el filtro, limpiar la búsqueda o cargar una nueva reserva desde administración.
             </p>
-            <a th:href="@{/admin(estado='Todas')} + '#solicitudes'" class="btn btn-primary">
-                Ver todas las reservas
+            <a th:href="@{/admin/reservas/nueva}" class="btn btn-primary">
+                Cargar nueva reserva
             </a>
         </div>
     </section>

@@ -104,6 +104,53 @@ public class HomeController {
         }
     }
 
+    @GetMapping("/admin/reservas/nueva")
+    public String mostrarFormularioNuevaReservaAdmin(Model model) {
+        model.addAttribute("suitesDisponibles", suiteService.listarSuitesDisponibles());
+
+        return "reserva-nueva-admin";
+    }
+
+    @PostMapping("/admin/reservas/nueva")
+    public String crearReservaAdmin(
+            @RequestParam String nombre,
+            @RequestParam String email,
+            @RequestParam String telefono,
+            @RequestParam String checkin,
+            @RequestParam String checkout,
+            @RequestParam String suite,
+            @RequestParam String observaciones,
+            Model model
+    ) {
+        try {
+            reservaService.guardarSolicitud(
+                    nombre,
+                    email,
+                    telefono,
+                    checkin,
+                    checkout,
+                    suite,
+                    observaciones
+            );
+
+            return "redirect:/admin#solicitudes";
+
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("suitesDisponibles", suiteService.listarSuitesDisponibles());
+            model.addAttribute("errorReservaAdmin", e.getMessage());
+
+            model.addAttribute("nombreIngresado", nombre);
+            model.addAttribute("emailIngresado", email);
+            model.addAttribute("telefonoIngresado", telefono);
+            model.addAttribute("checkinIngresado", checkin);
+            model.addAttribute("checkoutIngresado", checkout);
+            model.addAttribute("suiteIngresada", suite);
+            model.addAttribute("observacionesIngresadas", observaciones);
+
+            return "reserva-nueva-admin";
+        }
+    }
+
     @GetMapping("/admin/reservas/{id}/editar")
     public String mostrarFormularioEdicion(@PathVariable Long id, Model model) {
         ReservaSolicitud solicitud = reservaService.buscarPorId(id);

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva reserva | Luxus Suites Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="brand">
+        <span class="brand-icon">L</span>
+        <div>
+            <h1>Luxus Suites</h1>
+            <p>Management System</p>
+        </div>
+    </div>
+
+    <nav class="nav">
+        <a th:href="@{/}">Sitio público</a>
+        <a th:href="@{/admin}">Panel admin</a>
+    </nav>
+
+    <button type="button" class="theme-toggle" data-theme-toggle>
+        Modo claro
+    </button>
+</header>
+
+<main class="layout">
+
+    <section class="panel">
+        <div class="panel-header">
+            <div>
+                <span class="eyebrow">Reservas internas</span>
+                <h2>Nueva reserva desde administración</h2>
+            </div>
+
+            <a th:href="@{/admin#solicitudes}" class="panel-link">
+                Volver a reservas
+            </a>
+        </div>
+
+        <div class="form-error" th:if="${errorReservaAdmin}">
+            <strong>No se pudo registrar la reserva.</strong>
+            <span th:text="${errorReservaAdmin}">
+                Error de validación.
+            </span>
+        </div>
+
+        <form class="reservation-form"
+              th:action="@{/admin/reservas/nueva}"
+              method="post">
+
+            <div class="form-grid">
+                <label>
+                    Nombre del huésped
+                    <input type="text"
+                           name="nombre"
+                           placeholder="Ej: Federico Sosa"
+                           th:value="${nombreIngresado}"
+                           required>
+                </label>
+
+                <label>
+                    Email
+                    <input type="email"
+                           name="email"
+                           placeholder="cliente@email.com"
+                           th:value="${emailIngresado}"
+                           required>
+                </label>
+
+                <label>
+                    Teléfono
+                    <input type="text"
+                           name="telefono"
+                           placeholder="Ej: 11 5555-5555"
+                           th:value="${telefonoIngresado}"
+                           required>
+                </label>
+
+                <label>
+                    Suite
+                    <select name="suite" required>
+                        <option value="">Seleccionar suite</option>
+
+                        <option th:each="suite : ${suitesDisponibles}"
+                                th:value="${suite.nombre}"
+                                th:text="${suite.nombre + ' - $ ' + #numbers.formatDecimal(suite.precioPorNoche, 0, 'POINT', 0, 'COMMA')}"
+                                th:selected="${suite.nombre == suiteIngresada}">
+                            Deluxe Suite
+                        </option>
+                    </select>
+                </label>
+
+                <label>
+                    Check-in
+                    <input type="date"
+                           name="checkin"
+                           th:value="${checkinIngresado}"
+                           required>
+                </label>
+
+                <label>
+                    Check-out
+                    <input type="date"
+                           name="checkout"
+                           th:value="${checkoutIngresado}"
+                           required>
+                </label>
+
+                <label class="form-field-wide">
+                    Observaciones internas o del huésped
+                    <textarea name="observaciones"
+                              rows="5"
+                              placeholder="Ej: Reserva cargada por recepción. Preferencia de piso alto, llegada estimada, comentarios del huésped..."
+                              th:text="${observacionesIngresadas}"></textarea>
+                </label>
+            </div>
+
+            <div class="hero-actions">
+                <button type="submit" class="btn btn-primary">
+                    Registrar reserva
+                </button>
+
+                <a th:href="@{/admin#solicitudes}" class="btn btn-secondary">
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </section>
+
+</main>
+
+<script th:src="@{/js/theme.js}"></script>
+
+</body>
+</html>
