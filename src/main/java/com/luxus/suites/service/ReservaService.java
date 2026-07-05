@@ -79,6 +79,12 @@ public class ReservaService {
                 .toList();
     }
 
+    public List<ReservaSolicitud> listarSolicitudesFiltradas(String estado, String busqueda) {
+        return listarSolicitudesPorEstado(estado).stream()
+                .filter(solicitud -> coincideConBusqueda(solicitud, busqueda))
+                .toList();
+    }
+
     public ReservaSolicitud buscarPorId(Long id) {
         return reservaSolicitudRepository.findById(id).orElse(null);
     }
@@ -198,6 +204,25 @@ public class ReservaService {
 
         solicitud.reabrir();
         reservaSolicitudRepository.save(solicitud);
+    }
+
+    private boolean coincideConBusqueda(ReservaSolicitud solicitud, String busqueda) {
+        if (busqueda == null || busqueda.isBlank()) {
+            return true;
+        }
+
+        String textoBuscado = busqueda.trim().toLowerCase();
+
+        return contieneTexto(solicitud.getNombre(), textoBuscado)
+                || contieneTexto(solicitud.getEmail(), textoBuscado)
+                || contieneTexto(solicitud.getTelefono(), textoBuscado)
+                || contieneTexto(solicitud.getSuite(), textoBuscado)
+                || contieneTexto(solicitud.getEstado(), textoBuscado)
+                || contieneTexto(String.valueOf(solicitud.getId()), textoBuscado);
+    }
+
+    private boolean contieneTexto(String valor, String busqueda) {
+        return valor != null && valor.toLowerCase().contains(busqueda);
     }
 
     private Long calcularNoches(String checkin, String checkout) {

@@ -1358,3 +1358,82 @@ body.light-theme .suite-checkbox-field {
     min-height: 36px;
     white-space: nowrap;
 }
+
+.admin-search-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin: 22px 0 26px;
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.admin-search-form label {
+    flex: 1;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--text);
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.admin-search-form label span {
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.72rem;
+}
+
+.admin-search-form input[type="search"] {
+    width: 100%;
+    min-height: 46px;
+    padding: 0 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(8, 14, 26, 0.85);
+    color: var(--text);
+    outline: none;
+    font-size: 0.95rem;
+}
+
+.admin-search-form input[type="search"]::placeholder {
+    color: rgba(241, 245, 249, 0.42);
+}
+
+.admin-search-form input[type="search"]:focus {
+    border-color: rgba(212, 175, 55, 0.75);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
+}
+
+.admin-search-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.admin-search-actions .table-action {
+    min-height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .admin-search-form {
+        align-items: stretch;
+    }
+
+    .admin-search-actions {
+        width: 100%;
+    }
+
+    .admin-search-actions .table-action {
+        flex: 1;
+    }
+}

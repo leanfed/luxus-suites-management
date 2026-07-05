@@ -33,10 +33,12 @@ public class HomeController {
     @GetMapping("/admin")
     public String admin(
             @RequestParam(required = false, defaultValue = "Todas") String estado,
+            @RequestParam(required = false, defaultValue = "") String busqueda,
             Model model
     ) {
-        model.addAttribute("solicitudes", reservaService.listarSolicitudesPorEstado(estado));
+        model.addAttribute("solicitudes", reservaService.listarSolicitudesFiltradas(estado, busqueda));
         model.addAttribute("estadoSeleccionado", estado);
+        model.addAttribute("busquedaIngresada", busqueda);
 
         model.addAttribute("totalSolicitudes", reservaService.contarSolicitudes());
         model.addAttribute("totalPendientes", reservaService.contarPendientes());

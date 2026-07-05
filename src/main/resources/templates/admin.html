@@ -182,25 +182,25 @@
             </div>
 
             <div class="panel-actions">
-                <a th:href="@{/admin(estado='Todas')} + '#solicitudes'"
+                <a th:href="@{/admin(estado='Todas', busqueda=${busquedaIngresada})} + '#solicitudes'"
                    class="panel-link"
                    th:classappend="${estadoSeleccionado == 'Todas'} ? ' active-filter'">
                     Todas
                 </a>
 
-                <a th:href="@{/admin(estado='Pendiente')} + '#solicitudes'"
+                <a th:href="@{/admin(estado='Pendiente', busqueda=${busquedaIngresada})} + '#solicitudes'"
                    class="panel-link"
                    th:classappend="${estadoSeleccionado == 'Pendiente'} ? ' active-filter'">
                     Pendientes
                 </a>
 
-                <a th:href="@{/admin(estado='Confirmada')} + '#solicitudes'"
+                <a th:href="@{/admin(estado='Confirmada', busqueda=${busquedaIngresada})} + '#solicitudes'"
                    class="panel-link"
                    th:classappend="${estadoSeleccionado == 'Confirmada'} ? ' active-filter'">
                     Confirmadas
                 </a>
 
-                <a th:href="@{/admin(estado='Cancelada')} + '#solicitudes'"
+                <a th:href="@{/admin(estado='Cancelada', busqueda=${busquedaIngresada})} + '#solicitudes'"
                    class="panel-link"
                    th:classappend="${estadoSeleccionado == 'Cancelada'} ? ' active-filter'">
                     Canceladas
@@ -211,6 +211,35 @@
                 </a>
             </div>
         </div>
+
+        <form class="admin-search-form"
+              th:action="@{/admin} + '#solicitudes'"
+              method="get">
+
+            <input type="hidden"
+                   name="estado"
+                   th:value="${estadoSeleccionado}">
+
+            <label>
+                <span>Buscar reserva</span>
+
+                <input type="search"
+                       name="busqueda"
+                       placeholder="Nombre, email, teléfono, suite o número de solicitud"
+                       th:value="${busquedaIngresada}">
+            </label>
+
+            <div class="admin-search-actions">
+                <button type="submit" class="table-action confirm">
+                    Buscar
+                </button>
+
+                <a th:href="@{/admin(estado=${estadoSeleccionado})} + '#solicitudes'"
+                   class="table-action reopen">
+                    Limpiar
+                </a>
+            </div>
+        </form>
 
         <div class="reservation-admin-list" th:if="${!#lists.isEmpty(solicitudes)}">
             <article class="reservation-admin-card" th:each="solicitud : ${solicitudes}">
@@ -345,10 +374,12 @@
         <div class="empty-admin-state" th:if="${#lists.isEmpty(solicitudes)}">
             <h3>No hay solicitudes para mostrar.</h3>
             <p>
-                No se encontraron reservas para el filtro seleccionado.
-                Podés cambiar el estado del filtro o cargar una nueva solicitud desde el sitio público.
+                No se encontraron reservas para el estado o la búsqueda seleccionada.
+                Podés cambiar el filtro, limpiar la búsqueda o cargar una nueva solicitud desde el sitio público.
             </p>
-            <a th:href="@{/}" class="btn btn-primary">Ir al sitio público</a>
+            <a th:href="@{/admin(estado='Todas')} + '#solicitudes'" class="btn btn-primary">
+                Ver todas las reservas
+            </a>
         </div>
     </section>
 
