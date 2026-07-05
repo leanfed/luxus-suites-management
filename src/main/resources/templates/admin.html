@@ -221,6 +221,11 @@
                             Solicitud #1
                         </span>
 
+                        <small class="reservation-created-at"
+                               th:text="'Creada el ' + ${solicitud.fechaCreacionFormateada}">
+                            Creada el 05/07/2026 14:30
+                        </small>
+
                         <h3 th:text="${solicitud.nombre}">
                             Nombre del huésped
                         </h3>

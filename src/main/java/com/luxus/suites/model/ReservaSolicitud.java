@@ -6,6 +6,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Entity
 @Table(name = "reservas_solicitudes")
 public class ReservaSolicitud {
@@ -25,6 +28,7 @@ public class ReservaSolicitud {
     private Long noches;
     private Double importeEstimado;
     private String estado;
+    private LocalDateTime fechaCreacion;
 
     public ReservaSolicitud() {
     }
@@ -54,6 +58,7 @@ public class ReservaSolicitud {
         this.noches = noches;
         this.importeEstimado = importeEstimado;
         this.estado = "Pendiente";
+        this.fechaCreacion = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -102,6 +107,20 @@ public class ReservaSolicitud {
 
     public String getEstado() {
         return estado;
+    }
+
+    public LocalDateTime getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public String getFechaCreacionFormateada() {
+        if (fechaCreacion == null) {
+            return "Sin fecha registrada";
+        }
+
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+        return fechaCreacion.format(formato);
     }
 
     public void confirmar() {
