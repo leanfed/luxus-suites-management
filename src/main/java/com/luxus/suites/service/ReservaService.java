@@ -34,9 +34,15 @@ public class ReservaService {
     ) {
         Suite suiteSeleccionada = suiteService.buscarPorNombre(suite);
 
-        Double precioPorNoche = suiteSeleccionada != null
-                ? suiteSeleccionada.getPrecioPorNoche()
-                : 0.0;
+        if (suiteSeleccionada == null) {
+            throw new IllegalArgumentException("La suite seleccionada no existe.");
+        }
+
+        if (!Boolean.TRUE.equals(suiteSeleccionada.getDisponible())) {
+            throw new IllegalArgumentException("La suite seleccionada no está disponible para reservas.");
+        }
+
+        Double precioPorNoche = suiteSeleccionada.getPrecioPorNoche();
 
         Long noches = calcularNoches(checkin, checkout);
 
@@ -85,9 +91,11 @@ public class ReservaService {
 
         Suite suiteSeleccionada = suiteService.buscarPorNombre(suite);
 
-        Double precioPorNoche = suiteSeleccionada != null
-                ? suiteSeleccionada.getPrecioPorNoche()
-                : 0.0;
+        if (suiteSeleccionada == null) {
+            throw new IllegalArgumentException("La suite seleccionada no existe.");
+        }
+
+        Double precioPorNoche = suiteSeleccionada.getPrecioPorNoche();
 
         Long noches = calcularNoches(checkin, checkout);
 
