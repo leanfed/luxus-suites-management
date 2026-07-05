@@ -162,18 +162,33 @@ public class HomeController {
             @RequestParam String categoria,
             @RequestParam Double precioPorNoche,
             @RequestParam Integer capacidad,
-            @RequestParam(required = false) Boolean disponible
+            @RequestParam(required = false) Boolean disponible,
+            Model model
     ) {
-        suiteService.crearSuite(
-                nombre,
-                descripcion,
-                categoria,
-                precioPorNoche,
-                capacidad,
-                disponible != null
-        );
+        try {
+            suiteService.crearSuite(
+                    nombre,
+                    descripcion,
+                    categoria,
+                    precioPorNoche,
+                    capacidad,
+                    disponible != null
+            );
 
-        return "redirect:/admin#suites-admin";
+            return "redirect:/admin#suites-admin";
+
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("errorSuite", e.getMessage());
+
+            model.addAttribute("nombreIngresado", nombre);
+            model.addAttribute("descripcionIngresada", descripcion);
+            model.addAttribute("categoriaIngresada", categoria);
+            model.addAttribute("precioIngresado", precioPorNoche);
+            model.addAttribute("capacidadIngresada", capacidad);
+            model.addAttribute("disponibleIngresado", disponible != null);
+
+            return "suite-nueva";
+        }
     }
 
     @GetMapping("/admin/suites/{id}/editar")
@@ -197,19 +212,34 @@ public class HomeController {
             @RequestParam String categoria,
             @RequestParam Double precioPorNoche,
             @RequestParam Integer capacidad,
-            @RequestParam(required = false) Boolean disponible
+            @RequestParam(required = false) Boolean disponible,
+            Model model
     ) {
-        suiteService.actualizarSuite(
-                id,
-                nombre,
-                descripcion,
-                categoria,
-                precioPorNoche,
-                capacidad,
-                disponible != null
-        );
+        try {
+            suiteService.actualizarSuite(
+                    id,
+                    nombre,
+                    descripcion,
+                    categoria,
+                    precioPorNoche,
+                    capacidad,
+                    disponible != null
+            );
 
-        return "redirect:/admin#suites-admin";
+            return "redirect:/admin#suites-admin";
+
+        } catch (IllegalArgumentException e) {
+            Suite suite = suiteService.buscarPorId(id);
+
+            if (suite == null) {
+                return "redirect:/admin";
+            }
+
+            model.addAttribute("suite", suite);
+            model.addAttribute("errorSuite", e.getMessage());
+
+            return "suite-editar";
+        }
     }
 
     @PostMapping("/admin/reservas/{id}/confirmar")

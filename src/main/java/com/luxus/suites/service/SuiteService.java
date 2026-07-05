@@ -79,11 +79,13 @@ public class SuiteService {
             Integer capacidad,
             Boolean disponible
     ) {
+        validarDatosSuite(nombre, descripcion, categoria, precioPorNoche, capacidad);
+
         Suite suite = new Suite(
                 null,
-                nombre,
-                descripcion,
-                categoria,
+                nombre.trim(),
+                descripcion.trim(),
+                categoria.trim(),
                 precioPorNoche,
                 capacidad,
                 disponible
@@ -107,15 +109,45 @@ public class SuiteService {
             return;
         }
 
+        validarDatosSuite(nombre, descripcion, categoria, precioPorNoche, capacidad);
+
         suite.actualizarDatos(
-                nombre,
-                descripcion,
-                categoria,
+                nombre.trim(),
+                descripcion.trim(),
+                categoria.trim(),
                 precioPorNoche,
                 capacidad,
                 disponible
         );
 
         suiteRepository.save(suite);
+    }
+
+    private void validarDatosSuite(
+            String nombre,
+            String descripcion,
+            String categoria,
+            Double precioPorNoche,
+            Integer capacidad
+    ) {
+        if (nombre == null || nombre.isBlank()) {
+            throw new IllegalArgumentException("El nombre de la suite es obligatorio.");
+        }
+
+        if (categoria == null || categoria.isBlank()) {
+            throw new IllegalArgumentException("La categoría de la suite es obligatoria.");
+        }
+
+        if (descripcion == null || descripcion.isBlank()) {
+            throw new IllegalArgumentException("La descripción de la suite es obligatoria.");
+        }
+
+        if (precioPorNoche == null || precioPorNoche <= 0) {
+            throw new IllegalArgumentException("El precio por noche debe ser mayor a cero.");
+        }
+
+        if (capacidad == null || capacidad <= 0) {
+            throw new IllegalArgumentException("La capacidad debe ser mayor a cero.");
+        }
     }
 }

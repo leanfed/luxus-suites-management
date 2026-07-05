@@ -42,6 +42,13 @@
             </a>
         </div>
 
+        <div class="form-error" th:if="${errorSuite}">
+            <strong>No se pudo crear la suite.</strong>
+            <span th:text="${errorSuite}">
+                Error de validación.
+            </span>
+        </div>
+
         <form class="reservation-form"
               th:action="@{/admin/suites/nueva}"
               method="post">
@@ -52,6 +59,7 @@
                     <input type="text"
                            name="nombre"
                            placeholder="Ej: Royal Garden Suite"
+                           th:value="${nombreIngresado}"
                            required>
                 </label>
 
@@ -60,6 +68,7 @@
                     <input type="text"
                            name="categoria"
                            placeholder="Ej: Royal"
+                           th:value="${categoriaIngresada}"
                            required>
                 </label>
 
@@ -70,6 +79,7 @@
                            min="0"
                            step="1000"
                            placeholder="Ej: 320000"
+                           th:value="${precioIngresado}"
                            required>
                 </label>
 
@@ -79,6 +89,7 @@
                            name="capacidad"
                            min="1"
                            placeholder="Ej: 2"
+                           th:value="${capacidadIngresada}"
                            required>
                 </label>
 
@@ -87,13 +98,14 @@
                     <textarea name="descripcion"
                               rows="5"
                               placeholder="Describí la experiencia, comodidades y detalles destacados de la suite..."
-                              required></textarea>
+                              required
+                              th:text="${descripcionIngresada}"></textarea>
                 </label>
 
                 <label class="suite-checkbox-field">
                     <input type="checkbox"
                            name="disponible"
-                           checked>
+                           th:checked="${disponibleIngresado == null || disponibleIngresado}">
                     Suite disponible para reservas
                 </label>
             </div>

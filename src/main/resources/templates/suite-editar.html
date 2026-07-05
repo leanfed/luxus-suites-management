@@ -34,14 +34,19 @@
         <div class="panel-header">
             <div>
                 <span class="eyebrow">Configuración del hotel</span>
-                <h2 th:text="'Editar ' + ${suite.nombre}">
-                    Editar suite
-                </h2>
+                <h2>Editar suite</h2>
             </div>
 
             <a th:href="@{/admin#suites-admin}" class="panel-link">
                 Volver a suites
             </a>
+        </div>
+
+        <div class="form-error" th:if="${errorSuite}">
+            <strong>No se pudo actualizar la suite.</strong>
+            <span th:text="${errorSuite}">
+                Error de validación.
+            </span>
         </div>
 
         <form class="reservation-form"
@@ -69,9 +74,9 @@
                     Precio por noche
                     <input type="number"
                            name="precioPorNoche"
-                           th:value="${suite.precioPorNoche}"
                            min="0"
                            step="1000"
+                           th:value="${suite.precioPorNoche}"
                            required>
                 </label>
 
@@ -79,17 +84,17 @@
                     Capacidad
                     <input type="number"
                            name="capacidad"
-                           th:value="${suite.capacidad}"
                            min="1"
+                           th:value="${suite.capacidad}"
                            required>
                 </label>
 
                 <label class="form-field-wide">
                     Descripción
                     <textarea name="descripcion"
-                              th:text="${suite.descripcion}"
                               rows="5"
-                              required></textarea>
+                              required
+                              th:text="${suite.descripcion}"></textarea>
                 </label>
 
                 <label class="suite-checkbox-field">
