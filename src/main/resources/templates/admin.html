@@ -226,6 +226,11 @@
                             Creada el 05/07/2026 14:30
                         </small>
 
+                        <small class="reservation-created-at"
+                               th:text="'Última actualización: ' + ${solicitud.fechaUltimaActualizacionFormateada}">
+                            Última actualización: 05/07/2026 15:10
+                        </small>
+
                         <h3 th:text="${solicitud.nombre}">
                             Nombre del huésped
                         </h3>
