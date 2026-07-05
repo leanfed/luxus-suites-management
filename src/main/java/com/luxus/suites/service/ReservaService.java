@@ -32,7 +32,9 @@ public class ReservaService {
             String suite,
             String observaciones
     ) {
-        Suite suiteSeleccionada = suiteService.buscarPorNombre(suite);
+        validarDatosReserva(nombre, email, telefono, checkin, checkout, suite);
+
+        Suite suiteSeleccionada = suiteService.buscarPorNombre(suite.trim());
 
         if (suiteSeleccionada == null) {
             throw new IllegalArgumentException("La suite seleccionada no existe.");
@@ -50,13 +52,13 @@ public class ReservaService {
 
         ReservaSolicitud reserva = new ReservaSolicitud(
                 null,
-                nombre,
-                email,
-                telefono,
-                checkin,
-                checkout,
-                suite,
-                observaciones,
+                nombre.trim(),
+                email.trim(),
+                telefono.trim(),
+                checkin.trim(),
+                checkout.trim(),
+                suite.trim(),
+                observaciones != null ? observaciones.trim() : "",
                 precioPorNoche,
                 noches,
                 importeEstimado
@@ -105,7 +107,9 @@ public class ReservaService {
             return;
         }
 
-        Suite suiteSeleccionada = suiteService.buscarPorNombre(suite);
+        validarDatosReserva(nombre, email, telefono, checkin, checkout, suite);
+
+        Suite suiteSeleccionada = suiteService.buscarPorNombre(suite.trim());
 
         if (suiteSeleccionada == null) {
             throw new IllegalArgumentException("La suite seleccionada no existe.");
@@ -118,13 +122,13 @@ public class ReservaService {
         Double importeEstimado = precioPorNoche * noches;
 
         solicitud.actualizarDatos(
-                nombre,
-                email,
-                telefono,
-                checkin,
-                checkout,
-                suite,
-                observaciones,
+                nombre.trim(),
+                email.trim(),
+                telefono.trim(),
+                checkin.trim(),
+                checkout.trim(),
+                suite.trim(),
+                observaciones != null ? observaciones.trim() : "",
                 precioPorNoche,
                 noches,
                 importeEstimado
@@ -206,6 +210,43 @@ public class ReservaService {
         reservaSolicitudRepository.save(solicitud);
     }
 
+    private void validarDatosReserva(
+            String nombre,
+            String email,
+            String telefono,
+            String checkin,
+            String checkout,
+            String suite
+    ) {
+        if (nombre == null || nombre.isBlank()) {
+            throw new IllegalArgumentException("El nombre del huésped es obligatorio.");
+        }
+
+        if (email == null || email.isBlank()) {
+            throw new IllegalArgumentException("El email del huésped es obligatorio.");
+        }
+
+        if (!email.trim().matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
+            throw new IllegalArgumentException("El email ingresado no tiene un formato válido.");
+        }
+
+        if (telefono == null || telefono.isBlank()) {
+            throw new IllegalArgumentException("El teléfono del huésped es obligatorio.");
+        }
+
+        if (checkin == null || checkin.isBlank()) {
+            throw new IllegalArgumentException("La fecha de check-in es obligatoria.");
+        }
+
+        if (checkout == null || checkout.isBlank()) {
+            throw new IllegalArgumentException("La fecha de check-out es obligatoria.");
+        }
+
+        if (suite == null || suite.isBlank()) {
+            throw new IllegalArgumentException("La suite seleccionada es obligatoria.");
+        }
+    }
+
     private boolean coincideConBusqueda(ReservaSolicitud solicitud, String busqueda) {
         if (busqueda == null || busqueda.isBlank()) {
             return true;
@@ -230,8 +271,8 @@ public class ReservaService {
         LocalDate fechaCheckout;
 
         try {
-            fechaCheckin = LocalDate.parse(checkin);
-            fechaCheckout = LocalDate.parse(checkout);
+            fechaCheckin = LocalDate.parse(checkin.trim());
+            fechaCheckout = LocalDate.parse(checkout.trim());
         } catch (Exception e) {
             throw new IllegalArgumentException("Las fechas ingresadas no tienen un formato válido.");
         }
