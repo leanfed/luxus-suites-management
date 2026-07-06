@@ -98,39 +98,63 @@
             </p>
         </div>
 
-        <div class="hotel-suite-grid">
-            <article class="hotel-suite-card" th:each="suite : ${suites}">
-                <div class="hotel-suite-card-header">
-                    <span th:text="${suite.categoria}">Deluxe</span>
-                    <h3 th:text="${suite.nombre}">Deluxe Suite</h3>
+        <div class="hotel-suite-carousel" data-suite-carousel>
+            <button type="button"
+                    class="suite-carousel-arrow suite-carousel-prev"
+                    data-suite-prev
+                    aria-label="Ver suites anteriores">
+                ‹
+            </button>
+
+            <div class="hotel-suite-window">
+                <div class="hotel-suite-grid" data-suite-track>
+                    <article class="hotel-suite-card"
+                             th:each="suite : ${suites}">
+                        <div class="hotel-suite-card-header">
+                            <span th:text="${suite.categoria}">Deluxe</span>
+                            <h3 th:text="${suite.nombre}">Deluxe Suite</h3>
+                        </div>
+
+                        <p th:text="${suite.descripcion}">
+                            Suite elegante para estadías ejecutivas o escapadas urbanas.
+                        </p>
+
+                        <div class="hotel-suite-details">
+                            <span th:text="'Hasta ' + ${suite.capacidad} + ' huésped(es)'">
+                                Hasta 2 huésped(es)
+                            </span>
+
+                            <strong th:text="'$ ' + ${#numbers.formatDecimal(suite.precioPorNoche, 0, 'POINT', 0, 'COMMA')}">
+                                $ 180.000
+                            </strong>
+                        </div>
+
+                        <div class="hotel-suite-footer">
+                            <span th:if="${suite.disponible}" class="availability available">
+                                Disponible
+                            </span>
+
+                            <span th:if="${!suite.disponible}" class="availability unavailable">
+                                No disponible
+                            </span>
+
+                            <a href="#reservas">Consultar</a>
+                        </div>
+                    </article>
                 </div>
+            </div>
 
-                <p th:text="${suite.descripcion}">
-                    Suite elegante para estadías ejecutivas o escapadas urbanas.
-                </p>
+            <button type="button"
+                    class="suite-carousel-arrow suite-carousel-next"
+                    data-suite-next
+                    aria-label="Ver más suites">
+                ›
+            </button>
 
-                <div class="hotel-suite-details">
-                    <span th:text="'Hasta ' + ${suite.capacidad} + ' huésped(es)'">
-                        Hasta 2 huésped(es)
-                    </span>
-
-                    <strong th:text="'$ ' + ${#numbers.formatDecimal(suite.precioPorNoche, 0, 'POINT', 0, 'COMMA')}">
-                        $ 180.000
-                    </strong>
-                </div>
-
-                <div class="hotel-suite-footer">
-                    <span th:if="${suite.disponible}" class="availability available">
-                        Disponible
-                    </span>
-
-                    <span th:if="${!suite.disponible}" class="availability unavailable">
-                        No disponible
-                    </span>
-
-                    <a href="#reservas">Consultar</a>
-                </div>
-            </article>
+            <div class="suite-carousel-dots"
+                 data-suite-dots
+                 aria-label="Navegación de suites">
+            </div>
         </div>
     </section>
 
@@ -401,6 +425,120 @@
 </footer>
 
 <script th:src="@{/js/theme.js}"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const carousel = document.querySelector("[data-suite-carousel]");
+
+        if (!carousel) {
+            return;
+        }
+
+        const track = carousel.querySelector("[data-suite-track]");
+        const cards = Array.from(track.querySelectorAll(".hotel-suite-card"));
+        const prevButton = carousel.querySelector("[data-suite-prev]");
+        const nextButton = carousel.querySelector("[data-suite-next]");
+        const dotsContainer = carousel.querySelector("[data-suite-dots]");
+
+        if (cards.length === 0) {
+            prevButton.style.display = "none";
+            nextButton.style.display = "none";
+            dotsContainer.style.display = "none";
+            return;
+        }
+
+        let currentPage = 0;
+
+        function getCardsPerView() {
+            if (window.innerWidth <= 780) {
+                return 1;
+            }
+
+            if (window.innerWidth <= 1180) {
+                return 2;
+            }
+
+            return 3;
+        }
+
+        function getTotalPages() {
+            return Math.ceil(cards.length / getCardsPerView());
+        }
+
+        function renderDots() {
+            dotsContainer.innerHTML = "";
+
+            const totalPages = getTotalPages();
+
+            if (totalPages <= 1) {
+                dotsContainer.style.display = "none";
+                prevButton.style.display = "none";
+                nextButton.style.display = "none";
+                return;
+            }
+
+            dotsContainer.style.display = "flex";
+            prevButton.style.display = "inline-flex";
+            nextButton.style.display = "inline-flex";
+
+            for (let i = 0; i < totalPages; i++) {
+                const dot = document.createElement("button");
+                dot.type = "button";
+                dot.className = "suite-carousel-dot";
+                dot.setAttribute("aria-label", "Ver grupo de suites " + (i + 1));
+
+                if (i === currentPage) {
+                    dot.classList.add("is-active");
+                }
+
+                dot.addEventListener("click", function () {
+                    currentPage = i;
+                    updateCarousel();
+                });
+
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function updateCarousel() {
+            const cardsPerView = getCardsPerView();
+            const totalPages = getTotalPages();
+
+            if (currentPage > totalPages - 1) {
+                currentPage = Math.max(totalPages - 1, 0);
+            }
+
+            const offset = currentPage * 100;
+
+            track.style.transform = "translateX(-" + offset + "%)";
+
+            prevButton.disabled = currentPage === 0;
+            nextButton.disabled = currentPage === totalPages - 1;
+
+            renderDots();
+        }
+
+        prevButton.addEventListener("click", function () {
+            if (currentPage > 0) {
+                currentPage--;
+                updateCarousel();
+            }
+        });
+
+        nextButton.addEventListener("click", function () {
+            if (currentPage < getTotalPages() - 1) {
+                currentPage++;
+                updateCarousel();
+            }
+        });
+
+        window.addEventListener("resize", function () {
+            updateCarousel();
+        });
+
+        updateCarousel();
+    });
+</script>
 
 </body>
 </html>

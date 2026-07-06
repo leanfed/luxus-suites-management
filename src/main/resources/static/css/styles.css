@@ -1464,630 +1464,109 @@ body.light-theme .suite-checkbox-field {
 }
 
 /* ================================
-   PUBLIC HOTEL LANDING
-================================ */
-
-.public-site {
-    background:
-            radial-gradient(circle at top left, rgba(212, 175, 55, 0.12), transparent 32%),
-            linear-gradient(135deg, #050b14 0%, #0d1b2f 45%, #17263d 100%);
-}
-
-.public-topbar {
-    max-width: 1180px;
-    margin: 0 auto;
-    border-radius: 0 0 28px 28px;
-    background: rgba(4, 10, 20, 0.78);
-    backdrop-filter: blur(18px);
-}
-
-.public-layout {
-    width: min(1180px, calc(100% - 32px));
-    margin: 0 auto;
-    padding: 42px 0 72px;
-}
-
-.public-hero {
-    min-height: 620px;
-    display: grid;
-    grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
-    gap: 34px;
-    align-items: stretch;
-    margin-bottom: 34px;
-}
-
-.public-hero-content,
-.public-hero-feature {
-    position: relative;
-    overflow: hidden;
-    border-radius: 34px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background:
-            linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
-            rgba(12, 20, 34, 0.86);
-    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.36);
-}
-
-.public-hero-content {
-    padding: clamp(34px, 6vw, 74px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.public-hero-content::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-            linear-gradient(90deg, rgba(5, 10, 18, 0.88), rgba(5, 10, 18, 0.42)),
-            radial-gradient(circle at 85% 20%, rgba(212, 175, 55, 0.18), transparent 28%);
-    pointer-events: none;
-}
-
-.public-hero-content > * {
-    position: relative;
-    z-index: 1;
-}
-
-.public-hero-content h2 {
-    max-width: 820px;
-    margin: 16px 0;
-    color: var(--text);
-    font-size: clamp(2.8rem, 6.7vw, 6.8rem);
-    line-height: 0.94;
-    letter-spacing: -0.075em;
-}
-
-.public-hero-content p {
-    max-width: 720px;
-    margin: 0 0 28px;
-    color: var(--muted);
-    font-size: 1.02rem;
-    line-height: 1.8;
-}
-
-.public-hero-feature {
-    padding: 38px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    background:
-            radial-gradient(circle at 30% 20%, rgba(212, 175, 55, 0.22), transparent 26%),
-            linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)),
-            rgba(21, 29, 43, 0.92);
-}
-
-.public-hero-feature span {
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-size: 0.76rem;
-    font-weight: 900;
-}
-
-.public-hero-feature h3 {
-    margin: 14px 0;
-    color: var(--text);
-    font-size: clamp(2rem, 3vw, 3.4rem);
-    line-height: 1;
-    letter-spacing: -0.045em;
-}
-
-.public-hero-feature p {
-    color: var(--muted);
-    line-height: 1.75;
-}
-
-.public-highlights {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-    margin-bottom: 34px;
-}
-
-.public-highlights article,
-.public-card-grid article,
-.public-suite-card,
-.faq-list article {
-    border: 1px solid rgba(255, 255, 255, 0.11);
-    border-radius: 26px;
-    background:
-            linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025)),
-            rgba(16, 27, 45, 0.76);
-    box-shadow: 0 22px 55px rgba(0, 0, 0, 0.22);
-}
-
-.public-highlights article {
-    padding: 24px;
-}
-
-.public-highlights span,
-.public-card-grid article span,
-.suite-card-top span {
-    display: inline-block;
-    margin-bottom: 10px;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-size: 0.7rem;
-    font-weight: 900;
-}
-
-.public-highlights strong {
-    display: block;
-    margin-bottom: 8px;
-    color: var(--text);
-    font-size: 1.55rem;
-}
-
-.public-highlights p,
-.public-card-grid article p,
-.public-suite-card p,
-.faq-list p {
-    color: var(--muted);
-    line-height: 1.65;
-}
-
-.public-section {
-    margin-top: 34px;
-    padding: clamp(28px, 4vw, 46px);
-    border-radius: 34px;
-    border: 1px solid rgba(255, 255, 255, 0.105);
-    background:
-            linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
-            rgba(12, 21, 36, 0.72);
-    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.24);
-}
-
-.public-section-header {
-    max-width: 820px;
-    margin-bottom: 28px;
-}
-
-.public-section-header h2 {
-    margin: 10px 0 12px;
-    color: var(--text);
-    font-size: clamp(2rem, 4vw, 4rem);
-    line-height: 1;
-    letter-spacing: -0.055em;
-}
-
-.public-section-header p {
-    color: var(--muted);
-    line-height: 1.75;
-    font-size: 1rem;
-}
-
-.public-card-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
-}
-
-.public-suite-card {
-    min-height: 310px;
-    padding: 26px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.suite-card-top strong {
-    display: block;
-    color: var(--text);
-    font-size: 1.45rem;
-    line-height: 1.1;
-}
-
-.suite-card-meta {
-    margin-top: auto;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 16px;
-    padding-top: 18px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.suite-card-meta span {
-    color: var(--muted);
-    font-size: 0.86rem;
-}
-
-.suite-card-meta strong {
-    color: var(--gold);
-    white-space: nowrap;
-}
-
-.suite-card-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-}
-
-.availability {
-    padding: 7px 11px;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 800;
-}
-
-.availability.available {
-    color: #bbf7d0;
-    background: rgba(34, 197, 94, 0.14);
-    border: 1px solid rgba(34, 197, 94, 0.26);
-}
-
-.availability.unavailable {
-    color: #fecaca;
-    background: rgba(239, 68, 68, 0.12);
-    border: 1px solid rgba(239, 68, 68, 0.22);
-}
-
-.suite-card-footer a {
-    color: var(--gold);
-    text-decoration: none;
-    font-weight: 900;
-}
-
-.public-split {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 26px;
-    align-items: start;
-}
-
-.public-experience-list {
-    display: grid;
-    gap: 16px;
-}
-
-.public-experience-list article {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 16px;
-    padding: 22px;
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.045);
-    border: 1px solid rgba(255, 255, 255, 0.085);
-}
-
-.public-experience-list article > span {
-    width: 42px;
-    height: 42px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    color: #111827;
-    background: var(--gold);
-    font-weight: 900;
-}
-
-.public-experience-list strong {
-    color: var(--text);
-    font-size: 1.12rem;
-}
-
-.public-experience-list p {
-    margin: 7px 0 0;
-    color: var(--muted);
-    line-height: 1.65;
-}
-
-.service-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.service-grid article,
-.contact-grid article {
-    padding: 24px;
-}
-
-.service-grid strong,
-.contact-grid strong {
-    display: block;
-    color: var(--text);
-    font-size: 1.12rem;
-    line-height: 1.2;
-}
-
-.reservation-public-section {
-    background:
-            radial-gradient(circle at top right, rgba(212, 175, 55, 0.12), transparent 24%),
-            linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.018)),
-            rgba(13, 24, 41, 0.82);
-}
-
-.public-reservation-form {
-    max-width: none;
-    margin-top: 26px;
-    padding: 0;
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-}
-
-.contact-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.public-faq {
-    background: rgba(7, 14, 26, 0.55);
-}
-
-.faq-list {
-    display: grid;
-    gap: 14px;
-}
-
-.faq-list article {
-    padding: 22px 24px;
-}
-
-.faq-list strong {
-    display: block;
-    margin-bottom: 8px;
-    color: var(--text);
-    font-size: 1.05rem;
-}
-
-.public-footer {
-    width: min(1180px, calc(100% - 32px));
-    margin: 0 auto 28px;
-    padding: 30px;
-    border-radius: 30px;
-    background: rgba(4, 10, 20, 0.92);
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    box-shadow: 0 26px 80px rgba(0, 0, 0, 0.28);
-}
-
-.footer-main {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr 0.8fr 0.8fr;
-    gap: 24px;
-}
-
-.footer-main strong {
-    display: block;
-    color: var(--text);
-    font-size: 1.2rem;
-    margin-bottom: 8px;
-}
-
-.footer-main span {
-    display: block;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-size: 0.72rem;
-    font-weight: 900;
-    margin-bottom: 10px;
-}
-
-.footer-main p,
-.footer-bottom small {
-    color: var(--muted);
-    line-height: 1.55;
-}
-
-.footer-main a {
-    display: block;
-    width: fit-content;
-    color: var(--muted);
-    text-decoration: none;
-    margin: 8px 0;
-}
-
-.footer-main a:hover,
-.admin-footer-link:hover {
-    color: var(--gold);
-}
-
-.admin-footer-link {
-    padding: 8px 12px;
-    border-radius: 999px;
-    border: 1px solid rgba(212, 175, 55, 0.24);
-    background: rgba(212, 175, 55, 0.08);
-}
-
-.footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin-top: 26px;
-    padding-top: 18px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* Light theme for public landing */
-
-.light-theme.public-site {
-    background:
-            radial-gradient(circle at top left, rgba(212, 175, 55, 0.18), transparent 32%),
-            linear-gradient(135deg, #f8fafc 0%, #e8edf5 48%, #dbe3ef 100%);
-}
-
-.light-theme .public-topbar,
-.light-theme .public-footer {
-    background: rgba(255, 255, 255, 0.86);
-}
-
-.light-theme .public-hero-content,
-.light-theme .public-hero-feature,
-.light-theme .public-section,
-.light-theme .public-highlights article,
-.light-theme .public-card-grid article,
-.light-theme .public-suite-card,
-.light-theme .faq-list article {
-    background:
-            linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.74));
-    border-color: rgba(15, 23, 42, 0.1);
-}
-
-.light-theme .public-hero-content::before {
-    background:
-            linear-gradient(90deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.34)),
-            radial-gradient(circle at 85% 20%, rgba(212, 175, 55, 0.18), transparent 28%);
-}
-
-/* Responsive public landing */
-
-@media (max-width: 1080px) {
-    .public-hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
-    }
-
-    .public-hero-feature {
-        min-height: 280px;
-    }
-
-    .public-highlights,
-    .service-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .public-card-grid,
-    .contact-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .public-split,
-    .footer-main {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 780px) {
-    .public-layout {
-        width: min(100% - 22px, 1180px);
-        padding-top: 22px;
-    }
-
-    .public-topbar {
-        border-radius: 0 0 22px 22px;
-    }
-
-    .public-nav {
-        width: 100%;
-        justify-content: center;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-top: 12px;
-    }
-
-    .public-hero-content {
-        padding: 30px 24px;
-        border-radius: 26px;
-    }
-
-    .public-hero-content h2 {
-        font-size: clamp(2.35rem, 13vw, 4.2rem);
-        letter-spacing: -0.06em;
-    }
-
-    .public-hero-feature {
-        padding: 26px;
-        border-radius: 26px;
-    }
-
-    .public-section {
-        padding: 24px;
-        border-radius: 26px;
-    }
-
-    .public-highlights,
-    .public-card-grid,
-    .service-grid,
-    .contact-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .suite-card-meta,
-    .suite-card-footer {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .public-footer {
-        width: min(100% - 22px, 1180px);
-        padding: 24px;
-        border-radius: 24px;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-    }
-}
-
-@media (max-width: 480px) {
-    .public-hero {
-        gap: 18px;
-    }
-
-    .public-hero-content h2 {
-        font-size: 2.6rem;
-    }
-
-    .public-section-header h2 {
-        font-size: 2rem;
-    }
-
-    .public-highlights article,
-    .public-suite-card,
-    .service-grid article,
-    .contact-grid article,
-    .faq-list article {
-        padding: 20px;
-    }
-}
-
-/* ================================
-   LUXUS HOTEL REAL LANDING OVERRIDE
+   LUXUS SUITES - PUBLIC HOTEL LANDING
+   Sección pública integrada en el CSS central.
 ================================ */
 
 .hotel-landing {
     min-height: 100vh;
+    font-size: 18px;
+    color: var(--text);
     background:
-            radial-gradient(circle at 8% 0%, rgba(212, 175, 55, 0.16), transparent 30%),
-            radial-gradient(circle at 92% 18%, rgba(148, 163, 184, 0.10), transparent 26%),
+            radial-gradient(circle at 6% 0%, rgba(215, 180, 106, 0.16), transparent 28%),
+            radial-gradient(circle at 92% 12%, rgba(148, 163, 184, 0.10), transparent 24%),
             linear-gradient(135deg, #050913 0%, #091322 42%, #13233a 100%);
 }
 
+/* ================================
+   HEADER
+================================ */
+
 .hotel-landing .public-topbar {
-    width: min(1440px, calc(100% - 48px));
+    width: 100%;
     max-width: none;
-    margin: 0 auto;
-    border-radius: 0 0 26px 26px;
-    background: rgba(4, 9, 18, 0.84);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-top: 0;
+    min-height: 76px;
+    margin: 0;
+    padding: 14px clamp(24px, 4vw, 72px);
+    border-radius: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(4, 9, 18, 0.88);
     backdrop-filter: blur(18px);
 }
 
+.hotel-landing .brand {
+    gap: 13px;
+}
+
+.hotel-landing .brand-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 15px;
+    font-size: 23px;
+}
+
+.hotel-landing .brand h1 {
+    font-size: 1.35rem;
+    line-height: 1.05;
+}
+
+.hotel-landing .brand p {
+    margin-top: 4px;
+    font-size: 0.92rem;
+    color: rgba(241, 245, 249, 0.76);
+}
+
+.hotel-landing .public-nav {
+    gap: 28px;
+    align-items: center;
+}
+
+.hotel-landing .public-nav a {
+    color: rgba(241, 245, 249, 0.78);
+    font-size: clamp(1rem, 0.95vw, 1.12rem);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.hotel-landing .public-nav a:hover {
+    color: var(--gold-soft);
+}
+
+.hotel-landing .theme-toggle {
+    min-height: 38px;
+    padding: 9px 17px;
+    font-size: 0.95rem;
+    font-weight: 800;
+}
+
+/* ================================
+   MAIN LAYOUT
+================================ */
+
 .hotel-main {
     width: 100%;
-    padding: 44px 0 80px;
+    padding: 34px 0 82px;
 }
 
 .hotel-hero,
 .hotel-strip,
 .hotel-section,
 .hotel-footer {
-    width: min(1440px, calc(100% - 48px));
-    max-width: none;
+    width: min(1760px, calc(100% - 72px));
     margin-left: auto;
     margin-right: auto;
 }
 
+/* ================================
+   HERO
+================================ */
+
 .hotel-hero {
-    min-height: 620px;
+    min-height: calc(100vh - 150px);
     display: grid;
-    grid-template-columns: minmax(0, 1.7fr) minmax(330px, 0.8fr);
+    grid-template-columns: minmax(0, 1.65fr) minmax(350px, 0.75fr);
     gap: 28px;
     align-items: stretch;
 }
@@ -2098,81 +1577,91 @@ body.light-theme .suite-checkbox-field {
     overflow: hidden;
     border-radius: 34px;
     border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 32px 90px rgba(0, 0, 0, 0.34);
+    box-shadow: 0 34px 95px rgba(0, 0, 0, 0.34);
 }
 
 .hotel-hero-content {
-    padding: clamp(42px, 5vw, 76px);
+    padding: clamp(46px, 6vw, 96px);
     display: flex;
     flex-direction: column;
     justify-content: center;
     background:
-            linear-gradient(90deg, rgba(5, 10, 18, 0.92), rgba(5, 10, 18, 0.56)),
-            radial-gradient(circle at 82% 18%, rgba(212, 175, 55, 0.18), transparent 28%),
-            linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025));
+            linear-gradient(90deg, rgba(5, 10, 18, 0.94), rgba(5, 10, 18, 0.62)),
+            radial-gradient(circle at 84% 16%, rgba(215, 180, 106, 0.18), transparent 30%),
+            linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.024));
 }
 
 .hotel-hero-content h2 {
-    max-width: 940px;
-    margin: 16px 0 22px;
+    max-width: 1000px;
+    margin: 18px 0 24px;
     color: var(--text);
-    font-size: clamp(3rem, 5.2vw, 5.7rem);
-    line-height: 0.98;
+    font-size: clamp(3.4rem, 4.7vw, 5.5rem);
+    line-height: 1;
     letter-spacing: -0.065em;
 }
 
 .hotel-hero-content p {
-    max-width: 760px;
-    margin: 0 0 98;
-    letter-spacing: -0.065em;
-}
-
-.hotel-hero-content p {
-    max-width: 760px30px;
-    color: rgba(241, 245, 249, 0.76);
-    font-size: 1.03rem;
-    line-height: 1.8;
+    max-width: 960px;
+    margin: 0 0 34px;
+    color: rgba(241, 245, 249, 0.86);
+    font-size: clamp(1.35rem, 1.22vw, 1.6rem);
+    line-height: 1.72;
 }
 
 .hotel-hero-panel {
-    padding: 38px;
+    padding: clamp(34px, 3.4vw, 56px);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     background:
-            radial-gradient(circle at 26% 20%, rgba(212, 175, 55, 0.20), transparent 30%),
-            linear-gradient(145deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.028)),
-            rgba(18, 28, 44, 0.92);
+            radial-gradient(circle at 28% 18%, rgba(215, 180, 106, 0.20), transparent 31%),
+            linear-gradient(145deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.03)),
+            rgba(18, 28, 44, 0.94);
 }
 
-.hotel-hero-panel span {
-    color: var(--gold);
+.hotel-hero-panel span,
+.hotel-landing .eyebrow {
+    color: var(--gold-soft);
     text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-size: 0.72rem;
+    letter-spacing: 0.13em;
+    font-size: clamp(0.86rem, 0.72vw, 0.98rem);
     font-weight: 900;
 }
 
 .hotel-hero-panel h3 {
-    max-width: 420px;
-    margin: 14px 0;
+    max-width: 470px;
+    margin: 15px 0 22px;
     color: var(--text);
-    font-size: clamp(2rem, 2.7vw, 3.2rem);
-    line-height: 1.02;
+    font-size: clamp(2.35rem, 2.55vw, 3.4rem);
+    line-height: 1.03;
     letter-spacing: -0.045em;
 }
 
 .hotel-hero-panel p {
-    max-width: 400px;
-    color: rgba(241, 245, 249, 0.72);
-    line-height: 1.75;
+    max-width: 460px;
+    color: rgba(241, 245, 249, 0.82);
+    font-size: clamp(1.12rem, 1.02vw, 1.32rem);
+    line-height: 1.72;
 }
+
+.hotel-landing .hero-actions {
+    gap: 16px;
+}
+
+.hotel-landing .btn,
+.hotel-landing button {
+    font-size: 1rem;
+}
+
+/* ================================
+   INFO STRIP
+================================ */
 
 .hotel-strip {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 18px;
-    margin-top: 28px;
+    margin-top: 34px;
 }
 
 .hotel-strip article,
@@ -2188,20 +1677,21 @@ body.light-theme .suite-checkbox-field {
 }
 
 .hotel-strip article {
-    padding: 24px;
+    padding: 26px;
     border-radius: 24px;
 }
 
 .hotel-strip span,
 .hotel-suite-card span,
 .hotel-service-grid span,
-.hotel-contact-grid span {
+.hotel-contact-grid span,
+.hotel-footer-main span {
     display: inline-block;
     margin-bottom: 10px;
-    color: var(--gold);
+    color: var(--gold-soft);
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    font-size: 0.7rem;
+    font-size: 0.88rem;
     font-weight: 900;
 }
 
@@ -2209,22 +1699,24 @@ body.light-theme .suite-checkbox-field {
     display: block;
     margin-bottom: 8px;
     color: var(--text);
-    font-size: 1.45rem;
+    font-size: 1.75rem;
+    line-height: 1.1;
 }
 
-.hotel-strip p,
-.hotel-suite-card p,
-.hotel-service-grid p,
-.hotel-contact-grid p,
-.hotel-faq-list p,
-.hotel-section-header p {
-    color: rgba(241, 245, 249, 0.72);
-    line-height: 1.68;
+.hotel-strip p {
+    margin: 0;
+    color: rgba(241, 245, 249, 0.78);
+    font-size: 1.06rem;
+    line-height: 1.65;
 }
+
+/* ================================
+   SECTIONS
+================================ */
 
 .hotel-section {
-    margin-top: 34px;
-    padding: clamp(32px, 4vw, 54px);
+    margin-top: 42px;
+    padding: clamp(36px, 4vw, 58px);
     border-radius: 34px;
     border: 1px solid rgba(255, 255, 255, 0.105);
     background:
@@ -2234,17 +1726,28 @@ body.light-theme .suite-checkbox-field {
 }
 
 .hotel-section-header {
-    max-width: 920px;
-    margin-bottom: 30px;
+    max-width: 980px;
+    margin-bottom: 32px;
 }
 
 .hotel-section-header h2 {
-    margin: 10px 0 12px;
+    margin: 12px 0 16px;
     color: var(--text);
-    font-size: clamp(2.2rem, 3.6vw, 4.4rem);
+    font-size: clamp(2.45rem, 3.45vw, 4.35rem);
     line-height: 1;
     letter-spacing: -0.055em;
 }
+
+.hotel-section-header p {
+    max-width: 930px;
+    color: rgba(241, 245, 249, 0.80);
+    font-size: clamp(1.18rem, 1.08vw, 1.4rem);
+    line-height: 1.74;
+}
+
+/* ================================
+   SUITES
+================================ */
 
 .hotel-suite-grid {
     display: grid;
@@ -2253,8 +1756,8 @@ body.light-theme .suite-checkbox-field {
 }
 
 .hotel-suite-card {
-    min-height: 320px;
-    padding: 28px;
+    min-height: 330px;
+    padding: 30px;
     border-radius: 28px;
     display: flex;
     flex-direction: column;
@@ -2264,8 +1767,15 @@ body.light-theme .suite-checkbox-field {
 .hotel-suite-card-header h3 {
     margin: 0;
     color: var(--text);
-    font-size: 1.55rem;
+    font-size: 1.82rem;
     line-height: 1.15;
+}
+
+.hotel-suite-card p {
+    margin: 0;
+    color: rgba(241, 245, 249, 0.78);
+    font-size: 1.08rem;
+    line-height: 1.68;
 }
 
 .hotel-suite-details {
@@ -2279,16 +1789,17 @@ body.light-theme .suite-checkbox-field {
 
 .hotel-suite-details span {
     margin: 0;
-    color: rgba(241, 245, 249, 0.68);
+    color: rgba(241, 245, 249, 0.70);
     text-transform: none;
     letter-spacing: 0;
-    font-size: 0.86rem;
+    font-size: 1rem;
     font-weight: 700;
 }
 
 .hotel-suite-details strong {
-    color: var(--gold);
+    color: var(--gold-soft);
     white-space: nowrap;
+    font-size: 1.08rem;
 }
 
 .hotel-suite-footer {
@@ -2299,10 +1810,38 @@ body.light-theme .suite-checkbox-field {
 }
 
 .hotel-suite-footer a {
-    color: var(--gold);
+    color: var(--gold-soft);
     text-decoration: none;
     font-weight: 900;
+    font-size: 1.02rem;
 }
+
+.availability {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 900;
+}
+
+.availability.available {
+    color: #bbf7d0;
+    background: rgba(34, 197, 94, 0.14);
+    border: 1px solid rgba(34, 197, 94, 0.26);
+}
+
+.availability.unavailable {
+    color: #fecaca;
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.22);
+}
+
+/* ================================
+   FEATURE / SERVICES / CONTACT
+================================ */
 
 .hotel-split {
     display: grid;
@@ -2319,34 +1858,36 @@ body.light-theme .suite-checkbox-field {
 .hotel-feature-list article {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 16px;
-    padding: 22px;
+    gap: 18px;
+    padding: 24px;
     border-radius: 24px;
     background: rgba(255, 255, 255, 0.045);
     border: 1px solid rgba(255, 255, 255, 0.085);
 }
 
 .hotel-feature-list article > span {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     color: #111827;
-    background: var(--gold);
+    background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+    font-size: 1rem;
     font-weight: 900;
 }
 
 .hotel-feature-list strong {
     color: var(--text);
-    font-size: 1.12rem;
+    font-size: 1.28rem;
 }
 
 .hotel-feature-list p {
-    margin: 7px 0 0;
-    color: rgba(241, 245, 249, 0.72);
-    line-height: 1.65;
+    margin: 8px 0 0;
+    color: rgba(241, 245, 249, 0.78);
+    font-size: 1.06rem;
+    line-height: 1.68;
 }
 
 .hotel-service-grid,
@@ -2365,7 +1906,7 @@ body.light-theme .suite-checkbox-field {
 
 .hotel-service-grid article,
 .hotel-contact-grid article {
-    padding: 26px;
+    padding: 28px;
     border-radius: 26px;
 }
 
@@ -2373,25 +1914,84 @@ body.light-theme .suite-checkbox-field {
 .hotel-contact-grid strong {
     display: block;
     color: var(--text);
-    font-size: 1.14rem;
+    font-size: 1.32rem;
     line-height: 1.2;
 }
 
+.hotel-service-grid p,
+.hotel-contact-grid p {
+    margin: 12px 0 0;
+    color: rgba(241, 245, 249, 0.78);
+    font-size: 1.06rem;
+    line-height: 1.68;
+}
+
+/* ================================
+   RESERVATION
+================================ */
+
 .hotel-reservation-section {
+    width: min(1220px, calc(100% - 72px));
     background:
-            radial-gradient(circle at top right, rgba(212, 175, 55, 0.13), transparent 24%),
+            radial-gradient(circle at top right, rgba(215, 180, 106, 0.13), transparent 24%),
             linear-gradient(145deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.018)),
             rgba(13, 24, 41, 0.82);
 }
 
+.hotel-reservation-section .hotel-section-header {
+    max-width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
 .hotel-reservation-form {
-    max-width: none;
-    margin-top: 26px;
+    max-width: 940px;
+    margin: 28px auto 0;
     padding: 0;
     background: transparent;
     border: 0;
     box-shadow: none;
 }
+
+.hotel-reservation-form .form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 22px;
+}
+
+.hotel-reservation-form .form-field-wide {
+    grid-column: 1 / -1;
+}
+
+.hotel-reservation-form label {
+    font-size: 1.03rem;
+    font-weight: 800;
+}
+
+.hotel-reservation-form input,
+.hotel-reservation-form select,
+.hotel-reservation-form textarea {
+    min-height: 50px;
+    font-size: 1.02rem;
+}
+
+.hotel-reservation-form textarea {
+    min-height: 132px;
+}
+
+.hotel-reservation-form input::placeholder,
+.hotel-reservation-form textarea::placeholder {
+    font-size: 0.98rem;
+}
+
+.hotel-reservation-form .hero-actions {
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* ================================
+   FAQ
+================================ */
 
 .hotel-faq {
     background: rgba(6, 13, 24, 0.58);
@@ -2399,25 +1999,36 @@ body.light-theme .suite-checkbox-field {
 
 .hotel-faq-list {
     display: grid;
-    gap: 14px;
+    gap: 15px;
 }
 
 .hotel-faq-list article {
-    padding: 23px 26px;
+    padding: 25px 28px;
     border-radius: 24px;
 }
 
 .hotel-faq-list strong {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 9px;
     color: var(--text);
-    font-size: 1.05rem;
+    font-size: 1.25rem;
 }
 
+.hotel-faq-list p {
+    margin: 0;
+    color: rgba(241, 245, 249, 0.78);
+    font-size: 1.05rem;
+    line-height: 1.68;
+}
+
+/* ================================
+   FOOTER
+================================ */
+
 .hotel-footer {
-    margin-top: 18px;
-    margin-bottom: 28px;
-    padding: 32px;
+    margin-top: 42px;
+    margin-bottom: 30px;
+    padding: 34px;
     border-radius: 30px;
     background: rgba(4, 9, 18, 0.94);
     border: 1px solid rgba(255, 255, 255, 0.09);
@@ -2427,43 +2038,35 @@ body.light-theme .suite-checkbox-field {
 .hotel-footer-main {
     display: grid;
     grid-template-columns: 1.35fr 1fr 0.85fr 0.85fr;
-    gap: 28px;
+    gap: 30px;
 }
 
 .hotel-footer-main strong {
     display: block;
     color: var(--text);
-    font-size: 1.2rem;
-    margin-bottom: 8px;
-}
-
-.hotel-footer-main span {
-    display: block;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-size: 0.72rem;
-    font-weight: 900;
+    font-size: 1.35rem;
     margin-bottom: 10px;
 }
 
 .hotel-footer-main p,
 .hotel-footer-bottom small {
-    color: rgba(241, 245, 249, 0.68);
-    line-height: 1.55;
+    color: rgba(241, 245, 249, 0.72);
+    font-size: 1rem;
+    line-height: 1.58;
 }
 
 .hotel-footer-main a {
     display: block;
     width: fit-content;
-    color: rgba(241, 245, 249, 0.72);
+    color: rgba(241, 245, 249, 0.76);
     text-decoration: none;
-    margin: 8px 0;
+    font-size: 1rem;
+    margin: 9px 0;
 }
 
 .hotel-footer-main a:hover,
 .staff-access-link:hover {
-    color: var(--gold);
+    color: var(--gold-soft);
 }
 
 .hotel-footer-bottom {
@@ -2471,57 +2074,104 @@ body.light-theme .suite-checkbox-field {
     justify-content: space-between;
     gap: 16px;
     flex-wrap: wrap;
-    margin-top: 26px;
-    padding-top: 18px;
+    margin-top: 28px;
+    padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .staff-access-link {
     color: rgba(241, 245, 249, 0.62);
     text-decoration: none;
-    font-size: 0.82rem;
+    font-size: 0.95rem;
 }
 
-/* Light theme */
+/* ================================
+   LIGHT THEME
+================================ */
 
-.light-theme.hotel-landing {
+body.light-theme.hotel-landing {
     background:
-            radial-gradient(circle at 8% 0%, rgba(212, 175, 55, 0.18), transparent 30%),
+            radial-gradient(circle at 6% 0%, rgba(184, 137, 47, 0.18), transparent 30%),
             linear-gradient(135deg, #f8fafc 0%, #e9eef6 48%, #dbe4ef 100%);
 }
 
-.light-theme .hotel-hero-content,
-.light-theme .hotel-hero-panel,
-.light-theme .hotel-section,
-.light-theme .hotel-strip article,
-.light-theme .hotel-suite-card,
-.light-theme .hotel-service-grid article,
-.light-theme .hotel-contact-grid article,
-.light-theme .hotel-faq-list article {
-    background:
-            linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.76));
-    border-color: rgba(15, 23, 42, 0.1);
+body.light-theme.hotel-landing .public-topbar {
+    background: rgba(255, 255, 255, 0.90);
+    border-bottom-color: rgba(15, 23, 42, 0.10);
 }
 
-.light-theme .hotel-hero-content p,
-.light-theme .hotel-hero-panel p,
-.light-theme .hotel-strip p,
-.light-theme .hotel-suite-card p,
-.light-theme .hotel-service-grid p,
-.light-theme .hotel-contact-grid p,
-.light-theme .hotel-faq-list p,
-.light-theme .hotel-section-header p,
-.light-theme .hotel-footer-main p,
-.light-theme .hotel-footer-bottom small {
+body.light-theme.hotel-landing .brand p,
+body.light-theme.hotel-landing .public-nav a {
     color: var(--muted);
 }
 
-.light-theme .hotel-footer,
-.light-theme.hotel-landing .public-topbar {
-    background: rgba(255, 255, 255, 0.88);
+body.light-theme.hotel-landing .hotel-hero-content,
+body.light-theme.hotel-landing .hotel-hero-panel,
+body.light-theme.hotel-landing .hotel-section,
+body.light-theme.hotel-landing .hotel-strip article,
+body.light-theme.hotel-landing .hotel-suite-card,
+body.light-theme.hotel-landing .hotel-service-grid article,
+body.light-theme.hotel-landing .hotel-contact-grid article,
+body.light-theme.hotel-landing .hotel-faq-list article,
+body.light-theme.hotel-landing .hotel-footer {
+    background:
+            linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.76));
+    border-color: rgba(15, 23, 42, 0.10);
+    box-shadow: 0 22px 70px rgba(17, 24, 39, 0.10);
 }
 
-/* Responsive */
+body.light-theme.hotel-landing .hotel-hero-content p,
+body.light-theme.hotel-landing .hotel-hero-panel p,
+body.light-theme.hotel-landing .hotel-section-header p,
+body.light-theme.hotel-landing .hotel-strip p,
+body.light-theme.hotel-landing .hotel-suite-card p,
+body.light-theme.hotel-landing .hotel-service-grid p,
+body.light-theme.hotel-landing .hotel-contact-grid p,
+body.light-theme.hotel-landing .hotel-faq-list p,
+body.light-theme.hotel-landing .hotel-footer-main p,
+body.light-theme.hotel-landing .hotel-footer-bottom small {
+    color: var(--muted);
+}
+
+body.light-theme.hotel-landing .hotel-footer-main a,
+body.light-theme.hotel-landing .staff-access-link {
+    color: var(--muted);
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (min-width: 1800px) {
+    .hotel-hero,
+    .hotel-strip,
+    .hotel-section,
+    .hotel-footer {
+        width: min(2040px, calc(100% - 120px));
+    }
+
+    .hotel-reservation-section {
+        width: min(1260px, calc(100% - 120px));
+    }
+}
+
+@media (max-width: 1366px) {
+    .hotel-landing {
+        font-size: 17px;
+    }
+
+    .hotel-hero {
+        min-height: auto;
+    }
+
+    .hotel-hero-content h2 {
+        font-size: clamp(3rem, 4.4vw, 4.8rem);
+    }
+
+    .hotel-hero-content p {
+        font-size: 1.25rem;
+    }
+}
 
 @media (max-width: 1180px) {
     .hotel-hero {
@@ -2530,7 +2180,7 @@ body.light-theme .suite-checkbox-field {
     }
 
     .hotel-hero-panel {
-        min-height: 280px;
+        min-height: 300px;
     }
 
     .hotel-strip,
@@ -2550,45 +2200,73 @@ body.light-theme .suite-checkbox-field {
 }
 
 @media (max-width: 780px) {
-    .hotel-landing .public-topbar,
+    .hotel-landing {
+        font-size: 16px;
+    }
+
+    .hotel-landing .public-topbar {
+        padding: 14px 18px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .hotel-landing .public-nav {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 10px 14px;
+        flex-wrap: wrap;
+    }
+
+    .hotel-landing .public-nav a {
+        font-size: 0.96rem;
+    }
+
     .hotel-hero,
     .hotel-strip,
     .hotel-section,
-    .hotel-footer {
-        width: min(100% - 22px, 1440px);
+    .hotel-footer,
+    .hotel-reservation-section {
+        width: min(100% - 22px, 100%);
     }
 
     .hotel-main {
         padding-top: 22px;
     }
 
-    .hotel-landing .public-topbar {
-        border-radius: 0 0 22px 22px;
+    .hotel-hero {
+        gap: 18px;
     }
 
-    .hotel-landing .public-nav {
-        width: 100%;
-        justify-content: center;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-top: 12px;
+    .hotel-hero-content,
+    .hotel-hero-panel,
+    .hotel-section,
+    .hotel-footer {
+        border-radius: 24px;
     }
 
-    .hotel-hero-content {
-        padding: 30px 24px;
-        border-radius: 26px;
-    }
-
-    .hotel-hero-content h2 {
-        font-size: clamp(2.25rem, 11vw, 4rem);
-        letter-spacing: -0.055em;
-    }
-
+    .hotel-hero-content,
     .hotel-hero-panel,
     .hotel-section,
     .hotel-footer {
         padding: 24px;
-        border-radius: 26px;
+    }
+
+    .hotel-hero-content h2 {
+        font-size: clamp(2.55rem, 11vw, 3.8rem);
+        letter-spacing: -0.055em;
+    }
+
+    .hotel-hero-content p {
+        font-size: 1.08rem;
+    }
+
+    .hotel-section-header h2 {
+        font-size: 2.2rem;
+    }
+
+    .hotel-section-header p {
+        font-size: 1.02rem;
     }
 
     .hotel-strip,
@@ -2604,16 +2282,24 @@ body.light-theme .suite-checkbox-field {
         flex-direction: column;
     }
 
+    .hotel-reservation-section .hotel-section-header {
+        text-align: left;
+    }
+
+    .hotel-reservation-form .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hotel-reservation-form .hero-actions {
+        justify-content: flex-start;
+    }
+
     .hotel-footer-bottom {
         flex-direction: column;
     }
 }
 
 @media (max-width: 480px) {
-    .hotel-hero {
-        gap: 18px;
-    }
-
     .hotel-hero-content h2 {
         font-size: 2.45rem;
     }
@@ -2631,25 +2317,1012 @@ body.light-theme .suite-checkbox-field {
     }
 }
 
+
+
 /* ================================
-   HEADER SPACING FIX
+   SUITES CAROUSEL - FINAL
 ================================ */
 
-.hotel-landing .public-topbar {
-    padding: 14px 28px;
-    box-sizing: border-box;
+.hotel-suite-carousel {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 18px;
 }
 
-.hotel-landing .brand {
-    margin-left: 0;
+.hotel-suite-window {
+    width: 100%;
+    overflow: hidden;
 }
 
-.hotel-landing .theme-toggle {
-    margin-right: 0;
+.hotel-suite-carousel .hotel-suite-grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - 40px) / 3);
+    grid-template-columns: none;
+    gap: 20px;
+    transition: transform 0.45s ease;
+    will-change: transform;
+}
+
+.hotel-suite-carousel .hotel-suite-card {
+    width: 100%;
+}
+
+.suite-carousel-arrow {
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    border: 1px solid rgba(215, 180, 106, 0.38);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--gold-soft);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+}
+
+.suite-carousel-arrow:hover {
+    transform: translateY(-2px);
+    background: rgba(215, 180, 106, 0.14);
+}
+
+.suite-carousel-arrow:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.suite-carousel-dots {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.suite-carousel-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 999px;
+    border: 1px solid rgba(215, 180, 106, 0.45);
+    background: rgba(255, 255, 255, 0.14);
+    cursor: pointer;
+    padding: 0;
+    transition: width 0.2s ease, background 0.2s ease;
+}
+
+.suite-carousel-dot.is-active {
+    width: 32px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+}
+
+@media (max-width: 1180px) {
+    .hotel-suite-carousel .hotel-suite-grid {
+        grid-auto-columns: calc((100% - 20px) / 2);
+    }
 }
 
 @media (max-width: 780px) {
-    .hotel-landing .public-topbar {
-        padding: 14px 18px;
+    .hotel-suite-carousel {
+        grid-template-columns: repeat(2, auto);
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .hotel-suite-window,
+    .suite-carousel-dots {
+        grid-column: 1 / -1;
+    }
+
+    .hotel-suite-window {
+        order: 1;
+    }
+
+    .suite-carousel-prev,
+    .suite-carousel-next {
+        order: 2;
+        position: static;
+    }
+
+    .suite-carousel-dots {
+        order: 3;
+    }
+
+    .hotel-suite-carousel .hotel-suite-grid {
+        grid-auto-columns: 100%;
+    }
+}
+
+/* ================================
+   HOTEL TYPOGRAPHY - FINAL SCALE
+================================ */
+
+body.hotel-landing {
+    font-size: 19px;
+}
+
+body.hotel-landing .public-nav a {
+    font-size: clamp(1.08rem, 0.9vw, 1.2rem);
+    line-height: 1.3;
+}
+
+body.hotel-landing .brand h1 {
+    font-size: 1.45rem;
+}
+
+body.hotel-landing .brand p {
+    font-size: 1rem;
+}
+
+body.hotel-landing .theme-toggle {
+    font-size: 1rem;
+}
+
+body.hotel-landing .hotel-hero-content h2 {
+    font-size: clamp(3.35rem, 4.45vw, 5.35rem);
+}
+
+body.hotel-landing .hotel-hero-content p {
+    max-width: 980px;
+    font-size: clamp(1.45rem, 1.18vw, 1.7rem);
+    line-height: 1.78;
+}
+
+body.hotel-landing .hotel-hero-panel p {
+    font-size: clamp(1.24rem, 1vw, 1.42rem);
+    line-height: 1.76;
+}
+
+body.hotel-landing .hotel-section-header p {
+    max-width: 980px;
+    font-size: clamp(1.25rem, 1.05vw, 1.5rem);
+    line-height: 1.78;
+}
+
+body.hotel-landing .hotel-strip p,
+body.hotel-landing .hotel-suite-card p,
+body.hotel-landing .hotel-service-grid p,
+body.hotel-landing .hotel-contact-grid p,
+body.hotel-landing .hotel-faq-list p,
+body.hotel-landing .hotel-feature-list p {
+    font-size: 1.15rem;
+    line-height: 1.72;
+}
+
+body.hotel-landing .hotel-strip span,
+body.hotel-landing .hotel-suite-card span,
+body.hotel-landing .hotel-service-grid span,
+body.hotel-landing .hotel-contact-grid span,
+body.hotel-landing .hotel-footer-main span,
+body.hotel-landing .eyebrow,
+body.hotel-landing .hotel-hero-panel span {
+    font-size: 0.95rem;
+}
+
+body.hotel-landing .hotel-suite-details span,
+body.hotel-landing .hotel-suite-details strong,
+body.hotel-landing .hotel-suite-footer a {
+    font-size: 1.1rem;
+}
+
+body.hotel-landing .availability {
+    font-size: 0.95rem;
+}
+
+body.hotel-landing .btn,
+body.hotel-landing button {
+    font-size: 1.06rem;
+}
+
+@media (max-width: 1366px) {
+    body.hotel-landing {
+        font-size: 18px;
+    }
+
+    body.hotel-landing .hotel-hero-content p {
+        font-size: 1.38rem;
+    }
+
+    body.hotel-landing .hotel-section-header p {
+        font-size: 1.22rem;
+    }
+
+    body.hotel-landing .hotel-strip p,
+    body.hotel-landing .hotel-suite-card p,
+    body.hotel-landing .hotel-service-grid p,
+    body.hotel-landing .hotel-contact-grid p,
+    body.hotel-landing .hotel-faq-list p,
+    body.hotel-landing .hotel-feature-list p {
+        font-size: 1.08rem;
+    }
+}
+
+@media (max-width: 780px) {
+    body.hotel-landing {
+        font-size: 16px;
+    }
+
+    body.hotel-landing .public-nav a {
+        font-size: 0.98rem;
+    }
+
+    body.hotel-landing .hotel-hero-content p,
+    body.hotel-landing .hotel-section-header p,
+    body.hotel-landing .hotel-strip p,
+    body.hotel-landing .hotel-suite-card p,
+    body.hotel-landing .hotel-service-grid p,
+    body.hotel-landing .hotel-contact-grid p,
+    body.hotel-landing .hotel-faq-list p,
+    body.hotel-landing .hotel-feature-list p {
+        font-size: 1.02rem;
+    }
+}
+
+/* ================================
+   LIGHT THEME SUITES - FINAL
+================================ */
+
+body.light-theme.hotel-landing #suites.hotel-section {
+    background: #f8fafc;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+}
+
+body.light-theme.hotel-landing .hotel-suite-card {
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+body.light-theme.hotel-landing .hotel-suite-card::before,
+body.light-theme.hotel-landing .hotel-suite-card::after {
+    display: none;
+    content: none;
+}
+
+body.light-theme.hotel-landing .hotel-suite-card-header span,
+body.light-theme.hotel-landing .hotel-suite-card span {
+    color: #8b641f;
+}
+
+body.light-theme.hotel-landing .hotel-suite-card-header h3 {
+    color: #111827;
+}
+
+body.light-theme.hotel-landing .hotel-suite-card p {
+    color: #374151;
+}
+
+body.light-theme.hotel-landing .hotel-suite-details {
+    border-top: 1px solid rgba(15, 23, 42, 0.12);
+}
+
+body.light-theme.hotel-landing .hotel-suite-details span {
+    color: #4b5563;
+    opacity: 1;
+}
+
+body.light-theme.hotel-landing .hotel-suite-details strong {
+    color: #8b641f;
+    opacity: 1;
+    font-weight: 900;
+}
+
+body.light-theme.hotel-landing .hotel-suite-footer a {
+    color: #8b641f;
+    font-weight: 900;
+}
+
+body.light-theme.hotel-landing .availability.available {
+    color: #166534;
+    background: rgba(34, 197, 94, 0.18);
+    border: 1px solid rgba(22, 101, 52, 0.25);
+}
+
+body.light-theme.hotel-landing .availability.unavailable {
+    color: #7f1d1d;
+    background: rgba(239, 68, 68, 0.16);
+    border: 1px solid rgba(127, 29, 29, 0.25);
+}
+
+body.light-theme.hotel-landing .suite-carousel-arrow {
+    background: #ffffff;
+    color: #8b641f;
+    border: 1px solid rgba(139, 100, 31, 0.28);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+}
+
+body.light-theme.hotel-landing .suite-carousel-arrow:hover {
+    background: rgba(139, 100, 31, 0.10);
+}
+
+body.light-theme.hotel-landing .suite-carousel-dot {
+    background: rgba(139, 100, 31, 0.18);
+    border-color: rgba(139, 100, 31, 0.32);
+}
+
+body.light-theme.hotel-landing .suite-carousel-dot.is-active {
+    background: #8b641f;
+}
+
+
+/* ================================
+   ACCESSIBLE HOTEL TYPOGRAPHY SCALE
+   Tipografía premium legible
+================================ */
+
+.hotel-landing {
+    font-size: 20px;
+}
+
+/* Menú superior */
+.hotel-landing .public-nav a {
+    font-size: 1.12rem !important;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+}
+
+/* Marca */
+.hotel-landing .brand h1 {
+    font-size: 1.45rem !important;
+}
+
+.hotel-landing .brand p {
+    font-size: 1rem !important;
+}
+
+/* Etiquetas doradas */
+.hotel-landing .eyebrow,
+.hotel-landing .hotel-strip span,
+.hotel-landing .hotel-suite-card span,
+.hotel-landing .hotel-service-grid span,
+.hotel-landing .hotel-contact-grid span,
+.hotel-landing .hotel-footer-main span,
+.hotel-landing .hotel-hero-panel span {
+    font-size: 1rem !important;
+    letter-spacing: 0.11em;
+}
+
+/* Título principal: grande, pero controlado */
+.hotel-landing .hotel-hero-content h2 {
+    font-size: clamp(4rem, 5.1vw, 6.4rem) !important;
+    line-height: 1 !important;
+}
+
+/* Texto principal del hero */
+.hotel-landing .hotel-hero-content p {
+    font-size: clamp(1.45rem, 1.35vw, 1.75rem) !important;
+    line-height: 1.75 !important;
+    max-width: 980px !important;
+}
+
+/* Panel lateral del hero */
+.hotel-landing .hotel-hero-panel h3 {
+    font-size: clamp(2.8rem, 3vw, 4rem) !important;
+    line-height: 1.05 !important;
+}
+
+.hotel-landing .hotel-hero-panel p {
+    font-size: 1.25rem !important;
+    line-height: 1.75 !important;
+}
+
+/* Títulos de secciones */
+.hotel-landing .hotel-section-header h2 {
+    font-size: clamp(3rem, 4vw, 5rem) !important;
+    line-height: 1.05 !important;
+}
+
+/* Textos descriptivos de secciones */
+.hotel-landing .hotel-section-header p {
+    font-size: 1.35rem !important;
+    line-height: 1.8 !important;
+    max-width: 980px;
+}
+
+/* Cards informativas */
+.hotel-landing .hotel-strip strong {
+    font-size: 2rem !important;
+}
+
+.hotel-landing .hotel-strip p {
+    font-size: 1.15rem !important;
+    line-height: 1.7 !important;
+}
+
+/* Cards de suites */
+.hotel-landing .hotel-suite-card-header h3 {
+    font-size: 2rem !important;
+}
+
+.hotel-landing .hotel-suite-card p {
+    font-size: 1.13rem !important;
+    line-height: 1.75 !important;
+}
+
+.hotel-landing .hotel-suite-details span,
+.hotel-landing .hotel-suite-details strong,
+.hotel-landing .hotel-suite-footer a,
+.hotel-landing .availability {
+    font-size: 1.05rem !important;
+}
+
+/* Servicios, contacto y preguntas frecuentes */
+.hotel-landing .hotel-service-grid strong,
+.hotel-landing .hotel-contact-grid strong,
+.hotel-landing .hotel-faq-list strong {
+    font-size: 1.45rem !important;
+}
+
+.hotel-landing .hotel-service-grid p,
+.hotel-landing .hotel-contact-grid p,
+.hotel-landing .hotel-faq-list p {
+    font-size: 1.15rem !important;
+    line-height: 1.75 !important;
+}
+
+/* Formulario */
+.hotel-landing .hotel-reservation-form label {
+    font-size: 1.15rem !important;
+}
+
+.hotel-landing .hotel-reservation-form input,
+.hotel-landing .hotel-reservation-form select,
+.hotel-landing .hotel-reservation-form textarea {
+    font-size: 1.12rem !important;
+    min-height: 54px;
+}
+
+.hotel-landing .hotel-reservation-form textarea {
+    min-height: 145px;
+}
+
+/* Botones */
+.hotel-landing .btn,
+.hotel-landing button {
+    font-size: 1.1rem !important;
+}
+
+/* Footer */
+.hotel-landing .hotel-footer-main strong {
+    font-size: 1.45rem !important;
+}
+
+.hotel-landing .hotel-footer-main p,
+.hotel-landing .hotel-footer-main a,
+.hotel-landing .hotel-footer-bottom small,
+.hotel-landing .staff-access-link {
+    font-size: 1.05rem !important;
+    line-height: 1.7 !important;
+}
+
+/* Notebook común */
+@media (max-width: 1366px) {
+    .hotel-landing {
+        font-size: 18px;
+    }
+
+    .hotel-landing .hotel-hero-content h2 {
+        font-size: clamp(3.4rem, 5vw, 5.2rem) !important;
+    }
+
+    .hotel-landing .hotel-hero-content p {
+        font-size: 1.32rem !important;
+    }
+
+    .hotel-landing .hotel-section-header p {
+        font-size: 1.22rem !important;
+    }
+}
+
+/* Celular */
+@media (max-width: 780px) {
+    .hotel-landing {
+        font-size: 16px;
+    }
+
+    .hotel-landing .public-nav a {
+        font-size: 1rem !important;
+    }
+
+    .hotel-landing .hotel-hero-content h2 {
+        font-size: clamp(2.6rem, 11vw, 4rem) !important;
+    }
+
+    .hotel-landing .hotel-hero-content p,
+    .hotel-landing .hotel-section-header p,
+    .hotel-landing .hotel-suite-card p,
+    .hotel-landing .hotel-service-grid p,
+    .hotel-landing .hotel-contact-grid p,
+    .hotel-landing .hotel-faq-list p {
+        font-size: 1.05rem !important;
+    }
+}
+
+/* ================================
+   HOTEL TYPOGRAPHY BALANCE FINAL
+   Escala real para público adulto
+================================ */
+
+/* Base pública */
+body.hotel-landing {
+    font-size: 18px !important;
+}
+
+/* Header / navegación */
+body.hotel-landing .public-nav a {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+}
+
+body.hotel-landing .brand h1 {
+    font-size: 24px !important;
+}
+
+body.hotel-landing .brand p {
+    font-size: 15px !important;
+}
+
+body.hotel-landing .theme-toggle {
+    font-size: 16px !important;
+}
+
+/* Etiquetas doradas */
+body.hotel-landing .eyebrow,
+body.hotel-landing .hotel-strip span,
+body.hotel-landing .hotel-suite-card span,
+body.hotel-landing .hotel-service-grid span,
+body.hotel-landing .hotel-contact-grid span,
+body.hotel-landing .hotel-footer-main span,
+body.hotel-landing .hotel-hero-panel span {
+    font-size: 15px !important;
+    line-height: 1.4 !important;
+    letter-spacing: 0.09em !important;
+}
+
+/* Hero */
+body.hotel-landing .hotel-hero-content h2 {
+    font-size: clamp(54px, 5vw, 82px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.045em !important;
+}
+
+body.hotel-landing .hotel-hero-content p {
+    font-size: 24px !important;
+    line-height: 1.65 !important;
+    max-width: 980px !important;
+}
+
+/* Panel lateral */
+body.hotel-landing .hotel-hero-panel h3 {
+    font-size: clamp(38px, 3vw, 54px) !important;
+    line-height: 1.08 !important;
+}
+
+body.hotel-landing .hotel-hero-panel p {
+    font-size: 21px !important;
+    line-height: 1.65 !important;
+}
+
+/* Títulos de secciones */
+body.hotel-landing .hotel-section-header h2 {
+    font-size: clamp(42px, 3.5vw, 64px) !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.035em !important;
+}
+
+/* Descripciones de secciones */
+body.hotel-landing .hotel-section-header p {
+    font-size: 22px !important;
+    line-height: 1.7 !important;
+    max-width: 980px !important;
+}
+
+/* Cards superiores */
+body.hotel-landing .hotel-strip strong {
+    font-size: 30px !important;
+    line-height: 1.15 !important;
+}
+
+body.hotel-landing .hotel-strip p {
+    font-size: 19px !important;
+    line-height: 1.65 !important;
+}
+
+/* Cards de suites: títulos menos enormes, textos más grandes */
+body.hotel-landing .hotel-suite-card-header h3 {
+    font-size: 28px !important;
+    line-height: 1.2 !important;
+}
+
+body.hotel-landing .hotel-suite-card p {
+    font-size: 19px !important;
+    line-height: 1.65 !important;
+}
+
+body.hotel-landing .hotel-suite-details span,
+body.hotel-landing .hotel-suite-details strong,
+body.hotel-landing .hotel-suite-footer a,
+body.hotel-landing .availability {
+    font-size: 17px !important;
+    line-height: 1.4 !important;
+}
+
+/* Gastronomía */
+body.hotel-landing .hotel-feature-list strong {
+    font-size: 25px !important;
+}
+
+body.hotel-landing .hotel-feature-list p {
+    font-size: 19px !important;
+    line-height: 1.65 !important;
+}
+
+/* Servicios, contacto y FAQ */
+body.hotel-landing .hotel-service-grid strong,
+body.hotel-landing .hotel-contact-grid strong,
+body.hotel-landing .hotel-faq-list strong {
+    font-size: 25px !important;
+    line-height: 1.25 !important;
+}
+
+body.hotel-landing .hotel-service-grid p,
+body.hotel-landing .hotel-contact-grid p,
+body.hotel-landing .hotel-faq-list p {
+    font-size: 19px !important;
+    line-height: 1.65 !important;
+}
+
+/* Formulario */
+body.hotel-landing .hotel-reservation-form label {
+    font-size: 18px !important;
+}
+
+body.hotel-landing .hotel-reservation-form input,
+body.hotel-landing .hotel-reservation-form select,
+body.hotel-landing .hotel-reservation-form textarea {
+    font-size: 18px !important;
+    min-height: 54px !important;
+}
+
+/* Botones */
+body.hotel-landing .btn,
+body.hotel-landing button {
+    font-size: 17px !important;
+}
+
+/* Footer */
+body.hotel-landing .hotel-footer-main strong {
+    font-size: 25px !important;
+}
+
+body.hotel-landing .hotel-footer-main p,
+body.hotel-landing .hotel-footer-main a,
+body.hotel-landing .hotel-footer-bottom small,
+body.hotel-landing .staff-access-link {
+    font-size: 17px !important;
+    line-height: 1.65 !important;
+}
+
+/* Notebook */
+@media (max-width: 1366px) {
+    body.hotel-landing .public-nav a {
+        font-size: 16px !important;
+    }
+
+    body.hotel-landing .hotel-hero-content h2 {
+        font-size: clamp(46px, 4.8vw, 66px) !important;
+    }
+
+    body.hotel-landing .hotel-hero-content p {
+        font-size: 21px !important;
+    }
+
+    body.hotel-landing .hotel-section-header p {
+        font-size: 20px !important;
+    }
+
+    body.hotel-landing .hotel-suite-card p,
+    body.hotel-landing .hotel-service-grid p,
+    body.hotel-landing .hotel-contact-grid p,
+    body.hotel-landing .hotel-faq-list p {
+        font-size: 18px !important;
+    }
+}
+
+/* Celular */
+@media (max-width: 780px) {
+    body.hotel-landing .public-nav a {
+        font-size: 15px !important;
+    }
+
+    body.hotel-landing .hotel-hero-content h2 {
+        font-size: 42px !important;
+    }
+
+    body.hotel-landing .hotel-hero-content p,
+    body.hotel-landing .hotel-section-header p,
+    body.hotel-landing .hotel-suite-card p,
+    body.hotel-landing .hotel-service-grid p,
+    body.hotel-landing .hotel-contact-grid p,
+    body.hotel-landing .hotel-faq-list p {
+        font-size: 17px !important;
+    }
+
+    body.hotel-landing .hotel-suite-card-header h3,
+    body.hotel-landing .hotel-service-grid strong,
+    body.hotel-landing .hotel-contact-grid strong,
+    body.hotel-landing .hotel-faq-list strong {
+        font-size: 23px !important;
+    }
+}
+
+/* ================================
+   HOTEL ACCESSIBILITY SCALE HARD FIX
+   Texto grande, legible y proporcional
+================================ */
+
+body.hotel-landing {
+    font-size: 20px !important;
+}
+
+/* HEADER */
+body.hotel-landing .topbar {
+    min-height: 82px !important;
+}
+
+body.hotel-landing .brand-icon {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 24px !important;
+}
+
+body.hotel-landing .brand h1 {
+    font-size: 24px !important;
+    line-height: 1.1 !important;
+}
+
+body.hotel-landing .brand p {
+    font-size: 16px !important;
+    line-height: 1.25 !important;
+}
+
+body.hotel-landing .nav a,
+body.hotel-landing .public-nav a {
+    font-size: 19px !important;
+    line-height: 1.35 !important;
+    font-weight: 800 !important;
+    padding: 10px 12px !important;
+}
+
+body.hotel-landing .theme-toggle {
+    font-size: 17px !important;
+    padding: 11px 18px !important;
+}
+
+/* HERO */
+body.hotel-landing .hotel-hero {
+    min-height: auto !important;
+}
+
+body.hotel-landing .hotel-hero-content,
+body.hotel-landing .hotel-hero-panel {
+    padding-top: 72px !important;
+    padding-bottom: 72px !important;
+}
+
+body.hotel-landing .eyebrow {
+    font-size: 17px !important;
+    line-height: 1.4 !important;
+    letter-spacing: 0.08em !important;
+}
+
+body.hotel-landing .hotel-hero-content h2 {
+    font-size: clamp(72px, 6vw, 110px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.045em !important;
+    max-width: 1100px !important;
+}
+
+body.hotel-landing .hotel-hero-content p {
+    font-size: 30px !important;
+    line-height: 1.55 !important;
+    max-width: 1050px !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+body.hotel-landing .hotel-hero-panel h3 {
+    font-size: clamp(48px, 3.5vw, 72px) !important;
+    line-height: 1.08 !important;
+}
+
+body.hotel-landing .hotel-hero-panel p {
+    font-size: 25px !important;
+    line-height: 1.6 !important;
+    color: rgba(255, 255, 255, 0.86) !important;
+}
+
+/* BOTONES */
+body.hotel-landing .btn,
+body.hotel-landing button {
+    font-size: 19px !important;
+    line-height: 1.3 !important;
+    padding: 15px 24px !important;
+}
+
+/* SECCIONES */
+body.hotel-landing .hotel-section-header h2 {
+    font-size: clamp(56px, 4vw, 82px) !important;
+    line-height: 1.08 !important;
+    max-width: 1100px !important;
+}
+
+body.hotel-landing .hotel-section-header p {
+    font-size: 28px !important;
+    line-height: 1.6 !important;
+    max-width: 1100px !important;
+}
+
+/* STRIP SUPERIOR */
+body.hotel-landing .hotel-strip span,
+body.hotel-landing .hotel-suite-card span,
+body.hotel-landing .hotel-service-grid span,
+body.hotel-landing .hotel-contact-grid span,
+body.hotel-landing .hotel-footer-main span,
+body.hotel-landing .hotel-hero-panel span {
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+    letter-spacing: 0.08em !important;
+}
+
+body.hotel-landing .hotel-strip strong {
+    font-size: 36px !important;
+    line-height: 1.15 !important;
+}
+
+body.hotel-landing .hotel-strip p {
+    font-size: 23px !important;
+    line-height: 1.55 !important;
+}
+
+/* CARDS DE SUITES */
+body.hotel-landing .hotel-suite-card {
+    padding: 34px !important;
+}
+
+body.hotel-landing .hotel-suite-card-header h3 {
+    font-size: 34px !important;
+    line-height: 1.18 !important;
+}
+
+body.hotel-landing .hotel-suite-card p {
+    font-size: 23px !important;
+    line-height: 1.55 !important;
+}
+
+body.hotel-landing .hotel-suite-details span,
+body.hotel-landing .hotel-suite-details strong,
+body.hotel-landing .hotel-suite-footer a,
+body.hotel-landing .availability {
+    font-size: 20px !important;
+    line-height: 1.35 !important;
+}
+
+/* GASTRONOMÍA / SERVICIOS / CONTACTO / FAQ */
+body.hotel-landing .hotel-feature-list strong,
+body.hotel-landing .hotel-service-grid strong,
+body.hotel-landing .hotel-contact-grid strong,
+body.hotel-landing .hotel-faq-list strong {
+    font-size: 32px !important;
+    line-height: 1.2 !important;
+}
+
+body.hotel-landing .hotel-feature-list p,
+body.hotel-landing .hotel-service-grid p,
+body.hotel-landing .hotel-contact-grid p,
+body.hotel-landing .hotel-faq-list p {
+    font-size: 23px !important;
+    line-height: 1.55 !important;
+}
+
+/* FORMULARIO */
+body.hotel-landing .hotel-reservation-form label {
+    font-size: 21px !important;
+    line-height: 1.35 !important;
+}
+
+body.hotel-landing .hotel-reservation-form input,
+body.hotel-landing .hotel-reservation-form select,
+body.hotel-landing .hotel-reservation-form textarea {
+    font-size: 21px !important;
+    min-height: 62px !important;
+}
+
+body.hotel-landing .hotel-reservation-form textarea {
+    min-height: 170px !important;
+}
+
+/* FOOTER */
+body.hotel-landing .hotel-footer-main strong {
+    font-size: 32px !important;
+}
+
+body.hotel-landing .hotel-footer-main p,
+body.hotel-landing .hotel-footer-main a,
+body.hotel-landing .hotel-footer-bottom small,
+body.hotel-landing .staff-access-link {
+    font-size: 20px !important;
+    line-height: 1.6 !important;
+}
+
+/* NOTEBOOK */
+@media (max-width: 1366px) {
+    body.hotel-landing .nav a,
+    body.hotel-landing .public-nav a {
+        font-size: 17px !important;
+    }
+
+    body.hotel-landing .hotel-hero-content h2 {
+        font-size: clamp(58px, 5vw, 78px) !important;
+    }
+
+    body.hotel-landing .hotel-hero-content p {
+        font-size: 25px !important;
+    }
+
+    body.hotel-landing .hotel-hero-panel h3 {
+        font-size: 48px !important;
+    }
+
+    body.hotel-landing .hotel-hero-panel p {
+        font-size: 22px !important;
+    }
+
+    body.hotel-landing .hotel-section-header p {
+        font-size: 24px !important;
+    }
+
+    body.hotel-landing .hotel-suite-card p,
+    body.hotel-landing .hotel-strip p,
+    body.hotel-landing .hotel-service-grid p,
+    body.hotel-landing .hotel-contact-grid p,
+    body.hotel-landing .hotel-faq-list p {
+        font-size: 21px !important;
+    }
+}
+
+/* CELULAR */
+@media (max-width: 780px) {
+    body.hotel-landing .nav a,
+    body.hotel-landing .public-nav a {
+        font-size: 16px !important;
+    }
+
+    body.hotel-landing .hotel-hero-content h2 {
+        font-size: 44px !important;
+    }
+
+    body.hotel-landing .hotel-hero-content p,
+    body.hotel-landing .hotel-section-header p,
+    body.hotel-landing .hotel-suite-card p,
+    body.hotel-landing .hotel-strip p,
+    body.hotel-landing .hotel-service-grid p,
+    body.hotel-landing .hotel-contact-grid p,
+    body.hotel-landing .hotel-faq-list p {
+        font-size: 18px !important;
+    }
+
+    body.hotel-landing .hotel-suite-card-header h3,
+    body.hotel-landing .hotel-service-grid strong,
+    body.hotel-landing .hotel-contact-grid strong,
+    body.hotel-landing .hotel-faq-list strong {
+        font-size: 26px !important;
     }
 }
