@@ -98,6 +98,21 @@
             </p>
         </div>
 
+        <div class="suite-editorial-image">
+            <img th:src="@{/img/suite.png}"
+                 src="/img/suite.png"
+                 alt="Suite de lujo de Luxus Suites">
+
+            <div class="suite-editorial-caption">
+                <span>Luxury suites</span>
+                <strong>Ambientes amplios, detalles sofisticados y confort superior.</strong>
+                <p>
+                    Habitaciones preparadas para disfrutar una estadía privada,
+                    elegante y completamente orientada al descanso.
+                </p>
+            </div>
+        </div>
+
         <div class="hotel-suite-carousel" data-suite-carousel>
             <button type="button"
                     class="suite-carousel-arrow suite-carousel-prev"
@@ -169,6 +184,21 @@
             </p>
         </div>
 
+        <div class="gastronomy-editorial-image">
+            <img th:src="@{/img/breakfast.png}"
+                 src="/img/breakfast.png"
+                 alt="Desayuno de lujo en Luxus Suites">
+
+            <div class="gastronomy-editorial-caption">
+                <span>Desayuno premium</span>
+                <strong>Una experiencia gastronómica pensada para empezar el día con calma.</strong>
+                <p>
+                    Productos seleccionados, presentación cuidada y servicio personalizado
+                    para disfrutar en el restaurante o en la privacidad de la suite.
+                </p>
+            </div>
+        </div>
+
         <div class="hotel-feature-list">
             <article>
                 <span>01</span>
@@ -200,6 +230,25 @@
         <div class="hotel-section-header">
             <span class="eyebrow">Bienestar</span>
             <h2>Espacios pensados para relajarse y desconectar.</h2>
+            <p>
+                Ambientes serenos, tratamientos personalizados y servicios de bienestar
+                para completar una estadía de descanso absoluto.
+            </p>
+        </div>
+
+        <div class="spa-editorial-image">
+            <img th:src="@{/img/spa1.png}"
+                 src="/img/spa1.png"
+                 alt="Spa de lujo de Luxus Suites">
+
+            <div class="spa-editorial-caption">
+                <span>Spa & wellness</span>
+                <strong>Un refugio de bienestar dentro de la ciudad.</strong>
+                <p>
+                    Espacios cálidos, tratamientos relajantes y una atmósfera privada
+                    para renovar cuerpo y mente durante la estadía.
+                </p>
+            </div>
         </div>
 
         <div class="hotel-service-grid">
@@ -440,10 +489,7 @@
         const nextButton = carousel.querySelector("[data-suite-next]");
         const dotsContainer = carousel.querySelector("[data-suite-dots]");
 
-        if (cards.length === 0) {
-            prevButton.style.display = "none";
-            nextButton.style.display = "none";
-            dotsContainer.style.display = "none";
+        if (!track || cards.length === 0 || !prevButton || !nextButton || !dotsContainer) {
             return;
         }
 
@@ -501,7 +547,6 @@
         }
 
         function updateCarousel() {
-            const cardsPerView = getCardsPerView();
             const totalPages = getTotalPages();
 
             if (currentPage > totalPages - 1) {
