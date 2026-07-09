@@ -1,5 +1,6 @@
 package com.luxus.suites.controller;
 
+import com.luxus.suites.model.HuespedResumen;
 import com.luxus.suites.model.ReservaSolicitud;
 import com.luxus.suites.model.Suite;
 import com.luxus.suites.service.ReservaService;
@@ -40,6 +41,7 @@ public class HomeController {
             Model model
     ) {
         List<ReservaSolicitud> solicitudesFiltradas = reservaService.listarSolicitudesFiltradas(estado, busqueda);
+        List<HuespedResumen> huespedesResumen = reservaService.listarHuespedesResumen();
 
         model.addAttribute("solicitudes", solicitudesFiltradas);
         model.addAttribute("cantidadResultados", solicitudesFiltradas.size());
@@ -54,6 +56,9 @@ public class HomeController {
 
         model.addAttribute("suites", suiteService.listarSuites());
         model.addAttribute("totalSuites", suiteService.listarSuites().size());
+
+        model.addAttribute("huespedes", huespedesResumen);
+        model.addAttribute("totalHuespedes", huespedesResumen.size());
 
         model.addAttribute("ingresosEstimados", reservaService.calcularIngresosEstimados());
         model.addAttribute("ingresosConfirmados", reservaService.calcularIngresosConfirmados());

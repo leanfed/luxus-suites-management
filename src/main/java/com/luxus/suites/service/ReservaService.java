@@ -1,5 +1,6 @@
 package com.luxus.suites.service;
 
+import com.luxus.suites.model.HuespedResumen;
 import com.luxus.suites.model.ReservaSolicitud;
 import com.luxus.suites.model.Suite;
 import com.luxus.suites.repository.ReservaSolicitudRepository;
@@ -7,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ReservaService {
@@ -76,6 +79,27 @@ public class ReservaService {
 
     public List<ReservaSolicitud> listarSolicitudes() {
         return reservaSolicitudRepository.findAllByOrderByIdDesc();
+    }
+
+    public List<HuespedResumen> listarHuespedesResumen() {
+        Map<String, HuespedResumen> huespedes = new LinkedHashMap<>();
+
+        for (ReservaSolicitud solicitud : listarSolicitudes()) {
+            String clave = obtenerClaveHuesped(solicitud);
+
+            HuespedResumen resumen = huespedes.computeIfAbsent(
+                    clave,
+                    key -> new HuespedResumen(
+                            valorSeguro(solicitud.getNombre()),
+                            valorSeguro(solicitud.getEmail()),
+                            valorSeguro(solicitud.getTelefono())
+                    )
+            );
+
+            resumen.registrarReserva(solicitud);
+        }
+
+        return huespedes.values().stream().toList();
     }
 
     public List<ReservaSolicitud> listarSolicitudesPorEstado(String estado) {
@@ -233,6 +257,30 @@ public class ReservaService {
         reservaSolicitudRepository.save(solicitud);
     }
 
+    private String obtenerClaveHuesped(ReservaSolicitud solicitud) {
+        if (solicitud.getEmail() != null && !solicitud.getEmail().isBlank()) {
+            return solicitud.getEmail().trim().toLowerCase();
+        }
+
+        if (solicitud.getTelefono() != null && !solicitud.getTelefono().isBlank()) {
+            return solicitud.getTelefono().trim().toLowerCase();
+        }
+
+        if (solicitud.getNombre() != null && !solicitud.getNombre().isBlank()) {
+            return solicitud.getNombre().trim().toLowerCase();
+        }
+
+        return "huesped-sin-datos-" + solicitud.getId();
+    }
+
+    private String valorSeguro(String valor) {
+        if (valor == null || valor.isBlank()) {
+            return "Sin registrar";
+        }
+
+        return valor.trim();
+    }
+
     private void validarDatosReserva(
             String nombre,
             String email,
@@ -249,7 +297,7 @@ public class ReservaService {
             throw new IllegalArgumentException("El email del huésped es obligatorio.");
         }
 
-        if (!email.trim().matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
+        if (!esEmailValido(email)) {
             throw new IllegalArgumentException("El email ingresado no tiene un formato válido.");
         }
 
@@ -268,6 +316,17 @@ public class ReservaService {
         if (suite == null || suite.isBlank()) {
             throw new IllegalArgumentException("La suite seleccionada es obligatoria.");
         }
+    }
+
+    private boolean esEmailValido(String email) {
+        String emailLimpio = email.trim();
+
+        int posicionArroba = emailLimpio.indexOf("@");
+        int posicionUltimoPunto = emailLimpio.lastIndexOf(".");
+
+        return posicionArroba > 0
+                && posicionUltimoPunto > posicionArroba + 1
+                && posicionUltimoPunto < emailLimpio.length() - 1;
     }
 
     private void validarQueNoExistaReservaSuperpuesta(

@@ -1,3 +1,21 @@
+/* =========================================================
+   Luxus Suites Management - CSS principal
+   ---------------------------------------------------------
+   Archivo único de estilos del proyecto.
+
+   Estructura general:
+   1. Variables, base, layout y componentes compartidos.
+   2. Panel administrativo: dashboard, reservas, suites y formularios.
+   3. Landing pública del hotel: hero, suites, reservas, FAQ y footer.
+   4. Modo claro.
+   5. Responsive desktop/tablet/mobile.
+
+   Nota de mantenimiento:
+   - Evitar agregar parches sueltos al final.
+   - Integrar nuevos ajustes dentro de su sección correspondiente.
+   - Mantener nombres de clases alineados con los templates Thymeleaf.
+========================================================= */
+
 :root {
     --bg: #06101f;
     --bg-dark: #030712;
@@ -2879,5 +2897,428 @@ body.light-theme.hotel-landing .suite-carousel-dot.is-active {
         align-items: center;
         justify-content: center;
         text-align: center;
+    }
+}
+
+/* ================================
+   LANDING - FAQ AJUSTADO
+   Centra el bloque y conserva cards anchas para una lectura cómoda.
+================================ */
+
+body.hotel-landing .hotel-faq {
+    text-align: center;
+}
+
+body.hotel-landing .hotel-faq .hotel-section-header {
+    width: min(100%, 1080px);
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 34px;
+    text-align: center;
+}
+
+body.hotel-landing .hotel-faq .hotel-section-header .eyebrow {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body.hotel-landing .hotel-faq .hotel-section-header h2 {
+    width: 100%;
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: clamp(3.2rem, 3.9vw, 4.8rem);
+    line-height: 0.98;
+    letter-spacing: -0.06em;
+}
+
+body.hotel-landing .hotel-faq-list {
+    width: min(100%, 940px);
+    max-width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    gap: 16px;
+}
+
+body.hotel-landing .hotel-faq-list article {
+    width: 100%;
+    max-width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 24px 30px;
+    text-align: left;
+}
+
+body.hotel-landing .hotel-faq-list strong {
+    display: block;
+    margin-bottom: 8px;
+    text-align: left;
+    font-size: 1.08rem;
+}
+
+body.hotel-landing .hotel-faq-list p {
+    max-width: none;
+    margin: 0;
+    text-align: left;
+    font-size: 1.02rem;
+    line-height: 1.6;
+}
+
+/* ================================
+   LANDING - MOBILE CONTACTO
+   Evita que las cards hijas sobresalgan del panel de contacto.
+================================ */
+
+@media (max-width: 480px) {
+    body.hotel-landing #contacto {
+        overflow: hidden;
+    }
+
+    body.hotel-landing #contacto .hotel-contact-grid {
+        width: 100%;
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: stretch;
+        align-items: stretch;
+        gap: 16px;
+        margin-left: 0;
+        margin-right: 0;
+        overflow: hidden;
+    }
+
+    body.hotel-landing #contacto .hotel-contact-grid article {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 20px 16px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    body.hotel-landing #contacto .hotel-contact-grid strong,
+    body.hotel-landing #contacto .hotel-contact-grid p,
+    body.hotel-landing #contacto .hotel-contact-grid span {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+        word-break: normal;
+    }
+}
+
+/* ================================
+   LANDING - MOBILE CAPTIONS EDITORIALES
+   Centra las cards sombreadas sobre imágenes de alojamiento, gastronomía y spa.
+================================ */
+
+@media (max-width: 480px) {
+    body.hotel-landing .suite-editorial-image,
+    body.hotel-landing .gastronomy-editorial-image,
+    body.hotel-landing .spa-editorial-image {
+        position: relative;
+        overflow: hidden;
+    }
+
+    body.hotel-landing .suite-editorial-caption,
+    body.hotel-landing .gastronomy-editorial-caption,
+    body.hotel-landing .spa-editorial-caption {
+        position: absolute;
+        left: 50%;
+        right: auto;
+        top: auto;
+        bottom: 18px;
+        transform: translateX(-50%);
+
+        width: calc(100% - 36px);
+        max-width: 270px;
+        min-width: 0;
+        margin: 0 auto;
+        padding: 18px 16px;
+        box-sizing: border-box;
+
+        text-align: center;
+        border-radius: 22px;
+    }
+
+    body.hotel-landing .suite-editorial-caption span,
+    body.hotel-landing .gastronomy-editorial-caption span,
+    body.hotel-landing .spa-editorial-caption span,
+    body.hotel-landing .suite-editorial-caption strong,
+    body.hotel-landing .gastronomy-editorial-caption strong,
+    body.hotel-landing .spa-editorial-caption strong,
+    body.hotel-landing .suite-editorial-caption p,
+    body.hotel-landing .gastronomy-editorial-caption p,
+    body.hotel-landing .spa-editorial-caption p {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    body.hotel-landing .suite-editorial-caption strong,
+    body.hotel-landing .gastronomy-editorial-caption strong,
+    body.hotel-landing .spa-editorial-caption strong {
+        display: block;
+        font-size: 1.35rem;
+        line-height: 1.08;
+    }
+
+    body.hotel-landing .suite-editorial-caption p,
+    body.hotel-landing .gastronomy-editorial-caption p,
+    body.hotel-landing .spa-editorial-caption p {
+        font-size: 0.86rem;
+        line-height: 1.45;
+    }
+}
+
+/* ================================
+   LANDING - FAQ RESPONSIVE
+   Mantiene ancho cómodo en tablet y mobile.
+================================ */
+
+@media (max-width: 780px) {
+    body.hotel-landing .hotel-faq .hotel-section-header {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    body.hotel-landing .hotel-faq .hotel-section-header h2 {
+        font-size: 2.2rem;
+        line-height: 1.02;
+    }
+
+    body.hotel-landing .hotel-faq-list {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    body.hotel-landing .hotel-faq-list article {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* ================================
+   ADMIN MOBILE FIX
+   Corrige centrado, botones y desbordes en 320px
+================================ */
+
+@media (max-width: 480px) {
+
+    body:not(.hotel-landing) {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden !important;
+    }
+
+    body:not(.hotel-landing) .topbar,
+    body:not(.hotel-landing) .layout {
+        width: calc(100% - 22px) !important;
+        max-width: 380px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    body:not(.hotel-landing) .topbar {
+        align-items: center !important;
+        text-align: center !important;
+        padding-top: 18px !important;
+        padding-bottom: 18px !important;
+    }
+
+    body:not(.hotel-landing) .brand {
+        justify-content: center !important;
+        text-align: center !important;
+    }
+
+    body:not(.hotel-landing) .nav {
+        width: 100% !important;
+        justify-content: center !important;
+        text-align: center !important;
+        gap: 10px !important;
+    }
+
+    body:not(.hotel-landing) .theme-toggle {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    body:not(.hotel-landing) .hero,
+    body:not(.hotel-landing) .stats-grid,
+    body:not(.hotel-landing) .panel,
+    body:not(.hotel-landing) .suite-admin-grid,
+    body:not(.hotel-landing) .reservation-admin-list {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+    }
+
+    body:not(.hotel-landing) .hero-content,
+    body:not(.hotel-landing) .hero-card,
+    body:not(.hotel-landing) .stat-card,
+    body:not(.hotel-landing) .panel,
+    body:not(.hotel-landing) .suite-admin-card,
+    body:not(.hotel-landing) .reservation-admin-card,
+    body:not(.hotel-landing) .empty-admin-state {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        box-sizing: border-box !important;
+    }
+
+    body:not(.hotel-landing) .hero-content,
+    body:not(.hotel-landing) .hero-card,
+    body:not(.hotel-landing) .panel {
+        padding: 22px 16px !important;
+    }
+
+    body:not(.hotel-landing) .hero-content h2 {
+        font-size: 2rem !important;
+        line-height: 1.02 !important;
+        letter-spacing: -0.04em !important;
+        text-align: left !important;
+    }
+
+    body:not(.hotel-landing) .hero-content p {
+        font-size: 0.95rem !important;
+        line-height: 1.55 !important;
+    }
+
+    body:not(.hotel-landing) .hero-actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        justify-items: center !important;
+        gap: 10px !important;
+    }
+
+    body:not(.hotel-landing) .hero-actions .btn {
+        width: min(100%, 190px) !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+    }
+
+    body:not(.hotel-landing) .panel-header {
+        width: 100% !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    body:not(.hotel-landing) .panel-header > div {
+        width: 100% !important;
+    }
+
+    body:not(.hotel-landing) .panel-header h2,
+    body:not(.hotel-landing) .panel-header .eyebrow {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    body:not(.hotel-landing) .panel-actions {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 8px !important;
+    }
+
+    body:not(.hotel-landing) .panel-link {
+        min-width: auto !important;
+        padding: 8px 12px !important;
+        font-size: 0.78rem !important;
+        text-align: center !important;
+    }
+
+    body:not(.hotel-landing) .suite-admin-info,
+    body:not(.hotel-landing) .reservation-admin-details {
+        width: 100% !important;
+        max-width: 100% !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        box-sizing: border-box !important;
+    }
+
+    body:not(.hotel-landing) .suite-admin-info div,
+    body:not(.hotel-landing) .reservation-admin-details div {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+        overflow-wrap: anywhere !important;
+    }
+
+    body:not(.hotel-landing) .suite-admin-actions,
+    body:not(.hotel-landing) .reservation-admin-actions,
+    body:not(.hotel-landing) .admin-search-actions {
+        width: 100% !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 8px !important;
+    }
+
+    body:not(.hotel-landing) .suite-admin-actions form,
+    body:not(.hotel-landing) .reservation-admin-actions form {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    body:not(.hotel-landing) .table-action,
+    body:not(.hotel-landing) .suite-admin-actions .table-action,
+    body:not(.hotel-landing) .reservation-admin-actions .table-action {
+        width: min(100%, 180px) !important;
+        min-width: 0 !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+    }
+
+    body:not(.hotel-landing) .admin-search-form {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding: 14px !important;
+        box-sizing: border-box !important;
+    }
+
+    body:not(.hotel-landing) .admin-search-form label {
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    body:not(.hotel-landing) .admin-results-summary {
+        width: 100% !important;
+        max-width: 100% !important;
+        justify-content: center !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+    }
+
+    body:not(.hotel-landing) .reservation-admin-main,
+    body:not(.hotel-landing) .reservation-admin-footer {
+        width: 100% !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    body:not(.hotel-landing) .reservation-contact,
+    body:not(.hotel-landing) .reservation-contact span,
+    body:not(.hotel-landing) .reservation-contact small {
+        max-width: 100% !important;
+        overflow-wrap: anywhere !important;
+        text-align: center !important;
     }
 }
