@@ -3322,3 +3322,25 @@ body.hotel-landing .hotel-faq-list p {
         text-align: center !important;
     }
 }
+
+
+/* ================================
+   HERO SIDE CARD BALANCE
+   Ajusta la tarjeta "Luxury stay"
+================================ */
+
+body.hotel-landing .hotel-hero-panel {
+    align-self: center;
+    min-height: 420px;
+    max-height: 520px;
+    justify-content: center;
+}
+
+body.hotel-landing .hotel-hero-panel h3 {
+    margin-top: 14px;
+    margin-bottom: 18px;
+}
+
+body.hotel-landing .hotel-hero-panel p {
+    margin-bottom: 0;
+}
