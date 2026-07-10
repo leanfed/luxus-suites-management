@@ -1,5 +1,6 @@
 package com.luxus.suites.service;
 
+import com.luxus.suites.model.Huesped;
 import com.luxus.suites.model.HuespedResumen;
 import com.luxus.suites.model.ReservaSolicitud;
 import com.luxus.suites.model.Suite;
@@ -17,13 +18,16 @@ public class ReservaService {
 
     private final ReservaSolicitudRepository reservaSolicitudRepository;
     private final SuiteService suiteService;
+    private final HuespedService huespedService;
 
     public ReservaService(
             ReservaSolicitudRepository reservaSolicitudRepository,
-            SuiteService suiteService
+            SuiteService suiteService,
+            HuespedService huespedService
     ) {
         this.reservaSolicitudRepository = reservaSolicitudRepository;
         this.suiteService = suiteService;
+        this.huespedService = huespedService;
     }
 
     public ReservaSolicitud guardarSolicitud(
@@ -47,27 +51,30 @@ public class ReservaService {
             throw new IllegalArgumentException("La suite seleccionada no está disponible para reservas.");
         }
 
-        Double precioPorNoche = suiteSeleccionada.getPrecioPorNoche();
-
         Long noches = calcularNoches(checkin, checkout);
 
         validarQueNoExistaReservaSuperpuesta(
                 null,
-                suite.trim(),
+                suiteSeleccionada.getNombre(),
                 checkin.trim(),
                 checkout.trim()
         );
 
+        Huesped huesped = huespedService.obtenerOCrearHuesped(
+                nombre,
+                email,
+                telefono
+        );
+
+        Double precioPorNoche = suiteSeleccionada.getPrecioPorNoche();
         Double importeEstimado = precioPorNoche * noches;
 
         ReservaSolicitud reserva = new ReservaSolicitud(
                 null,
-                nombre.trim(),
-                email.trim(),
-                telefono.trim(),
+                huesped,
+                suiteSeleccionada,
                 checkin.trim(),
                 checkout.trim(),
-                suite.trim(),
                 observaciones != null ? observaciones.trim() : "",
                 precioPorNoche,
                 noches,
@@ -146,28 +153,31 @@ public class ReservaService {
             throw new IllegalArgumentException("La suite seleccionada no existe.");
         }
 
-        Double precioPorNoche = suiteSeleccionada.getPrecioPorNoche();
-
         Long noches = calcularNoches(checkin, checkout);
 
         if ("Confirmada".equalsIgnoreCase(solicitud.getEstado())) {
             validarQueNoExistaReservaSuperpuesta(
                     solicitud.getId(),
-                    suite.trim(),
+                    suiteSeleccionada.getNombre(),
                     checkin.trim(),
                     checkout.trim()
             );
         }
 
+        Huesped huesped = huespedService.obtenerOCrearHuesped(
+                nombre,
+                email,
+                telefono
+        );
+
+        Double precioPorNoche = suiteSeleccionada.getPrecioPorNoche();
         Double importeEstimado = precioPorNoche * noches;
 
         solicitud.actualizarDatos(
-                nombre.trim(),
-                email.trim(),
-                telefono.trim(),
+                huesped,
+                suiteSeleccionada,
                 checkin.trim(),
                 checkout.trim(),
-                suite.trim(),
                 observaciones != null ? observaciones.trim() : "",
                 precioPorNoche,
                 noches,

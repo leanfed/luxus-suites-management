@@ -1,9 +1,12 @@
 package com.luxus.suites.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
@@ -17,12 +20,36 @@ public class ReservaSolicitud {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /*
+     * Relacion real con Huesped.
+     * Se agrega para normalizar el modelo y preparar el proyecto para deploy con PostgreSQL.
+     */
+    @ManyToOne
+    @JoinColumn(name = "huesped_id")
+    private Huesped huesped;
+
+    /*
+     * Relacion real con Suite.
+     * Reemplaza el uso de suite solo como texto para nuevas reservas.
+     */
+    @ManyToOne
+    @JoinColumn(name = "suite_id")
+    private Suite suiteEntidad;
+
+    /*
+     * Campos de respaldo / snapshot.
+     * Se mantienen para compatibilidad con reservas antiguas ya guardadas en H2
+     * y para conservar los datos históricos de contacto al momento de la reserva.
+     */
     private String nombre;
     private String email;
     private String telefono;
+
+    @Column(name = "suite")
+    private String suiteNombre;
+
     private String checkin;
     private String checkout;
-    private String suite;
     private String observaciones;
     private Double precioPorNoche;
     private Long noches;
@@ -36,24 +63,26 @@ public class ReservaSolicitud {
 
     public ReservaSolicitud(
             Long id,
-            String nombre,
-            String email,
-            String telefono,
+            Huesped huesped,
+            Suite suiteEntidad,
             String checkin,
             String checkout,
-            String suite,
             String observaciones,
             Double precioPorNoche,
             Long noches,
             Double importeEstimado
     ) {
         this.id = id;
-        this.nombre = nombre;
-        this.email = email;
-        this.telefono = telefono;
+        this.huesped = huesped;
+        this.suiteEntidad = suiteEntidad;
+
+        this.nombre = huesped != null ? huesped.getNombre() : "";
+        this.email = huesped != null ? huesped.getEmail() : "";
+        this.telefono = huesped != null ? huesped.getTelefono() : "";
+        this.suiteNombre = suiteEntidad != null ? suiteEntidad.getNombre() : "";
+
         this.checkin = checkin;
         this.checkout = checkout;
-        this.suite = suite;
         this.observaciones = observaciones;
         this.precioPorNoche = precioPorNoche;
         this.noches = noches;
@@ -67,16 +96,48 @@ public class ReservaSolicitud {
         return id;
     }
 
+    public Huesped getHuesped() {
+        return huesped;
+    }
+
+    public Suite getSuiteEntidad() {
+        return suiteEntidad;
+    }
+
     public String getNombre() {
+        if (huesped != null && huesped.getNombre() != null && !huesped.getNombre().isBlank()) {
+            return huesped.getNombre();
+        }
+
         return nombre;
     }
 
     public String getEmail() {
+        if (huesped != null && huesped.getEmail() != null && !huesped.getEmail().isBlank()) {
+            return huesped.getEmail();
+        }
+
         return email;
     }
 
     public String getTelefono() {
+        if (huesped != null && huesped.getTelefono() != null && !huesped.getTelefono().isBlank()) {
+            return huesped.getTelefono();
+        }
+
         return telefono;
+    }
+
+    /*
+     * Se conserva este getter como String para no romper templates existentes:
+     * en Thymeleaf se sigue usando ${solicitud.suite}.
+     */
+    public String getSuite() {
+        if (suiteEntidad != null && suiteEntidad.getNombre() != null && !suiteEntidad.getNombre().isBlank()) {
+            return suiteEntidad.getNombre();
+        }
+
+        return suiteNombre;
     }
 
     public String getCheckin() {
@@ -85,10 +146,6 @@ public class ReservaSolicitud {
 
     public String getCheckout() {
         return checkout;
-    }
-
-    public String getSuite() {
-        return suite;
     }
 
     public String getObservaciones() {
@@ -162,12 +219,10 @@ public class ReservaSolicitud {
     }
 
     public void actualizarDatos(
-            String nombre,
-            String email,
-            String telefono,
+            Huesped huesped,
+            Suite suiteEntidad,
             String checkin,
             String checkout,
-            String suite,
             String observaciones,
             Double precioPorNoche,
             Long noches,
@@ -175,12 +230,16 @@ public class ReservaSolicitud {
     ) {
         completarFechasFaltantes();
 
-        this.nombre = nombre;
-        this.email = email;
-        this.telefono = telefono;
+        this.huesped = huesped;
+        this.suiteEntidad = suiteEntidad;
+
+        this.nombre = huesped != null ? huesped.getNombre() : "";
+        this.email = huesped != null ? huesped.getEmail() : "";
+        this.telefono = huesped != null ? huesped.getTelefono() : "";
+        this.suiteNombre = suiteEntidad != null ? suiteEntidad.getNombre() : "";
+
         this.checkin = checkin;
         this.checkout = checkout;
-        this.suite = suite;
         this.observaciones = observaciones;
         this.precioPorNoche = precioPorNoche;
         this.noches = noches;
@@ -204,7 +263,6 @@ public class ReservaSolicitud {
 
     private String formatearFecha(LocalDateTime fecha) {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-
         return fecha.format(formato);
     }
 }
