@@ -47,7 +47,36 @@ El sistema se divide en dos grandes áreas:
 La aplicación fue desarrollada como un proyecto integral de backend, frontend renderizado del lado del servidor y persistencia de datos.
 
 ---
+---
 
+## Capturas del proyecto
+
+### Sitio público - Desktop
+
+![Home desktop](docs/screenshots/home-desktop.png)
+
+### Sitio público - Mobile
+
+![Home mobile](docs/screenshots/home-mobile.png)
+
+### Panel administrativo - Dashboard
+
+![Panel admin dashboard](docs/screenshots/admin-dashboard.png)
+
+### Gestión de suites
+
+![Gestión de suites](docs/screenshots/admin-suites.png)
+
+### Gestión de reservas
+
+![Gestión de reservas](docs/screenshots/admin-reservas.png)
+
+### Resumen de huéspedes
+
+![Resumen de huéspedes](docs/screenshots/admin-huespedes.png)
+
+---
+---
 ## Objetivo del proyecto
 
 El objetivo principal del proyecto es construir una aplicación funcional, presentable y completa, que permita demostrar:
