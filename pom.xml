@@ -24,12 +24,13 @@
 	</properties>
 
 	<dependencies>
-		<!-- Web MVC + Thymeleaf -->
+		<!-- Web MVC -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webmvc</artifactId>
 		</dependency>
 
+		<!-- Motor de plantillas Thymeleaf -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -47,17 +48,24 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-		<!-- Base de datos H2 para desarrollo -->
+		<!-- Base de datos H2 para desarrollo local -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- Consola web de H2 para Spring Boot 4 -->
+		<!-- Consola web de H2 para desarrollo local -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-h2console</artifactId>
+		</dependency>
+
+		<!-- Driver PostgreSQL para producción / deploy -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 
 		<!-- Herramientas de desarrollo -->
@@ -68,19 +76,21 @@
 			<optional>true</optional>
 		</dependency>
 
-		<!-- Tests -->
+		<!-- Tests Web MVC -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Tests Thymeleaf -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Tests Validation -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation-test</artifactId>
