@@ -5432,3 +5432,71 @@ body:not(.hotel-landing) .hero-card h3 {
         object-position: center center !important;
     }
 }
+
+/* ==============================
+   MOBILE IOS - DATE INPUT SAME STYLE
+   Check-in / Check-out iguales al resto de campos
+   ============================== */
+
+@media (max-width: 480px) {
+    body.hotel-landing .hotel-reservation-form label,
+    body.hotel-landing .hotel-reservation-form .form-grid,
+    body.hotel-landing .hotel-reservation-form .form-field-wide {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    body.hotel-landing .hotel-reservation-form input[type="date"] {
+        -webkit-appearance: none !important;
+        appearance: none !important;
+
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+
+        padding: 14px 16px !important;
+        min-height: 50px !important;
+        height: auto !important;
+
+        border-radius: 16px !important;
+        border: 1px solid var(--border) !important;
+
+        background: rgba(255, 255, 255, 0.08) !important;
+        background-clip: padding-box !important;
+
+        color: var(--text-main) !important;
+        font-family: inherit !important;
+        font-size: 1.02rem !important;
+        line-height: 1.2 !important;
+
+        outline: none !important;
+        overflow: hidden !important;
+    }
+
+    body.hotel-landing .hotel-reservation-form input[type="date"]::-webkit-date-and-time-value {
+        width: 100% !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: left !important;
+        line-height: 1.2 !important;
+        color: var(--text-main) !important;
+    }
+
+    body.hotel-landing .hotel-reservation-form input[type="date"]::-webkit-calendar-picker-indicator {
+        margin-left: auto !important;
+        padding: 0 !important;
+        opacity: 0.75 !important;
+        filter: invert(1) !important;
+    }
+
+    body.hotel-landing .hotel-reservation-form input[type="date"]::-webkit-inner-spin-button,
+    body.hotel-landing .hotel-reservation-form input[type="date"]::-webkit-clear-button {
+        display: none !important;
+        -webkit-appearance: none !important;
+    }
+}
