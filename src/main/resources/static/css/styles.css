@@ -5583,3 +5583,15 @@ body:not(.hotel-landing) .hero-card h3 {
         opacity: 0.75 !important;
     }
 }
+
+/* ==============================
+   DESKTOP - AJUSTE CAPTION ALOJAMIENTO / GASTRONOMIA
+   Baja 3px la card sombreada sin afectar mobile
+   ============================== */
+
+@media (min-width: 981px) {
+    body.hotel-landing .suite-editorial-caption,
+    body.hotel-landing .gastronomy-editorial-caption {
+        transform: translateY(3px) !important;
+    }
+}
