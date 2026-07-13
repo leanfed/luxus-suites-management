@@ -241,7 +241,7 @@ HuespedResumen.java
 El sitio público se encuentra en:
 
 ```text
-http://localhost:8081/
+https://luxus-suites-management.onrender.com/
 ```
 
 Su finalidad es mostrar una experiencia visual similar a una web real de hotel premium.
